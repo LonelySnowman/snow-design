@@ -1,0 +1,8 @@
+node_modules
+docs/node_modules
+packages/**/node_modules
+
+packages/snow-foundation/lib
+packages/snow-ui/lib
+
+.idea

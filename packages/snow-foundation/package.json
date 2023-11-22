@@ -1,0 +1,28 @@
+{
+  "name": "snow-foundation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:lib": "node ./_scripts/compileLib.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.23.3",
+    "@babel/types": "7",
+    "babel-plugin-lodash": "^3.3.4",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-sass": "^5.1.0",
+    "gulp-typescript": "6.0.0-alpha.1",
+    "merge2": "^1.4.1",
+    "sass": "^1.69.5"
+  }
+}

@@ -1,0 +1,10 @@
+@import './variables.scss';
+
+$module: #{$prefix}-button;
+
+.#{$module} {
+  color: red;
+  &.#{$module}-primary {
+    background-color: $color-button_primary-bg-default;
+  }
+}
