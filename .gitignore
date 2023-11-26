@@ -4,5 +4,6 @@ packages/**/node_modules
 
 packages/snow-foundation/lib
 packages/snow-ui/lib
+packages/snow-ui/dist
 
 .idea

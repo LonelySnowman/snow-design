@@ -3,10 +3,10 @@ const merge2 = require('merge2');
 const gulp = require('gulp');
 const gulpTS = require('gulp-typescript');
 const gulpBabel = require('gulp-babel');
-const tsConfig = require('./tsconfig.json');
+const tsConfig = require('../../tsconfig.json');
 const replace = require('gulp-replace');
 const del = require('del'); // 注意版本
-const getBabelConfig = require('./_scripts/utils/getBabelConfig');
+const getBabelConfig = require('./getBabelConfig');
 
 gulp.task('cleanLib', function cleanLib() {
     return del(['lib/**/*']);

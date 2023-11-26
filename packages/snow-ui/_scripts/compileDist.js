@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const config = require('../webpack.config');
+const config = require('./config/webpack.config');
 
 function compile() {
     return new Promise((resolve, reject) => {
@@ -10,9 +10,7 @@ function compile() {
                 reject(err);
                 return;
             }
-            
             const info = stats.toJson();
-        
             if (stats.hasErrors()) {
                 (info.errors || []).forEach(error => {
                     console.error(error);
@@ -34,9 +32,7 @@ function compileMin() {
                 console.error(err);
                 reject(err);
             }
-            
             const info = stats.toJson();
-        
             if (stats.hasErrors()) {
                 (info.errors || []).forEach(error => {
                     console.error(error);
