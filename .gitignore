@@ -7,3 +7,5 @@ packages/snow-ui/lib
 packages/snow-ui/dist
 
 .idea
+
+pnpm-lock.yaml

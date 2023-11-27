@@ -1,41 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
+import type { StoryObj } from '@storybook/react';
+import React from 'react'
 import Button from '../index';
 
-const meta = {
-    title: '测试/Button',
-    component: Button,
-    parameters: {
-        layout: 'centered',
-    },
-} satisfies Meta<typeof Button>;
+export default {
+    title: 'Button',
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
+export const Primary: StoryObj = {
     args: {
         primary: true,
         label: 'Button',
     },
-};
-
-export const Secondary: Story = {
-    args: {
-        label: 'Button',
-    },
-};
-
-export const Large: Story = {
-    args: {
-        size: 'large',
-        label: 'Button',
-    },
-};
-
-export const Small: Story = {
-    args: {
-        size: 'small',
-        label: 'Button',
-    },
+    render() {
+        return <Button>UI semi</Button>
+    }
 };

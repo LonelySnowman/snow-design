@@ -20,10 +20,14 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
 const Button: React.FC<ButtonProps> = (props) => {
     const {
         onClick,
-        children = "111"
+        children,
+        style
     } = props;
+
     return (
-        <button className={prefixCls} onClick={onClick}>{children}</button>
+        <div className={prefixCls} style={style}>
+            <button onClick={onClick}>{children}</button>
+        </div>
     )
 }
 

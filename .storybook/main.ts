@@ -3,8 +3,8 @@ import * as path from "path";
 
 const config: StorybookConfig = {
   stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    // "../stories/**/*.mdx",
+    // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../packages/snow-ui/**/_story/*.stories.@(ts|tsx)"
   ],
   addons: [
