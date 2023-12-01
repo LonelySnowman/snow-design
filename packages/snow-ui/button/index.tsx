@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 import '@snow-design/snow-foundation/button/button.scss'
 import { cssClasses } from '@snow-design/snow-foundation/button/constants';
+import classNames from "classnames";
 
 const prefixCls = cssClasses.PREFIX;
 
-export type Type = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
+export type Type = 'default' | 'primary' | 'warning' | 'danger';
 export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>{
-    id?: string;
     children?: ReactNode;
     className?: string;
     style?: React.CSSProperties;
@@ -21,13 +21,26 @@ const Button: React.FC<ButtonProps> = (props) => {
     const {
         onClick,
         children,
-        style
+        style,
+        className,
+        type = 'default',
+        ...baseProps
     } = props;
 
+    const classes = classNames(
+        className,
+        prefixCls,
+        {
+            [`${prefixCls}-${type}`]: type,
+        }
+    )
+
     return (
-        <div className={prefixCls} style={style}>
-            <button onClick={onClick}>{children}</button>
-        </div>
+        <button {...baseProps} style={style} className={classes} onClick={onClick}>
+            <span>
+                {children}
+            </span>
+        </button>
     )
 }
 

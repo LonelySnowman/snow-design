@@ -1,0 +1,19 @@
+@import "./palette.scss";
+
+body, body[theme-mode="light"] {
+
+  --snow-color-primary: var(--blue-6);
+  --snow-color-primary-hover: var(--blue-4);
+  --snow-color-primary-active: var(--blue-7);
+
+  --snow-color-warning: var(--orange-6);
+  --snow-color-warning-hover: var(--orange-4);
+  --snow-color-warning-active: var(--orange-7);
+
+  --snow-color-danger: var(--red-6);
+  --snow-color-danger-hover: var(--red-4);
+  --snow-color-danger-active: var(--red-7);
+
+  --snow-white: #ffffff;
+  --snow-black: #000000;
+}

@@ -37,6 +37,8 @@
     "@storybook/blocks": "7.5.3",
     "@storybook/react": "7.5.3",
     "@storybook/testing-library": "0.2.2",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.1.5",
     "identity-obj-proxy": "^3.0.0",
     "react-dom": "18.2.0"
   }

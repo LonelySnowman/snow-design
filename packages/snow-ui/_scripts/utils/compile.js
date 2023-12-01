@@ -2,15 +2,13 @@ import fs from 'fs-extra';
 import path from 'path';
 import * as sass from 'sass';
 
-const rootPath = '../../../../';
-
-const compile = (foundationPath, themePath, isMin = false) => {
+const compile = (rootPath, foundationPath, themePath, isMin = false) => {
     const scssRaw = []
 
-    if (fs.existsSync(themePath + '/index.scss'))
+    if (fs.existsSync(themePath + '/index.scss')) // 插入主题样式
         scssRaw.push('@import "../../../snow-foundation/_theme/index.scss";')
 
-    const styleFiles = fs.readdirSync(foundationPath);
+    const styleFiles = fs.readdirSync(foundationPath); // 插入组件样式
     for (const fileName of styleFiles) {
         const filePath = path.join(foundationPath, fileName)
         if (fs.lstatSync(filePath).isDirectory() && !fileName.startsWith('_')) {
@@ -25,7 +23,7 @@ const compile = (foundationPath, themePath, isMin = false) => {
     const content = scssRaw.join('\n')
     fs.outputFileSync(outPutScss, content, 'utf-8')
 
-    const result = sass.renderSync({
+    const result = sass.renderSync({ // 使用 sass 编译
         file: outPutScss,
         outputStyle: isMin ? 'compressed' : 'expanded',
         charset: false
@@ -33,8 +31,4 @@ const compile = (foundationPath, themePath, isMin = false) => {
     fs.writeFileSync(outPutCss, result.css.toString(), 'utf-8');
 };
 
-
-compile(
-    path.join(rootPath , 'packages/snow-foundation'),
-    path.join(rootPath , 'packages/snow-foundation/_theme')
-)
+export default compile

@@ -1,1 +1,17 @@
-$color-button_primary-bg-default: blue; // 主要按钮背景颜色
+// primary
+$color-button_primary-bg-default: var(--snow-color-primary);
+$color-button_primary-bg-hover: var(--snow-color-primary-hover);
+$color-button_primary-bg-active: var(--snow-color-primary-active);
+$color-button_primary-text-default: var(--white);
+
+// warning
+$color-button_warning-bg-default: var(--snow-color-warning);
+$color-button_warning-bg-hover: var(--snow-color-warning-hover);
+$color-button_warning-bg-active: var(--snow-color-warning-active);
+$color-button_warning-text-default: var(--white);
+
+// danger
+$color-button_danger-bg-default: var(--snow-color-danger);
+$color-button_danger-bg-hover: var(--snow-color-danger-hover);
+$color-button_danger-bg-active: var(--snow-color-danger-active);
+$color-button_danger-text-default: var(--white);

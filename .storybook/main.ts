@@ -31,7 +31,9 @@ const config: StorybookConfig = {
     config.css = {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@snow-design/snow-foundation/_theme/index.scss";\n`
+          additionalData: `
+          @import "@snow-design/snow-foundation/_theme/index.scss";\n
+          @import "@snow-design/snow-foundation/_theme/global.scss";\n`,
         }
       }
     }
