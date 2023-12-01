@@ -1,0 +1,29 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "description": "A static site based on dumi",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "dumi dev",
+    "build": "dumi build"
+  },
+  "authors": [],
+  "license": "MIT",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ]
+  },
+  "devDependencies": {
+    "dumi": "^2.2.14",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@snow-design/components": "workspace:^"
+  }
+}
