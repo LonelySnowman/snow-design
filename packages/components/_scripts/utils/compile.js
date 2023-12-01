@@ -6,7 +6,7 @@ const compile = (rootPath, foundationPath, themePath, isMin = false) => {
     const scssRaw = []
 
     if (fs.existsSync(themePath + '/index.scss')) // 插入主题样式
-        scssRaw.push('@import "../../../snow-foundation/_theme/index.scss";')
+        scssRaw.push('@import "../../../foundation/_theme/index.scss";')
 
     const styleFiles = fs.readdirSync(foundationPath); // 插入组件样式
     for (const fileName of styleFiles) {
@@ -14,12 +14,12 @@ const compile = (rootPath, foundationPath, themePath, isMin = false) => {
         if (fs.lstatSync(filePath).isDirectory() && !fileName.startsWith('_')) {
             const scssFiles = fs.readdirSync(filePath)
             if (scssFiles.includes(`${fileName}.scss`))
-                scssRaw.push(`@import "../../../snow-foundation/${fileName}/${fileName}.scss";`)
+                scssRaw.push(`@import "../../../foundation/${fileName}/${fileName}.scss";`)
         }
     }
 
-    const outPutScss = path.join(rootPath, `packages/snow-ui/dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`)
-    const outPutCss = path.join(rootPath, `packages/snow-ui/dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`)
+    const outPutScss = path.join(rootPath, `packages/components/dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`)
+    const outPutCss = path.join(rootPath, `packages/components/dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`)
     const content = scssRaw.join('\n')
     fs.outputFileSync(outPutScss, content, 'utf-8')
 

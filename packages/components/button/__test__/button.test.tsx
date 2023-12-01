@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import React from 'react';
 import Button from '../index'
-import { cssClasses } from '@snow-design/snow-foundation/button/constants';
+import { cssClasses } from '@snow-design/foundation/button/constants';
 
 describe('Button', () => {
     const prefix = cssClasses.PREFIX;

@@ -1,11 +1,10 @@
 {
-  "name": "@snow-design/snow-ui",
+  "name": "@snow-design/components",
   "version": "1.0.0",
   "description": "",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
   "typings": "lib/es/index.d.ts",
-  "type": "module",
   "files": [
     "dist/*",
     "lib/*"

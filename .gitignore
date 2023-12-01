@@ -2,9 +2,9 @@ node_modules
 docs/node_modules
 packages/**/node_modules
 
-packages/snow-foundation/lib
-packages/snow-ui/lib
-packages/snow-ui/dist
+packages/foundation/lib
+packages/components/lib
+packages/components/dist
 
 .idea
 

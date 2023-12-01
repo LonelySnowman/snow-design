@@ -5,11 +5,11 @@ module.exports = {
         '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': 'babel-jest',
     },
     moduleDirectories: ["node_modules"],
-    testMatch: ['<rootDir>/packages/snow-ui/**/__test__/**/*.[t|j]s?(x)'],
+    testMatch: ['<rootDir>/packages/components/**/__test__/**/*.[t|j]s?(x)'],
     moduleNameMapper: {
         '\\.(css|scss)$': 'identity-obj-proxy',
-        '@snow-design/snow-ui(.*)$': '<rootDir>/packages/snow-ui/$1',
-        '@snow-design/snow-foundation(.*)$': '<rootDir>/packages/snow-foundation/$1',
+        '@snow-design/components(.*)$': '<rootDir>/packages/components/$1',
+        '@snow-design/foundation(.*)$': '<rootDir>/packages/foundation/$1',
     },
     // testEnvironmentOptions: {
     //     url: 'http://localhost',

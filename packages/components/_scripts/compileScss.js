@@ -4,6 +4,6 @@ import path from "path";
 const rootPath = "../../../"
 compile(
     rootPath,
-    path.join(rootPath , 'packages/snow-foundation'),
-    path.join(rootPath , 'packages/snow-foundation/_theme')
+    path.join(rootPath , 'packages/foundation'),
+    path.join(rootPath , 'packages/foundation/_theme')
 )

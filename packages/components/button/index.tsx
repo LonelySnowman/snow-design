@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import '@snow-design/snow-foundation/button/button.scss'
-import { cssClasses } from '@snow-design/snow-foundation/button/constants';
+import '@snow-design/foundation/button/button.scss'
+import { cssClasses } from '@snow-design/foundation/button/constants';
 import classNames from "classnames";
 
 const prefixCls = cssClasses.PREFIX;

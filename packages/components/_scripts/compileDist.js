@@ -3,7 +3,6 @@ const config = require('./config/webpack.config');
 
 function compile() {
     return new Promise((resolve, reject) => {
-        console.log('compile jsx start');
         webpack(config({ minimize: false }), (err, stats) => {
             if (err) {
                 console.error(err);
@@ -18,7 +17,6 @@ function compile() {
                 reject(err);
                 return;
             }
-            console.log('compile jsx success');
             resolve();
         });
     });
@@ -26,7 +24,6 @@ function compile() {
 
 function compileMin() {
     return new Promise((resolve, reject) => {
-        console.log('compile jsx with minimize start');
         webpack(config({ minimize: true }), (err, stats) => {
             if (err) {
                 console.error(err);
@@ -39,7 +36,6 @@ function compileMin() {
                     reject(err);
                 });
             }
-            console.log('compile jsx with minimize success');
             resolve();
         });
     });

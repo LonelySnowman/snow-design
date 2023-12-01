@@ -18,7 +18,7 @@ module.exports = function ({ minimize }) {
             index: [path.resolve(__dirname, '../../index.ts')]
         },
         output: {
-            filename: minimize ? 'snow-ui.min.js' : 'snow-ui.js',
+            filename: minimize ? 'components.min.js' : 'components.js',
             path: path.resolve(__dirname, '../../dist/umd'),
             library: 'SnowUI',
             libraryTarget: 'umd'
@@ -28,7 +28,7 @@ module.exports = function ({ minimize }) {
                 {
                     test: /\.tsx?$/,
                     include: [
-                        path.resolve(rootPath, './packages/snow-ui'),
+                        path.resolve(rootPath, './packages/components'),
                     ],
                     use: [
                         {
@@ -64,7 +64,7 @@ module.exports = function ({ minimize }) {
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
             alias: {
-                "@snow-design/snow-foundation": path.resolve(__dirname, "../../../snow-foundation"),
+                "@snow-design/foundation": path.resolve(__dirname, "../../../foundation"),
             },
         },
         externals: { // 声明外部依赖

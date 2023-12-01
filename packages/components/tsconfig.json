@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "ES2015",
-    "baseUrl": "./",
     "outDir": "lib",
     "sourceMap": true,
     "allowJs": true,
@@ -14,8 +13,8 @@
     "declaration": true,
     "strictNullChecks": false,
     "paths": {
-      "@snow-design/snow-foundation/*": ["../snow-foundation/*"],
-      "@snow-design/snow-ui/*": ["../snow-ui/*"]
+      "@snow-design/foundation/*": ["../foundation/*"],
+      "@snow-design/components/*": ["../components/*"]
     }
   },
   "include": ["**/*.tsx", "**/*.ts"],

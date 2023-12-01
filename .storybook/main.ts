@@ -5,7 +5,7 @@ const config: StorybookConfig = {
   stories: [
     // "../stories/**/*.mdx",
     // "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../packages/snow-ui/**/_story/*.stories.@(ts|tsx)"
+    "../packages/components/**/_story/*.stories.@(ts|tsx)"
   ],
   addons: [
     "@storybook/addon-links",
@@ -23,7 +23,7 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) => {
     config.resolve.alias = {
-      "@snow-design/snow-foundation": path.resolve(__dirname, "../packages/snow-foundation")
+      "@snow-design/foundation": path.resolve(__dirname, "../packages/foundation")
     };
     config.define = {
       "process.env": {}
@@ -32,8 +32,8 @@ const config: StorybookConfig = {
       preprocessorOptions: {
         scss: {
           additionalData: `
-          @import "@snow-design/snow-foundation/_theme/index.scss";\n
-          @import "@snow-design/snow-foundation/_theme/global.scss";\n`,
+          @import "@snow-design/foundation/_theme/index.scss";\n
+          @import "@snow-design/foundation/_theme/global.scss";\n`,
         }
       }
     }
