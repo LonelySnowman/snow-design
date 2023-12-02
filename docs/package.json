@@ -1,10 +1,9 @@
 {
-  "name": "",
+  "name": "@snow-design/docs",
   "version": "0.0.1",
   "description": "A static site based on dumi",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "dumi dev",
+    "start": "dumi dev",
     "build": "dumi build"
   },
   "authors": [],

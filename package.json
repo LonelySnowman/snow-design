@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "storybook dev -p 6006",
+    "start:dev": "storybook dev -p 6006",
+    "start:docs": "pnpm run -C docs start",
     "build-storybook": "storybook build",
-    "test": "jest --silent"
+    "test:unit": "jest --silent",
+    "build:docs": "pnpm run -C docs build"
   },
   "keywords": [],
   "author": "",
