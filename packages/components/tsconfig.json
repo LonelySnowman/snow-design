@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2015",
+    "esModuleInterop": true,
     "outDir": "lib",
     "sourceMap": true,
     "allowJs": true,
@@ -8,7 +9,6 @@
     "moduleResolution": "node",
     "lib": ["es7", "dom"],
     "jsx": "react",
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "declaration": true,
     "strictNullChecks": false,

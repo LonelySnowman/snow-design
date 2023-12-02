@@ -1,0 +1,31 @@
+import React from 'react';
+import '@<%= pkgName %>/foundation/<%= cName %>/<%= cName %>.scss'
+import { cssClasses } from '@snow-design/foundation/<%= cName %>/constants';
+import classNames from 'classnames';
+
+const prefixCls = cssClasses.PREFIX;
+
+export interface <%= cNameUp %>Props {
+    className?: string;
+    style?: React.CSSProperties;
+}
+
+const <%= cNameUp %>: React.FC<%= cNameUp %>Props = (props) => {
+    const {
+        style,
+        className,
+    } = props;
+
+    const classes = classNames(
+        className,
+        prefixCls,
+    );
+
+    return (
+        <div className={classes} style={style}>
+            <%= cNameUp %>组件
+        </div>
+    );
+}
+
+export default <%= cNameUp %>;

@@ -5,12 +5,13 @@ import classNames from "classnames";
 
 const prefixCls = cssClasses.PREFIX;
 
-export type Type = 'default' | 'primary' | 'warning' | 'danger';
-export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>{
+export type ThemeType = 'default' | 'primary' | 'warning' | 'danger';
+
+export interface ButtonProps {
     children?: ReactNode;
     className?: string;
     style?: React.CSSProperties;
-    type?: Type;
+    type?: ThemeType;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
     onMouseEnter?: React.MouseEventHandler<HTMLButtonElement>;
@@ -33,7 +34,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         {
             [`${prefixCls}-${type}`]: type,
         }
-    )
+    );
 
     return (
         <button {...baseProps} style={style} className={classes} onClick={onClick}>
@@ -41,7 +42,7 @@ const Button: React.FC<ButtonProps> = (props) => {
                 {children}
             </span>
         </button>
-    )
+    );
 }
 
 export default Button;

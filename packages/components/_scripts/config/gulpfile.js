@@ -51,7 +51,7 @@ gulp.task('compileTSXForCJS', function compileTSXForCJS() {
 
 gulp.task('compileScss', function compileScss() {
     const rootPath = path.resolve(__dirname, '../../../../');
-    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss'])
+    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss', '!**/dist/**/*.*'])
         .pipe(inject.prepend(`
         @import "${rootPath}/packages/theme-default/scss/index.scss";\n
         @import "${rootPath}/packages/theme-default/scss/global.scss";\n

@@ -1,0 +1,9 @@
+.snow-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.snow-flex > * {
+  margin: 5px;
+}

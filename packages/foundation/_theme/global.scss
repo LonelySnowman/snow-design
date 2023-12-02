@@ -1,6 +1,9 @@
 @import "./palette.scss";
 
 body, body[theme-mode="light"] {
+  --snow-color-default: var(--gray-4);
+  --snow-color-default-hover: var(--gray-3);
+  --snow-color-default-active: var(--gray-5);
 
   --snow-color-primary: var(--blue-6);
   --snow-color-primary-hover: var(--blue-4);

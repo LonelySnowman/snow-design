@@ -1,0 +1,13 @@
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import React from 'react';
+import <%= cNameUp %> from '../index'
+import { cssClasses } from '@snow-design/foundation/button/constants';
+
+describe('<%= cNameUp %>', () => {
+    const prefix = cssClasses.PREFIX;
+    it('<%= cNameUp %> rendered', () => {
+        const { container } = render(<<%= cNameUp %> style={{ color: 'red' }}>Test</<%= cNameUp %>>);
+        expect(container.querySelector<HTMLElement>(`.${prefix}`)?.style.color).toBe('red');
+    });
+});

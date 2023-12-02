@@ -11,16 +11,16 @@ $module: #{$prefix}-button;
   outline: none;
   cursor: pointer;
   transition: all linear 0.1s;
-  //&-default {
-  //  background-color: $color-button_default-bg-default;
-  //  color: $color-button_default-text-default;
-  //  &:hover {
-  //    background-color: $color-button_default-bg-hover;
-  //  }
-  //  &:active {
-  //    background-color: $color-button_default-bg-active;
-  //  }
-  //}
+  &-default {
+    background-color: $color-button_default-bg-default;
+    color: $color-button_default-text-default;
+    &:hover {
+      background-color: $color-button_default-bg-hover;
+    }
+    &:active {
+      background-color: $color-button_default-bg-active;
+    }
+  }
   &-primary {
     background-color: $color-button_primary-bg-default;
     color: $color-button_primary-text-default;

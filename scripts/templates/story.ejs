@@ -1,0 +1,17 @@
+import type { StoryObj } from '@storybook/react';
+import React from 'react'
+import <%= cNameUp %> from '../index';
+
+export default {
+    title: '<%= cNameUp %>',
+}
+
+export const Base: StoryObj = {
+    args: {
+        primary: true,
+        label: '<%= cNameUp %>',
+    },
+    render() {
+        return (<<%= cNameUp %>>Default</<%= cNameUp %>>)
+    }
+};
