@@ -6,6 +6,10 @@ packages/foundation/lib
 packages/components/lib
 packages/components/dist
 
+docs/.dumi/temp
+
 .idea
 
 pnpm-lock.yaml
+
+coverage

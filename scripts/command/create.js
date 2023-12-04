@@ -1,7 +1,9 @@
 const path = require('path');
-const { toUpperCamelCase, writeFile, logFile} = require('../utils');
+const { writeFile, logFile } = require('../utils');
 const ora = require('ora');
 const chalk = require('chalk');
+const fs = require('fs-extra');
+const _ = require('lodash');
 
 function create(name, pkgName) {
     const spinner = ora(`组件 ${name} 创建中...`)
@@ -9,12 +11,17 @@ function create(name, pkgName) {
     const rootPath = path.join(__dirname, '../../');
     const data = {
         cName: name,
-        cNameUp: toUpperCamelCase(name),
+        cNameUp: _.upperFirst(name),
         pkgName: pkgName
     };
 
     // 写入组件文件
     const [componentPath, componentOutputPath] = [path.join(rootPath, './scripts/templates/component.ejs'), path.join(rootPath, `./packages/components/${name}/index.tsx`)];
+    if (fs.pathExistsSync(componentOutputPath)) {
+        spinner.warn(`组件 ${chalk.blueBright(name)} 已存在`);
+        logFile('component', componentOutputPath);
+        return
+    }
     writeFile(data, componentPath, componentOutputPath);
 
     // 写入 story 文件
@@ -41,13 +48,19 @@ function create(name, pkgName) {
     const [docTemplatePath, docOutputPath] = [path.join(rootPath, './scripts/templates/doc.ejs'), path.join(rootPath, `./docs/docs/components/${name}.md`)];
     writeFile(data, docTemplatePath, docOutputPath);
 
+    // 组件全局暴露
+    const appendContent = `export { default as ${data.cNameUp} } from "./${name}";`;
+    const appendFilePath = path.join(rootPath, './packages/components/index.ts');
+    fs.appendFileSync(appendFilePath, appendContent);
+
     spinner.succeed(`组件 ${chalk.blueBright(name)} 创建成功`);
-    logFile('component', componentOutputPath)
-    logFile('story', storyOutputPath)
+    logFile('component', componentOutputPath);
+    logFile('story', storyOutputPath);
     logFile('test', testOutputPath);
     logFile('style', styleOutputPath);
     logFile('constants', constOutputPath);
     logFile('variables', varOutputPath);
+    logFile('index', appendFilePath);
 }
 
 module.exports = {

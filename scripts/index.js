@@ -1,5 +1,4 @@
 const { create } = require('./command/create');
-const { deleteFiles } = require("./command/delete");
 const packageJson = require('../package.json');
 
 function runCommand (argv) {
@@ -16,8 +15,6 @@ function runCommand (argv) {
 
     if (command === 'gen') {
         create(cName, packageJson.name);
-    } else if (command === 'del') {
-        deleteFiles(cName);
     } else {
         console.log('未知指令');
     }

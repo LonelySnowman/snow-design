@@ -8,8 +8,7 @@
     "build-storybook": "storybook build",
     "test:unit": "jest --silent",
     "build:docs": "pnpm run -C docs build",
-    "gen": "node ./scripts/index.js gen",
-    "del": "node ./scripts/index.js del"
+    "gen": "node ./scripts/index.js gen"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +23,7 @@
     "ejs": "^3.1.9",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "sass": "^1.69.5",
     "storybook": "^7.6.3",
