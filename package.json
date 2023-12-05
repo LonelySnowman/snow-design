@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@changesets/cli": "^2.27.1",
     "@storybook/addon-essentials": "7.6.3",
     "@storybook/addon-interactions": "7.6.3",
     "@storybook/addon-links": "7.6.3",
