@@ -2,15 +2,20 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import React from 'react';
 import Button from '../index'
+import mountTest from "../../../../test/shared/mountTest";
+import styleTest from "../../../../test/shared/styleTest";
 import { cssClasses } from '@snow-design/foundation/button/constants';
 
 describe('Button', () => {
     const prefix = cssClasses.PREFIX;
-    it('Button rendered', () => {
-        const { container } = render(<Button style={{ color: 'red' }}>Test</Button>);
-        expect(container.querySelector<HTMLDivElement>(`.${prefix}`)?.style.color).toBe('red');
+    mountTest(() => <Button>Test</Button>)
+    styleTest(Button)
+
+    it('renders correctly', () => {
+        expect(render(<Button>按钮</Button>).container.firstChild).toMatchSnapshot();
     });
-    it('Type have class', () => {
+
+    it('have type class', () => {
         const { container } = render(<Button type="primary">Test</Button>);
         expect(container.firstChild).toHaveClass(`${prefix}-primary`)
     });

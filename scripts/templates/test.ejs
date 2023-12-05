@@ -2,12 +2,12 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import React from 'react';
 import <%= cNameUp %> from '../index'
+import mountTest from "../../../../test/shared/mountTest";
+import styleTest from "../../../../test/shared/styleTest";
 import { cssClasses } from '@snow-design/foundation/button/constants';
 
 describe('<%= cNameUp %>', () => {
     const prefix = cssClasses.PREFIX;
-    it('<%= cNameUp %> rendered', () => {
-        const { container } = render(<<%= cNameUp %> style={{ color: 'red' }}>Test</<%= cNameUp %>>);
-        expect(container.querySelector<HTMLElement>(`.${prefix}`)?.style.color).toBe('red');
-    });
+    mountTest(<%= cNameUp %>)
+    styleTest(<%= cNameUp %>)
 });
