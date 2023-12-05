@@ -6,7 +6,7 @@ const compile = (rootPath, foundationPath, themePath, isMin = false) => {
     const scssRaw = []
 
     if (fs.existsSync(themePath + '/index.scss')) // 插入主题样式
-        scssRaw.push('@import "../../../foundation/_theme/index.scss";')
+        scssRaw.push('@import "../../../theme-default/scss/index.scss";')
 
     const styleFiles = fs.readdirSync(foundationPath); // 插入组件样式
     for (const fileName of styleFiles) {
@@ -21,8 +21,6 @@ const compile = (rootPath, foundationPath, themePath, isMin = false) => {
     const outPutScss = path.join(rootPath, `packages/components/dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`)
     const outPutCss = path.join(rootPath, `packages/components/dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`)
 
-    console.log(outPutCss)
-    console.log(outPutScss)
     const content = scssRaw.join('\n')
     fs.outputFileSync(outPutScss, content, 'utf-8')
 

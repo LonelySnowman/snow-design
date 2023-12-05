@@ -36,13 +36,12 @@ const excludeScss = [
     '!**/rtl.scss',
     '!**/variables.scss',
     '!**/animation.scss',
-    '!_theme/**/*.*'
 ]
 
 // 编译 SCSS 全局注入默认主题样式
 gulp.task('compileScss', function compileScss() {
     return gulp.src(['**/*.scss', ...excludeScss])
-        .pipe(inject.prepend(`@import "../_theme/index.scss";\n`))
+        .pipe(inject.prepend(`@import "../../theme-default/scss/index.scss";\n`))
         .pipe(sass({
             charset: false
         }).on('error', sass.logError))

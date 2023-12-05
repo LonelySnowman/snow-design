@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:lib": "node ./_scripts/compileLib.js"
+    "build:lib": "node ./_scripts/compileLib.js",
+    "build": "npm run build:lib"
   },
   "files": [
     "lib"

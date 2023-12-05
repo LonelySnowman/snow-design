@@ -21,7 +21,9 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) => {
     config.resolve.alias = {
-      "@snow-design/foundation": path.resolve(__dirname, "../packages/foundation")
+      "@snow-design/components": path.resolve(__dirname, "../packages/components"),
+      "@snow-design/foundation": path.resolve(__dirname, "../packages/foundation"),
+      "@snow-design/theme-default": path.resolve(__dirname, "../packages/theme-default")
     };
     config.define = {
       "process.env": {}
@@ -30,8 +32,8 @@ const config: StorybookConfig = {
       preprocessorOptions: {
         scss: {
           additionalData: `
-          @import "@snow-design/foundation/_theme/index.scss";\n
-          @import "@snow-design/foundation/_theme/global.scss";\n`,
+          @import "@snow-design/theme-default/scss/index.scss";\n
+          @import "@snow-design/theme-default/scss/global.scss";\n`,
         }
       }
     }

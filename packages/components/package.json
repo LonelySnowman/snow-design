@@ -12,7 +12,8 @@
   "scripts": {
     "build:lib": "node ./_scripts/compileLib.js",
     "build:dist": "node ./_scripts/compileDist.js",
-    "build:style": "node ./_scripts/compileScss.js"
+    "build:style": "node ./_scripts/compileScss.js",
+    "build": "npm run build:lib && npm run build:dist && npm run build:style"
   },
   "keywords": [],
   "author": "",
