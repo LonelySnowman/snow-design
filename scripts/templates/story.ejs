@@ -1,16 +1,23 @@
-import type { StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react'
 import <%= cNameUp %> from '../index';
 
-export default {
+const meta: Meta<typeof Button> = {
     title: '<%= cNameUp %>',
-}
+    component: <%= cNameUp %>,
+};
 
-export const Base: StoryObj = {
-    args: {
-        primary: true,
-        label: '<%= cNameUp %>',
+export const Basic: StoryObj = {
+    parameters: {
+        layout: 'centered',
     },
+    args: {
+        children: '测试',
+        type: 'default'
+    },
+};
+
+export const Other: StoryObj = {
     render() {
         return (<<%= cNameUp %>>Default</<%= cNameUp %>>)
     }
