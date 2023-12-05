@@ -7,7 +7,6 @@ const tsConfig = require('../../tsconfig.json');
 const replace = require('gulp-replace');
 const del = require('del'); // 注意版本
 const getBabelConfig = require('./getBabelConfig');
-const { Buffer } = require("buffer");
 const sass = require('gulp-sass')(require('sass'));
 const inject = require('gulp-inject-string')
 

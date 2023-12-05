@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build:lib": "node ./_scripts/compileLib.js",
-    "build:dist": "node ./_scripts/compileDist.js"
+    "build:dist": "node ./_scripts/compileDist.js",
+    "build:style": "node ./_scripts/compileScss.js"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,6 @@
     "@snow-design/foundation": "workspace:^",
     "@types/fs-extra": "^11.0.4",
     "babel-loader": "^9.1.3",
-    "babel-plugin-lodash": "^3.3.4",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "classnames": "^2.3.2",
     "del": "6",

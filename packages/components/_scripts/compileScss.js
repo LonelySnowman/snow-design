@@ -1,7 +1,7 @@
-import compile from './utils/compile.js'
-import path from "path";
+const { compile } = require('./utils/compile.js')
+const path = require('path')
 
-const rootPath = "../../../"
+const rootPath = path.join(__dirname, '../../../')
 compile(
     rootPath,
     path.join(rootPath , 'packages/foundation'),

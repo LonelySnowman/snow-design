@@ -1,6 +1,6 @@
-import fs from 'fs-extra';
-import path from 'path';
-import * as sass from 'sass';
+const fs = require('fs-extra')
+const path = require('path')
+const sass = require('sass')
 
 const compile = (rootPath, foundationPath, themePath, isMin = false) => {
     const scssRaw = []
@@ -20,6 +20,9 @@ const compile = (rootPath, foundationPath, themePath, isMin = false) => {
 
     const outPutScss = path.join(rootPath, `packages/components/dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`)
     const outPutCss = path.join(rootPath, `packages/components/dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`)
+
+    console.log(outPutCss)
+    console.log(outPutScss)
     const content = scssRaw.join('\n')
     fs.outputFileSync(outPutScss, content, 'utf-8')
 
@@ -31,4 +34,6 @@ const compile = (rootPath, foundationPath, themePath, isMin = false) => {
     fs.writeFileSync(outPutCss, result.css.toString(), 'utf-8');
 };
 
-export default compile
+module.exports = {
+    compile
+}

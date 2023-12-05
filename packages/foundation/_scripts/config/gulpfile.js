@@ -5,8 +5,8 @@ const gulpBabel = require('gulp-babel');
 const sass = require('gulp-sass')(require('sass'));
 const del = require('del');
 const inject = require('gulp-inject-string')
-const tsConfig = require('./tsconfig.json');
-const getBabelConfig = require('./_scripts/utils/getBabelConfig');
+const tsConfig = require('../../tsconfig.json');
+const getBabelConfig = require('./getBabelConfig');
 
 gulp.task('cleanLib', function cleanLib() {
     return del(['lib/**/*']);
