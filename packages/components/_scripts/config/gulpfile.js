@@ -23,6 +23,7 @@ gulp.task('compileTSXForESM', function compileTSXForESM() {
     const jsStream = tsStream.js
         .pipe(gulpBabel(getBabelConfig({ isESM: true })))
         .pipe(replace(/(import\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g, '$1\'@snow-design/foundation/lib/es/$2\''))
+        .pipe(replace(/(import\s+.+from\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g, '$1\'@snow-design/foundation/lib/es/$2\''))
         .pipe(replace(/(import\s+)['"]([^'"]+)(\.scss)['"]/g, '$1\'$2.css\''))
         .pipe(gulp.dest('lib/es'));
     const dtsStream = tsStream.dts
