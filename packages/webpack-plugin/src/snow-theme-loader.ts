@@ -3,6 +3,8 @@ import resolve from 'enhanced-resolve';
 
 export default function snowThemeLoader(source: string) {
     const query = loaderUtils.getOptions(this);
+    if (!query.name) return source
+
     const theme = query.name || '@snow-design/theme-default';
 
     // 全局 scss 变量
@@ -14,8 +16,15 @@ export default function snowThemeLoader(source: string) {
 
     // 判断自定义主题中组件级变量是否存在
     const componentVariables: string | boolean = resolve.sync(this.context, `${theme}/scss/local.scss`);
-
     let localImport = '';
+
+    // 需要加入主题则将原主题覆盖
+    // 将覆盖 scss 插入原 scss 之后
+    if (componentVariables || query.include) {
+        fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '')
+        localImport += '@import "./variables.scss";\n'
+    }
+
     // 主题中的 组件级变量
     if (componentVariables) {
         localImport += `@import "~${theme}/scss/local.scss";\n`;
@@ -30,9 +39,6 @@ export default function snowThemeLoader(source: string) {
     // if (query.variables) {
     //     localImport += `${query.variables}\n`;
     // }
-
-    // 可以直接插入覆盖
-    // fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '')
 
 
     // 插入 prefixCls 引用

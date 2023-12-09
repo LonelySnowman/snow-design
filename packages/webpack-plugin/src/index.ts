@@ -53,7 +53,7 @@ export default class SnowWebpackPlugin {
         }
 
         // 使用 自定义loader 进行主题引入 并使用 sass-loader css-loader style-loader 重新引入
-        if (/@snow-design\/foundation\/lib\/.+\.scss$/.test(compatiblePath)) {
+        if (/@snow-design\/(foundation|components)\/lib\/.+\.scss$/.test(compatiblePath)) {
             const scssLoader = require.resolve('sass-loader');
             const cssLoader = require.resolve('css-loader');
             const styleLoader = require.resolve('style-loader');
