@@ -1,13 +1,15 @@
 {
   "name": "@snow-design/webpack-plugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build:lib": "tsc",
     "build": "pnpm run build:lib"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

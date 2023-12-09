@@ -1,5 +1,13 @@
 # @snow-design/docs
 
+## 0.0.3
+
+### Patch Changes
+
+- 同步版本号
+- Updated dependencies
+  - @snow-design/components@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
