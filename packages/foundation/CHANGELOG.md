@@ -1,5 +1,11 @@
 # @snow-design/foundation
 
+## 0.0.5
+
+### Patch Changes
+
+- 修复 webpack 插件发包错误
+
 ## 0.0.4
 
 ### Patch Changes

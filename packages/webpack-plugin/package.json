@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/webpack-plugin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "pnpm run build:lib"
   },
   "files": [
-    "src"
+    "lib/*"
   ],
   "keywords": [],
   "author": "",

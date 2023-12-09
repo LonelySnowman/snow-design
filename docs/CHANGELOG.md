@@ -1,5 +1,13 @@
 # @snow-design/docs
 
+## 0.0.5
+
+### Patch Changes
+
+- 修复 webpack 插件发包错误
+- Updated dependencies
+  - @snow-design/components@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
