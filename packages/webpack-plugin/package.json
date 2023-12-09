@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:lib": "tsc"
+    "build:lib": "tsc",
+    "build": "pnpm run build:lib"
   },
   "files": ["src"],
   "keywords": [],

@@ -8,6 +8,7 @@
     "test:unit": "jest --silent",
     "test:coverage": "jest --coverage",
     "build:docs": "pnpm run -C docs build",
+    "build:lib": "pnpm run -C packages/components build && pnpm run -C packages/foundation build && pnpm run -C packages/webpack-plugin build",
     "gen": "node ./scripts/index.js gen"
   },
   "keywords": [],
