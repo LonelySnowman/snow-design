@@ -1,5 +1,13 @@
 # @snow-design/components
 
+## 0.0.6
+
+### Patch Changes
+
+- 修复 wbpack 插件 loaderUtils 报错
+- Updated dependencies
+  - @snow-design/foundation@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

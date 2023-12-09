@@ -2,7 +2,7 @@ import loaderUtils from 'loader-utils';
 import resolve from 'enhanced-resolve';
 
 export default function snowThemeLoader(source: string) {
-    const query = loaderUtils.getOptions ? loaderUtils.getOptions(this) : loaderUtils.parseQuery(this.query);
+    const query = loaderUtils.getOptions(this);
     const theme = query.name || '@snow-design/theme-default';
 
     // 全局 scss 变量
