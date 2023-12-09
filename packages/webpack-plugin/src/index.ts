@@ -2,8 +2,8 @@ import path from 'path';
 import { Compiler, NormalModule } from 'webpack';
 import { transformPath } from './utils';
 
-export interface SemiWebpackPluginOptions {
-    theme?: string | SemiThemeOptions;
+export interface SnowWebpackPluginOptions {
+    theme?: string | SnowThemeOptions;
     include?: string;
 
     // 配置支持待更新
@@ -11,13 +11,13 @@ export interface SemiWebpackPluginOptions {
     // variables?: {[key: string]: string | number};
 }
 
-export interface SemiThemeOptions {
+export interface SnowThemeOptions {
     name?: string
 }
 
-export default class SemiWebpackPlugin {
-    options: SemiWebpackPluginOptions;
-    constructor(options: SemiWebpackPluginOptions) {
+export default class SnowWebpackPlugin {
+    options: SnowWebpackPluginOptions;
+    constructor(options: SnowWebpackPluginOptions) {
         this.options = options;
     }
 
