@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/docs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A static site based on dumi",
   "scripts": {
     "start": "dumi dev",

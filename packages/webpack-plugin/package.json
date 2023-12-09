@@ -1,8 +1,8 @@
 {
   "name": "@snow-design/webpack-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build:lib": "tsc",
     "build": "pnpm run build:lib"

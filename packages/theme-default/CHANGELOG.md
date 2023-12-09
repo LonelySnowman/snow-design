@@ -1,5 +1,11 @@
 # @snow-design/theme-default
 
+## 0.0.4
+
+### Patch Changes
+
+- 修复 webpack 插件不可用问题
+
 ## 0.0.3
 
 ### Patch Changes
