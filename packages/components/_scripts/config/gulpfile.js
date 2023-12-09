@@ -63,11 +63,28 @@ gulp.task('compileScss', function compileScss() {
         .pipe(gulp.dest('lib/cjs'));
 });
 
+function moveScss(isESM) {
+    const moduleTarget = isESM ? 'es' : 'cjs';
+    const targetDir = isESM ? 'lib/es' : 'lib/cjs';
+    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss'])
+        .pipe(replace(/(@import\s+['"]~)(@douyinfe\/semi-foundation\/)/g, `$1@douyinfe/semi-foundation/lib/${moduleTarget}/`))
+        .pipe(gulp.dest(targetDir));
+}
+
+gulp.task('moveScssForESM', function moveScssForESM() {
+    return moveScss(true);
+});
+
+gulp.task('moveScssForCJS', function moveScssForCJS() {
+    return moveScss(false);
+});
+
 gulp.task('compileLib',
     gulp.series(
         [
             'cleanLib',
             'compileScss',
+            gulp.parallel('moveScssForESM', 'moveScssForCJS'), // 将 scss 文件存入 lib 包 便于后续主题定制
             gulp.parallel('compileTSXForESM', 'compileTSXForCJS')
         ]
     )

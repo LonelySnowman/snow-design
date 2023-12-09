@@ -5,6 +5,7 @@ packages/**/node_modules
 packages/foundation/lib
 packages/components/lib
 packages/components/dist
+packages/webpack-plugin/lib
 
 docs/.dumi/temp
 
