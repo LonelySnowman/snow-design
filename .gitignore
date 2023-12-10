@@ -6,8 +6,10 @@ packages/foundation/lib
 packages/components/lib
 packages/components/dist
 packages/webpack-plugin/lib
+packages/vite-plugin/lib
 
 docs/.dumi/temp
+docs/dist
 
 .idea
 

@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/components",
-  "version": "0.0.12",
+  "version": "0.0.22",
   "description": "",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",

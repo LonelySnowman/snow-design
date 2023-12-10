@@ -1,12 +1,15 @@
 {
   "name": "@snow-design/docs",
-  "version": "0.0.12",
+  "version": "0.0.22",
   "description": "A static site based on dumi",
   "scripts": {
     "start": "dumi dev",
     "build": "dumi build"
   },
   "authors": [],
+  "files": [
+    "docs/*"
+  ],
   "license": "MIT",
   "commitlint": {
     "extends": [
