@@ -1,5 +1,7 @@
 ---
-nav: 组件
+nav:
+  title: 组件
+  order: 1
 group:
   title: 基础
   order: 1

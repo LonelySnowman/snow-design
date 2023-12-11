@@ -1,6 +1,6 @@
 @import "./palette.scss";
 
-body, body[theme-mode="light"] {
+body, body[theme-mode="light"], body .snow-always-light {
   --snow-color-default: var(--gray-4);
   --snow-color-default-hover: var(--gray-3);
   --snow-color-default-active: var(--gray-5);
@@ -19,4 +19,8 @@ body, body[theme-mode="light"] {
 
   --snow-white: #ffffff;
   --snow-black: #000000;
+}
+
+body[theme-mode="dark"], body .snow-always-dark {
+  // 待支持
 }
