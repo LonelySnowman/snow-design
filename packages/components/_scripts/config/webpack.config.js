@@ -29,6 +29,8 @@ module.exports = function ({ minimize }) {
                     test: /\.tsx?$/,
                     include: [
                         path.resolve(rootPath, './packages/components'),
+                        path.resolve(rootPath, './packages/foundation'),
+                        path.resolve(rootPath, './packages/locale')
                     ],
                     use: [
                         {
@@ -65,6 +67,8 @@ module.exports = function ({ minimize }) {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
             alias: {
                 "@snow-design/foundation": path.resolve(__dirname, "../../../foundation"),
+                "@snow-design/components": path.resolve(__dirname, "../../../components"),
+                "@snow-design/locale": path.resolve(__dirname, "../../../locale"),
             },
         },
         externals: { // 声明外部依赖

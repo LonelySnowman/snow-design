@@ -20,7 +20,8 @@
   "license": "ISC",
   "dependencies": {
     "@babel/preset-env": "^7.23.3",
-    "@snow-design/foundation": "workspace:^",
+    "@snow-design/foundation": "workspace:*",
+    "@snow-design/locale": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "babel-loader": "^9.1.3",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",

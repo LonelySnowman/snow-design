@@ -14,7 +14,8 @@
     "strictNullChecks": false,
     "paths": {
       "@snow-design/foundation/*": ["../foundation/*"],
-      "@snow-design/components/*": ["../components/*"]
+      "@snow-design/components/*": ["../components/*"],
+      "@snow-design/locale/*": ["../locale/*"]
     }
   },
   "include": ["**/*.tsx", "**/*.ts"],

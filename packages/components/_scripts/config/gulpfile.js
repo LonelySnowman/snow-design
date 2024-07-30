@@ -24,6 +24,8 @@ gulp.task('compileTSXForESM', function compileTSXForESM() {
         .pipe(gulpBabel(getBabelConfig({ isESM: true })))
         .pipe(replace(/(import\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g, '$1\'@snow-design/foundation/lib/es/$2\''))
         .pipe(replace(/(import\s+.+from\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g, '$1\'@snow-design/foundation/lib/es/$2\''))
+        .pipe(replace(/(import\s+)['"]@snow-design\/locale\/([^'"]+)['"]/g, '$1\'@snow-design/locale/lib/es/$2\''))
+        .pipe(replace(/(import\s+.+from\s+)['"]@snow-design\/locale\/([^'"]+)['"]/g, '$1\'@snow-design/locale/lib/es/$2\''))
         .pipe(replace(/(import\s+)['"]([^'"]+)(\.scss)['"]/g, '$1\'$2.css\''))
         .pipe(gulp.dest('lib/es'));
     const dtsStream = tsStream.dts
@@ -41,6 +43,7 @@ gulp.task('compileTSXForCJS', function compileTSXForCJS() {
     const jsStream = tsStream.js
         .pipe(gulpBabel(getBabelConfig({ isESM: false })))
         .pipe(replace(/(require\(['"])@snow-design\/foundation\/([^'"]+)(['"]\))/g, '$1@snow-design/foundation/lib/cjs/$2$3'))
+        .pipe(replace(/(require\(['"])@snow-design\/locale\/([^'"]+)(['"]\))/g, '$1@snow-design/locale/lib/cjs/$2$3'))
         .pipe(replace(/(require\(['"])([^'"]+)(\.scss)(['"]\))/g, '$1$2.css$4'))
         .pipe(gulp.dest('lib/cjs'));
     const dtsStream = tsStream.dts

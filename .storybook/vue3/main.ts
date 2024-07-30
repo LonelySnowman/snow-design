@@ -1,9 +1,10 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/vue3-vite";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 import * as path from "path";
 
 const config: StorybookConfig = {
   stories: [
-    "../packages/components/**/_story/*.stories.@(ts|tsx)"
+    "../../packages/vue3/**/_story/*.stories.@(ts|tsx)"
   ],
   addons: [
     "@storybook/addon-links",
@@ -13,21 +14,21 @@ const config: StorybookConfig = {
     "@storybook/preset-scss"
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: "@storybook/vue3-vite",
     options: {},
-  },
-  docs: {
-    autodocs: "tag",
   },
   viteFinal: async (config) => {
     config.resolve.alias = {
-      "@snow-design/components": path.resolve(__dirname, "../packages/components"),
-      "@snow-design/foundation": path.resolve(__dirname, "../packages/foundation"),
-      "@snow-design/theme-default": path.resolve(__dirname, "../packages/theme-default")
+      "@snow-design/components": path.resolve(__dirname, "../../packages/components"),
+      "@snow-design/vue3": path.resolve(__dirname, "../../packages/vue3"),
+      "@snow-design/locale": path.resolve(__dirname, "../../packages/locale"),
+      "@snow-design/foundation": path.resolve(__dirname, "../../packages/foundation"),
+      "@snow-design/theme-default": path.resolve(__dirname, "../../packages/theme-default")
     };
     config.define = {
       "process.env": {}
     }
+    config.plugins.push(vueJsx());
     config.css = {
       preprocessorOptions: {
         scss: {

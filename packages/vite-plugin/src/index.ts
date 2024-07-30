@@ -8,7 +8,6 @@ import resolve from "enhanced-resolve";
 export interface SnowVitePluginOptions {
     theme?: string;
     include?: string;
-
     // 配置支持待更新
     // prefixCls?: string;
     // variables?: {[key: string]: string | number};
