@@ -6,8 +6,8 @@
 
 ## 📖介绍
 
-- 助力您快速搭建属于自己的`React`组件库。
-- 包含从零到一构建组件库教程，帮助您更好理解`React`组件库搭建原理。
+- 助力您快速搭建属于自己的`Web`组件库。
+- 包含从零到一构建组件库教程，帮助您更好理解组件库搭建原理。
 - 项目架构学习[semi-design](https://github.com/DouyinFE/semi-design)与[ant-design](https://github.com/ant-design/ant-design)搭建，使用主流组件库搭建方式。
 
 ## 📦能力

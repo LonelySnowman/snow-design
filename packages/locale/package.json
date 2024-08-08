@@ -1,12 +1,12 @@
 {
   "name": "@snow-design/locale",
+  "version": "0.0.22",
   "files": [
     "lib"
   ],
   "scripts": {
     "build": "tsup"
   },
-  "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "keywords": [],
