@@ -12,7 +12,7 @@
 
 ## 📦能力
 
-- F/A 架构 `vue3` 与 `react` 实践: [UI组件库如何分层设计，使其具备适配多种mvvm框架能力](https://bytedance.larkoffice.com/wiki/wikcnOVYexosCS1Rmvb5qCsWT1f)。
+- F/A 架构 `vue3` 与 `react` 实践: [UI组件库如何分层设计，使其具备适配多种Web框架能力](https://bytedance.larkoffice.com/wiki/wikcnOVYexosCS1Rmvb5qCsWT1f)。
 - 内置黑暗主题（Dark Mode）。
 - 自定义预构建，分包构建，支持组件按需引入。
 - 编写 `JS` 脚本快速生成组件模板。
