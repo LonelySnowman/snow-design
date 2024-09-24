@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const _ = require('lodash');
 
+// TODO: 更新 Vue3 版本创建组件 Demo
 function create(name, pkgName) {
     const spinner = ora(`组件 ${name} 创建中...`)
     spinner.start()

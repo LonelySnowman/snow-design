@@ -1,5 +1,4 @@
 import type { App } from 'vue';
-
 import * as components from './components';
 
 export const install = function (app: App) {

@@ -1,7 +1,7 @@
-import LocaleProvider from "@snow-design/vue3/_locale";
+import LocaleProvider from "../_locale";
 import { Locale } from "@snow-design/locale/index";
 import { defineComponent, PropType } from "vue";
-import { withInstall } from "@snow-design/vue3/_utils/type";
+import { withInstall } from "../_utils/type";
 
 export interface ConfigProviderProps {
   locale?: Locale;

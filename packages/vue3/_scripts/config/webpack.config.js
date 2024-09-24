@@ -27,9 +27,6 @@ module.exports = function ({ minimize }) {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    include: [
-                        path.resolve(rootPath, './packages/components'),
-                    ],
                     use: [
                         {
                             loader: 'babel-loader',
@@ -39,13 +36,11 @@ module.exports = function ({ minimize }) {
                             loader: 'ts-loader',
                             options: {
                                 transpileOnly: true,
-                                happyPackMode: false,
-                                appendTsSuffixTo: []
                             }
                         }
                     ]
                 },
-                { test: /\.scss$/, use: 'null-loader' },
+                { test: /\.scss$/, use: 'null-loader' }
             ]
         },
         optimization: {
@@ -68,18 +63,12 @@ module.exports = function ({ minimize }) {
             },
         },
         externals: { // 声明外部依赖
-            react: {
-                root: 'React',
-                commonjs2: 'react',
-                commonjs: 'react',
-                amd: 'react'
+            vue: {
+                root: 'Vue',
+                commonjs2: 'vue',
+                commonjs: 'vue',
+                amd: 'vue'
             },
-            'react-dom': {
-                root: 'ReactDOM',
-                commonjs2: 'react-dom',
-                commonjs: 'react-dom',
-                amd: 'react-dom'
-            }
         }
     };
 };

@@ -41,8 +41,6 @@ module.exports = function ({ minimize }) {
                             loader: 'ts-loader',
                             options: {
                                 transpileOnly: true,
-                                happyPackMode: false,
-                                appendTsSuffixTo: []
                             }
                         }
                     ]

@@ -10,23 +10,15 @@
   "files": [
     "docs/*"
   ],
-  "license": "MIT",
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.{md,json}": [
-      "prettier --write --no-error-on-unmatched-pattern"
-    ]
-  },
   "devDependencies": {
-    "dumi": "^2.2.14",
+    "@dumijs/preset-vue": "^2.3.0",
+    "dumi": "^2.4.2",
     "prettier": "^2.7.1"
   },
   "dependencies": {
     "@snow-design/components": "workspace:*",
-    "@snow-design/locale": "workspace:*"
+    "@snow-design/locale": "workspace:*",
+    "@snow-design/vue3": "workspace:*",
+    "vue": "^3.4.29"
   }
 }

@@ -1,19 +1,28 @@
+# dist
 node_modules
 docs/node_modules
 packages/**/node_modules
 
-packages/foundation/lib
-packages/locale/lib
+# chunck lib
 packages/components/lib
 packages/components/dist
+packages/vue3/lib
+packages/vue3/dist
+packages/foundation/lib
+packages/locale/lib
 packages/webpack-plugin/lib
 packages/vite-plugin/lib
 
-docs/.dumi/temp
+# docs cache
+docs/docs/.dumi
+docs/.dumi
 docs/dist
 
+# ide
 .idea
 
+# pnpm
 pnpm-lock.yaml
 
+# test
 coverage

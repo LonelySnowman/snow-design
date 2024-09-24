@@ -16,6 +16,8 @@ module.exports = ({ isESM }) => {
                     }
                 },
             ],
-        ]
+            '@vue/babel-preset-jsx'
+        ],
+        plugins: ['@vue/babel-plugin-jsx']
     };
 };

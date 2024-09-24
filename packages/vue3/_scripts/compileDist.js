@@ -5,6 +5,7 @@ function compile() {
     return new Promise((resolve, reject) => {
         webpack(config({ minimize: false }), (err, stats) => {
             if (err) {
+                console.error('================');
                 console.error(err);
                 reject(err);
                 return;
@@ -12,6 +13,7 @@ function compile() {
             const info = stats.toJson();
             if (stats.hasErrors()) {
                 (info.errors || []).forEach(error => {
+                    console.error('================');
                     console.error(error);
                 });
                 reject(err);
@@ -26,12 +28,14 @@ function compileMin() {
     return new Promise((resolve, reject) => {
         webpack(config({ minimize: true }), (err, stats) => {
             if (err) {
+                console.error('================');
                 console.error(err);
                 reject(err);
             }
             const info = stats.toJson();
             if (stats.hasErrors()) {
                 (info.errors || []).forEach(error => {
+                    console.error('================');
                     console.error(error);
                     reject(err);
                 });

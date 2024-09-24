@@ -1,10 +1,10 @@
 import { defineComponent, onMounted, reactive, CSSProperties } from 'vue';
-import '@snow-design/foundation/pagination/pagination.scss'
+// import '@snow-design/foundation/pagination/pagination.scss'
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import classNames from 'classnames';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
 import { anyType, objectType, withInstall, VueNode } from '../_utils/type';
-import useLocale from "@snow-design/vue3/_locale/useLocale";
+import useLocale from "../_locale/useLocale";
 
 const prefixCls = cssClasses.PREFIX;
 
