@@ -13,7 +13,8 @@
     "build:lib": "node ./_scripts/compileLib.js",
     "build:dist": "node ./_scripts/compileDist.js",
     "build:style": "node ./_scripts/compileScss.js",
-    "build": "npm run build:lib && npm run build:dist && npm run build:style"
+    "build": "npm run build:lib && npm run build:dist && npm run build:style",
+    "clean": "rimraf node_modules lib dist"
   },
   "keywords": [],
   "author": "",
@@ -44,5 +45,8 @@
     "gulp-inject-string": "^1.1.2",
     "gulp-sass": "^5.1.0",
     "sass": "^1.69.5"
+  },
+  "peerDependencies": {
+    "react": "18"
   }
 }

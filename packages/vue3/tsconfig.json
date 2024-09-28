@@ -1,23 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "esModuleInterop": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "allowJs": true,
-    "module": "es6",
-    "moduleResolution": "node",
-    "lib": ["es7", "dom"],
-    "skipLibCheck": true,
-    "declaration": true,
-    "strictNullChecks": false,
+    "baseUrl": "./",
     "paths": {
       "@snow-design/foundation/*": ["../foundation/*"],
       "@snow-design/vue3/*": ["../vue3/*"],
       "@snow-design/locale/*": ["../locale/*"]
     },
+    "lib": ["DOM", "ESNext"],
+    "strictNullChecks": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "jsx": "preserve",
-    "jsxImportSource": "vue"
+    "jsxImportSource": "vue",
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "noImplicitAny": false,
+    "target": "es6",
+    "module": "esnext",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "stripInternal": true,
+    "resolveJsonModule": true
   },
   "include": ["**/*.tsx", "**/*.ts"],
   "exclude": ["node_modules"]

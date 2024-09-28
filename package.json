@@ -10,29 +10,13 @@
     "test:coverage": "jest --coverage",
     "build:docs": "pnpm run -C docs build",
     "build:lib": "pnpm run -C packages/components build && pnpm run -C packages/foundation build && pnpm run -C packages/webpack-plugin build && pnpm run -C packages/vite-plugin build && pnpm run -C packages/locale build",
-    "gen": "node ./scripts/index.js gen"
+    "gen": "node ./scripts/index.js gen",
+    "clean": "rimraf node_modules && pnpm recursive run clean"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@testing-library/react": "^14.1.2",
-    "@types/jest": "^29.5.10",
-    "babel": "^6.23.0",
-    "ejs": "^3.1.9",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "lodash": "^4.17.21",
-    "react": "^18.2.0",
-    "sass": "^1.69.5",
-    "typescript": "^5.6.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.23.3",
-    "@babel/preset-env": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
-    "@changesets/cli": "^2.27.1",
     "@chromatic-com/storybook": "^1.6.1",
     "@storybook/addon-essentials": "^8.2.4",
     "@storybook/addon-interactions": "^8.2.4",
@@ -45,15 +29,35 @@
     "@storybook/test": "^8.2.4",
     "@storybook/vue3": "^8.2.4",
     "@storybook/vue3-vite": "^8.2.4",
+    "storybook": "^8.2.4",
+    "vue": "^3.5.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@changesets/cli": "^2.27.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.3.1",
+    "@testing-library/vue": "^8.1.0",
+    "@types/jest": "^29.5.12",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vue/shared": "^3.5.8",
+    "babel": "^6.23.0",
     "chalk": "4",
+    "ejs": "^3.1.10",
     "fs-extra": "^11.1.1",
     "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lodash": "^4.17.21",
     "ora": "^4.1.1",
+    "react": "^18.3.1",
     "react-dom": "18.2.0",
-    "storybook": "^8.2.4"
+    "rimraf": "^6.0.1",
+    "sass": "^1.77.8",
+    "typescript": "^5.6.2"
   }
 }

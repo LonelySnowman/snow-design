@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build:lib": "node ./_scripts/compileLib.js",
-    "build": "npm run build:lib"
+    "build": "npm run build:lib",
+    "clean": "rimraf node_modules lib"
   },
   "files": [
     "lib"

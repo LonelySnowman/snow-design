@@ -14,7 +14,6 @@ packages/webpack-plugin/lib
 packages/vite-plugin/lib
 
 # docs cache
-docs/docs/.dumi
 docs/.dumi
 docs/dist
 

@@ -1,7 +1,8 @@
-import { defineComponent, onMounted, reactive, CSSProperties } from 'vue';
-// import '@snow-design/foundation/pagination/pagination.scss'
-import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import classNames from 'classnames';
+import { defineComponent, onMounted, reactive } from 'vue';
+import type { CSSProperties } from "vue";
+import '@snow-design/foundation/pagination/pagination.scss';
+import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
 import { anyType, objectType, withInstall, VueNode } from '../_utils/type';
 import useLocale from "../_locale/useLocale";

@@ -7,6 +7,7 @@ module.exports = {
         '\\.(css|scss)$': 'identity-obj-proxy',
         '@snow-design/components(.*)$': '<rootDir>/packages/components/$1',
         '@snow-design/foundation(.*)$': '<rootDir>/packages/foundation/$1',
+        '#test(.*)$': '<rootDir>/test/$1'
     },
     collectCoverageFrom: [
         'packages/components/**/*.{ts,tsx}',

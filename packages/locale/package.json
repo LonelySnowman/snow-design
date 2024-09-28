@@ -5,7 +5,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "clean": "rimraf node_modules"
   },
   "description": "",
   "main": "index.ts",

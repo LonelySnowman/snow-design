@@ -14,7 +14,8 @@
     "./*": "./lib/*"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.ts --configPlugin typescript"
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "clean": "rimraf node_modules lib dist"
   },
   "files": [
     "lib/*"

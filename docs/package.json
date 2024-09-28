@@ -18,7 +18,6 @@
   "dependencies": {
     "@snow-design/components": "workspace:*",
     "@snow-design/locale": "workspace:*",
-    "@snow-design/vue3": "workspace:*",
-    "vue": "^3.4.29"
+    "@snow-design/vue3": "workspace:*"
   }
 }
