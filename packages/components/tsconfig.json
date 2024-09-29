@@ -16,7 +16,7 @@
       "@snow-design/foundation/*": ["../foundation/*"],
       "@snow-design/components/*": ["../components/*"],
       "@snow-design/locale/*": ["../locale/*"],
-      "#test/*": ["../../test/*"],
+      "#test/*": ["../../test/*"]
     }
   },
   "include": ["**/*.tsx", "**/*.ts"],

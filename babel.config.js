@@ -1,17 +1,16 @@
 module.exports = {
-    sourceType: "unambiguous",
     presets: [
-        [
-            "@babel/preset-env",
-            {
-                "targets": {
-                    "chrome": 100,
-                    "safari": 15,
-                    "firefox": 91
-                }
-            }
-        ],
-        "@babel/preset-typescript",
-        "@babel/preset-react"
+        '@babel/preset-env',
+        '@babel/preset-typescript',
     ],
+    overrides: [
+        {
+            test: ['./packages/vue3', './test/vue'],
+            plugins: [['@vue/babel-plugin-jsx', { mergeProps: false, enableObjectSlots: false }]]
+        },
+        {
+            test: ['./packages/components', './test/react'],
+            presets: ['@babel/preset-react']
+        }
+    ]
 }

@@ -1,12 +1,11 @@
-import { VueElement } from 'vue';
 import { render } from '@testing-library/vue';
 
-export default function mountTest(Component: VueElement) {
+export default function mountTest(Component) {
   describe(`mount and unmount`, () => {
     it(`component could be updated and unmounted without errors`, () => {
-      const { unmount, rerender } = render(Component);
+      const { unmount, rerender } = render(<Component />);
       expect(() => {
-        rerender(Component);
+        rerender(<Component />);
         unmount();
       }).not.toThrow();
     });
