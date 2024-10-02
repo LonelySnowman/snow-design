@@ -6,19 +6,49 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WebpackBarPlugin = require('webpackbar');
 const HashedModuleIdsPlugin = webpack.ids.HashedModuleIdsPlugin;
 const getBabelConfig = require('./getBabelConfig');
+
 const rootPath = path.resolve(__dirname, '../../../../');
 
-module.exports = function ({ minimize }) {
+module.exports = function ({ root, minimize, mode = 'react' }) {
+    let externals = {};
+    switch (mode) {
+        case "react":
+            externals = {
+                react: {
+                    root: 'React',
+                    commonjs2: 'react',
+                    commonjs: 'react',
+                    amd: 'react'
+                },
+                'react-dom': {
+                    root: 'ReactDOM',
+                    commonjs2: 'react-dom',
+                    commonjs: 'react-dom',
+                    amd: 'react-dom'
+                }
+            }
+            break;
+        case "vue":
+            externals = {
+                vue: {
+                    root: 'Vue',
+                    commonjs2: 'vue',
+                    commonjs: 'vue',
+                    amd: 'vue'
+                }
+            }
+            break;
+    }
     return {
         mode: 'production',
         bail: true,
         devtool: 'source-map',
         entry: {
-            index: [path.resolve(__dirname, '../../index.ts')]
+            index: [path.resolve(root, './index.ts')]
         },
         output: {
             filename: minimize ? 'components.min.js' : 'components.js',
-            path: path.resolve(__dirname, '../../dist/umd'),
+            path: path.resolve(root, './dist/umd'),
             library: 'SnowUI',
             libraryTarget: 'umd'
         },
@@ -26,15 +56,10 @@ module.exports = function ({ minimize }) {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    include: [
-                        path.resolve(rootPath, './packages/components'),
-                        path.resolve(rootPath, './packages/foundation'),
-                        path.resolve(rootPath, './packages/locale')
-                    ],
                     use: [
                         {
                             loader: 'babel-loader',
-                            options: getBabelConfig({ isESM: true })
+                            options: getBabelConfig({ isESM: true, mode })
                         },
                         {
                             loader: 'ts-loader',
@@ -62,25 +87,12 @@ module.exports = function ({ minimize }) {
         ],
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-            alias: {
-                "@snow-design/foundation": path.resolve(__dirname, "../../../foundation"),
-                "@snow-design/components": path.resolve(__dirname, "../../../components"),
-                "@snow-design/locale": path.resolve(__dirname, "../../../locale"),
+            alias: { // LJQFLAG 更换为解析 node_modules
+                "@snow-design/foundation": path.resolve(rootPath, "./packages/foundation"),
+                "@snow-design/components": path.resolve(rootPath, "./packages/components"),
+                "@snow-design/locale": path.resolve(rootPath, "./packages/locale"),
             },
         },
-        externals: { // 声明外部依赖
-            react: {
-                root: 'React',
-                commonjs2: 'react',
-                commonjs: 'react',
-                amd: 'react'
-            },
-            'react-dom': {
-                root: 'ReactDOM',
-                commonjs2: 'react-dom',
-                commonjs: 'react-dom',
-                amd: 'react-dom'
-            }
-        }
+        externals: externals // 声明外部依赖
     };
 };

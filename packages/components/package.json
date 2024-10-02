@@ -14,7 +14,9 @@
     "build:dist": "node ./_scripts/compileDist.js",
     "build:style": "node ./_scripts/compileScss.js",
     "build": "npm run build:lib && npm run build:dist && npm run build:style",
-    "clean": "rimraf node_modules lib dist"
+    "clean": "rimraf node_modules lib dist",
+    "compile": "snow-tools run compile",
+    "dist": "snow-tools run dist"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,7 @@
     "@babel/preset-env": "^7.23.3",
     "@snow-design/foundation": "workspace:*",
     "@snow-design/locale": "workspace:*",
+    "@snow-design/tools": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "babel-loader": "^9.1.3",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
@@ -42,6 +45,7 @@
     "webpackbar": "^5.0.2"
   },
   "devDependencies": {
+    "@snow-design/theme-default": "workspace:*",
     "gulp-inject-string": "^1.1.2",
     "gulp-sass": "^5.1.0",
     "sass": "^1.69.5"

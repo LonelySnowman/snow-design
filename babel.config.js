@@ -1,3 +1,6 @@
+/**
+ * @description babel config for babel jest
+ */
 module.exports = {
     presets: [
         '@babel/preset-env',

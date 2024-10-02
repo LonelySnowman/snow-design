@@ -5,7 +5,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "snow-tools": "./bin/index.js"
+  },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^5.1.0",
+    "gulp-typescript": "6.0.0-alpha.1",
+    "merge2": "^1.4.1",
+    "minimist": "^1.2.8",
+    "rimraf": "^6.0.1",
+    "sass": "^1.79.4"
+  }
 }
