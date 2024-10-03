@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "../../../",
     "target": "ES2015",
     "esModuleInterop": true,
     "outDir": "lib",

@@ -5,16 +5,14 @@ const gulp = require('gulp');
 const gulpTS = require('gulp-typescript');
 const gulpBabel = require('gulp-babel');
 const replace = require('gulp-replace');
-const gulpSass = require('gulp-sass')(require('sass'));
 const sass = require('sass');
+const gulpSass = require('gulp-sass')(sass);
 const inject = require('gulp-inject-string');
 const webpack = require('webpack');
 const fs = require('fs-extra');
 
-const packagePath = process.cwd();
-const nodeModulesPath = path.resolve(packagePath, './node_modules');
-const rootDir = path.resolve(__dirname, '../../../');
-const tsConfig = require(path.resolve(packagePath, './tsconfig.json'));
+const { packagePath, nodeModulesPath, rootDir, tsConfig } = require('./common');
+const { toUnixPath } = require('./utils')
 const getBabelConfig = require('./config/getBabelConfig');
 const getWebpackConfig = require("./config/getWebpackConfig");
 
@@ -25,7 +23,10 @@ gulp.task('cleanLib', function cleanLib() {
 
 gulp.task('compileTSXForESM', function compileTSXForESM() {
     const tsStream = gulp.src(['**/*.tsx', '**/*.ts', '!**/node_modules/**/*.*', '!**/_story/**/*.*', '!**/__test__/**/*.*'])
-        .pipe(gulpTS(tsConfig.compilerOptions));
+        .pipe(gulpTS({
+            ...tsConfig.compilerOptions,
+            rootDir
+        }));
     const jsStream = tsStream.js
         .pipe(gulpBabel(getBabelConfig({ isESM: true })))
         .pipe(replace(/(import\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g, '$1\'@snow-design/foundation/lib/es/$2\''))
@@ -59,15 +60,17 @@ gulp.task('compileTSXForCJS', function compileTSXForCJS() {
 });
 
 gulp.task('compileScss', function compileScss() {
-    const rootPath = path.resolve(__dirname, '../../../');
-    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss', '!**/dist/**/*.*'])
-        .pipe(inject.prepend(`
-        @import "${rootPath}/packages/theme-default/scss/index.scss";\n
-        @import "${rootPath}/packages/theme-default/scss/global.scss";\n
-        `.replaceAll('\\', '/')))
+    const indexThemePath = path.resolve(rootDir, './packages/theme-default/scss/index.scss');
+    const globalThemePath = path.resolve(rootDir, './packages/theme-default/scss/global.scss');
+
+    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss', '!**/dist/**/*.scss'])
+        .pipe(inject.prepend(toUnixPath(`
+        @import "${indexThemePath}";\n
+        @import "${globalThemePath}";\n
+        `)))
         .pipe(gulpSass({
             charset: false
-        }).on('error', sass.logError))
+        }).on('error', gulpSass.logError))
         .pipe(gulp.dest('lib/es'))
         .pipe(gulp.dest('lib/cjs'));
 });
@@ -75,7 +78,7 @@ gulp.task('compileScss', function compileScss() {
 function moveScss(isESM) {
     const moduleTarget = isESM ? 'es' : 'cjs';
     const targetDir = isESM ? 'lib/es' : 'lib/cjs';
-    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss'])
+    return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss', '!**/dist/**/*.scss'])
         .pipe(replace(/(@import\s+['"]~)(@douyinfe\/semi-foundation\/)/g, `$1@douyinfe/semi-foundation/lib/${moduleTarget}/`))
         .pipe(gulp.dest(targetDir));
 }
@@ -88,6 +91,9 @@ gulp.task('moveScssForCJS', function moveScssForCJS() {
     return moveScss(false);
 });
 
+/**
+ * @description 编译 lib 包 多出口的组件产物
+ */
 gulp.task('compile',
     gulp.series(
         [
@@ -99,10 +105,19 @@ gulp.task('compile',
     )
 );
 
+gulp.task('cleanDist', function cleanLib() {
+    const ditPath = path.resolve(packagePath, 'dist');
+    return rimraf([ditPath]);
+});
+
 function compileStyle(isMin = false) {
+    /**
+     * @problem sass 编译无法解析 pnpm monorepo 软连接下的绝对路径
+     * 只能转化为相对路径引用
+     */
     const scssRaw = [];
-    const foundationPath = path.resolve(packagePath, './node_modules/@snow-design/foundation');
-    const themePath = path.resolve(packagePath, './node_modules/@snow-design/theme-default/scss/index.scss');
+    const foundationPath = path.resolve(nodeModulesPath, './@snow-design/foundation');
+    const themePath = path.resolve(nodeModulesPath, './@snow-design/theme-default/scss/index.scss');
     const outPutDir = path.resolve(packagePath, './dist/css');
     const outPutScss = path.resolve(packagePath, `./dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`);
     const outPutCss = path.resolve(packagePath, `./dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`);
@@ -178,5 +193,15 @@ gulp.task('compileDist', async function () {
     await compileDistMin();
 });
 
+/**
+ * @description 构建 dist 包 输出单独可用的 umd 模块
+ */
+gulp.task('dist', gulp.series([
+    'cleanDist',
+    gulp.parallel('compileStyle', 'compileDist')
+]));
 
-gulp.task('dist', gulp.parallel('compileStyle', 'compileDist'));
+/**
+ * @description 构建 lib 包与 dist 包
+ */
+gulp.task('build', gulp.parallel('compile', 'dist'));

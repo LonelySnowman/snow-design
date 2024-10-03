@@ -6,10 +6,14 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WebpackBarPlugin = require('webpackbar');
 const HashedModuleIdsPlugin = webpack.ids.HashedModuleIdsPlugin;
 const getBabelConfig = require('./getBabelConfig');
+const { rootDir } = require('../common');
 
-const rootPath = path.resolve(__dirname, '../../../../');
+const babelLoaderPath = require.resolve('babel-loader');
+const tsLoaderPath = require.resolve('ts-loader');
+const nullLoaderPath = require.resolve('null-loader');
 
-module.exports = function ({ root, minimize, mode = 'react' }) {
+module.exports = function ({ root, minimize }) {
+    const mode = process.env.MODE;
     let externals = {};
     switch (mode) {
         case "react":
@@ -58,18 +62,18 @@ module.exports = function ({ root, minimize, mode = 'react' }) {
                     test: /\.tsx?$/,
                     use: [
                         {
-                            loader: 'babel-loader',
+                            loader: babelLoaderPath,
                             options: getBabelConfig({ isESM: true, mode })
                         },
                         {
-                            loader: 'ts-loader',
+                            loader: tsLoaderPath,
                             options: {
                                 transpileOnly: true,
                             }
                         }
                     ]
                 },
-                { test: /\.scss$/, use: 'null-loader' },
+                { test: /\.scss$/, use: nullLoaderPath },
             ]
         },
         optimization: {
@@ -87,10 +91,10 @@ module.exports = function ({ root, minimize, mode = 'react' }) {
         ],
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-            alias: { // LJQFLAG 更换为解析 node_modules
-                "@snow-design/foundation": path.resolve(rootPath, "./packages/foundation"),
-                "@snow-design/components": path.resolve(rootPath, "./packages/components"),
-                "@snow-design/locale": path.resolve(rootPath, "./packages/locale"),
+            alias: {
+                "@snow-design/foundation": path.resolve(rootDir, "./packages/foundation"),
+                "@snow-design/components": path.resolve(rootDir, "./packages/components"),
+                "@snow-design/locale": path.resolve(rootDir, "./packages/locale"),
             },
         },
         externals: externals // 声明外部依赖

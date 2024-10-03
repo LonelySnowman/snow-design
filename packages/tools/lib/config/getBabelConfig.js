@@ -1,4 +1,5 @@
-module.exports = ({ isESM, mode = 'react' }) => {
+module.exports = ({ isESM }) => {
+    const mode = process.env.MODE;
     const modePresets = [];
     const modePlugins = [];
     switch (mode) {

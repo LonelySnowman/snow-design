@@ -11,7 +11,7 @@
     "build:docs": "pnpm run -C docs build",
     "build:lib": "pnpm recursive run build",
     "gen": "node ./scripts/index.js gen",
-    "clean": "rimraf node_modules && pnpm recursive run clean"
+    "clean": "pnpm recursive run clean && rimraf node_modules"
   },
   "keywords": [],
   "author": "",
