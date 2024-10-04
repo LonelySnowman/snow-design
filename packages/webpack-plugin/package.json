@@ -1,18 +1,18 @@
 {
   "name": "@snow-design/webpack-plugin",
   "version": "0.0.22",
-  "description": "",
+  "description": "SnowDesign 组件库主题包 Webpack 插件",
   "main": "lib/index.js",
   "scripts": {
     "build:lib": "tsc",
     "build": "pnpm run build:lib",
-    "clean": "rimraf node_modules"
+    "clean": "rimraf lib node_modules"
   },
   "files": [
     "lib/*"
   ],
-  "keywords": [],
-  "author": "",
+  "keywords": ["snow-design"],
+  "author": "LonelySnowman",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^20.10.4",

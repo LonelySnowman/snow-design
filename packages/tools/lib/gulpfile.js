@@ -16,6 +16,10 @@ const { toUnixPath } = require('./utils')
 const getBabelConfig = require('./config/getBabelConfig');
 const getWebpackConfig = require("./config/getWebpackConfig");
 
+/**
+ * @description 编译 lib 包 多出口的组件产物
+ */
+
 gulp.task('cleanLib', function cleanLib() {
     const libPath = path.resolve(packagePath, 'lib');
     return rimraf([libPath]);
@@ -75,35 +79,26 @@ gulp.task('compileScss', function compileScss() {
         .pipe(gulp.dest('lib/cjs'));
 });
 
-function moveScss(isESM) {
-    const moduleTarget = isESM ? 'es' : 'cjs';
-    const targetDir = isESM ? 'lib/es' : 'lib/cjs';
+gulp.task('moveScss', function moveScss() {
     return gulp.src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss', '!**/dist/**/*.scss'])
-        .pipe(replace(/(@import\s+['"]~)(@douyinfe\/semi-foundation\/)/g, `$1@douyinfe/semi-foundation/lib/${moduleTarget}/`))
-        .pipe(gulp.dest(targetDir));
-}
-
-gulp.task('moveScssForESM', function moveScssForESM() {
-    return moveScss(true);
+        .pipe(gulp.dest('lib/es'))
+        .pipe(gulp.dest('lib/cjs'));
 });
 
-gulp.task('moveScssForCJS', function moveScssForCJS() {
-    return moveScss(false);
-});
-
-/**
- * @description 编译 lib 包 多出口的组件产物
- */
 gulp.task('compile',
     gulp.series(
         [
             'cleanLib',
             'compileScss',
-            gulp.parallel('moveScssForESM', 'moveScssForCJS'), // 将 scss 文件存入 lib 包 便于后续主题定制
+            'moveScss', // 将 scss 文件存入 lib 包 便于后续主题定制
             gulp.parallel('compileTSXForESM', 'compileTSXForCJS')
         ]
     )
 );
+
+/**
+ * @description 构建 dist 包 输出单独可用的 umd 模块
+ */
 
 gulp.task('cleanDist', function cleanLib() {
     const ditPath = path.resolve(packagePath, 'dist');
@@ -112,8 +107,7 @@ gulp.task('cleanDist', function cleanLib() {
 
 function compileStyle(isMin = false) {
     /**
-     * @problem sass 编译无法解析 pnpm monorepo 软连接下的绝对路径
-     * 只能转化为相对路径引用
+     * @problem sass 编译无法解析 pnpm monorepo 软连接下的绝对路径只能转化为相对路径引用
      */
     const scssRaw = [];
     const foundationPath = path.resolve(nodeModulesPath, './@snow-design/foundation');
@@ -123,7 +117,7 @@ function compileStyle(isMin = false) {
     const outPutCss = path.resolve(packagePath, `./dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`);
 
     if (fs.existsSync(themePath)) // 插入主题样式
-        scssRaw.push(`@import "${path.relative(outPutDir, themePath)}";`.replaceAll('\\', '/'))
+        scssRaw.push(toUnixPath(`@import "${path.relative(outPutDir, themePath)}";`))
     const styleFiles = fs.readdirSync(foundationPath); // 插入组件样式
     for (const fileName of styleFiles) {
         const filePath = path.join(foundationPath, fileName)
@@ -131,7 +125,7 @@ function compileStyle(isMin = false) {
             const scssFiles = fs.readdirSync(filePath);
             const targetScss = path.resolve(foundationPath, `./${fileName}/${fileName}.scss`);
             if (scssFiles.includes(`${fileName}.scss`))
-                scssRaw.push(`@import "${path.relative(outPutDir, targetScss)}";`.replaceAll('\\', '/'));
+                scssRaw.push(toUnixPath(`@import "${path.relative(outPutDir, targetScss)}";`));
         }
     }
     const content = scssRaw.join('\n')
@@ -193,9 +187,6 @@ gulp.task('compileDist', async function () {
     await compileDistMin();
 });
 
-/**
- * @description 构建 dist 包 输出单独可用的 umd 模块
- */
 gulp.task('dist', gulp.series([
     'cleanDist',
     gulp.parallel('compileStyle', 'compileDist')
@@ -205,3 +196,31 @@ gulp.task('dist', gulp.series([
  * @description 构建 lib 包与 dist 包
  */
 gulp.task('build', gulp.parallel('compile', 'dist'));
+
+/**
+ * @description foundation 包编译模块
+ */
+
+gulp.task('compileFoundationScss', function compileFoundationScss() {
+    const excludeScss = [
+        '!node_modules/**/*.*',
+        '!**/rtl.scss',
+        '!**/variables.scss',
+        '!**/animation.scss',
+    ]
+    const indexThemePath = path.resolve(rootDir, './packages/theme-default/scss/index.scss');
+    return gulp.src(['**/*.scss', ...excludeScss])
+        .pipe(inject.prepend(toUnixPath(`@import "${indexThemePath}";\n`)))
+        .pipe(gulpSass({
+            charset: false
+        }).on('error', gulpSass.logError))
+        .pipe(gulp.dest('lib/es'))
+        .pipe(gulp.dest('lib/cjs'));
+});
+
+gulp.task('compileFoundation', gulp.series([
+    'cleanLib',
+    'compileFoundationScss',
+    'moveScss',
+    gulp.parallel('compileTSXForESM', 'compileTSXForCJS'),
+]));

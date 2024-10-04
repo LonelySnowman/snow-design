@@ -1,7 +1,7 @@
 {
   "name": "@snow-design/components",
   "version": "0.0.22",
-  "description": "",
+  "description": "SnowDesign 组件库 React 版",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
   "typings": "lib/es/index.d.ts",
@@ -11,16 +11,15 @@
   ],
   "scripts": {
     "build": "snow-tools run build",
-    "clean": "rimraf node_modules lib dist"
+    "clean": "rimraf lib dist node_modules"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["snow-design", "react"],
+  "author": "LonelySnowman",
   "license": "ISC",
   "dependencies": {
     "@snow-design/foundation": "workspace:*",
     "@snow-design/locale": "workspace:*",
-    "classnames": "^2.3.2",
-    "lodash": "^4.17.21"
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@snow-design/theme-default": "workspace:*",

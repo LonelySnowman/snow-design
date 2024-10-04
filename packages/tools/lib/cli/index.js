@@ -12,7 +12,7 @@ const argv = require('minimist')(process.argv.slice(2), {
 });
 require('../gulpfile');
 
-const allowTask = ['compile', 'dist', 'build', 'cleanLib', 'cleanDist'];
+const allowTask = ['compile', 'dist', 'build', 'cleanLib', 'cleanDist', 'compileFoundation'];
 function runTask(toRun) {
     const taskInstance = gulp.task(toRun);
     process.env.MODE = argv.mode;

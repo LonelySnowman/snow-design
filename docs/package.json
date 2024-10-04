@@ -1,12 +1,13 @@
 {
   "name": "@snow-design/docs",
   "version": "0.0.22",
-  "description": "A static site based on dumi",
+  "description": "SnowDesign 组件库静态站点",
   "scripts": {
     "start": "dumi dev",
-    "build": "dumi build"
+    "build": "dumi build",
+    "clean": "rimraf dist node_modules"
   },
-  "authors": [],
+  "authors": "LonelySnowman",
   "files": [
     "docs/*"
   ],

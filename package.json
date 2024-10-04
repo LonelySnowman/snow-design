@@ -1,7 +1,7 @@
 {
   "name": "snow-design",
   "version": "1.0.0",
-  "description": "",
+  "description": "SnowDesign 组件库",
   "scripts": {
     "start:react": "storybook dev -p 6006 -c .storybook/react",
     "start:vue3": "storybook dev -p 6006 -c .storybook/vue3",
@@ -11,10 +11,9 @@
     "build:docs": "pnpm run -C docs build",
     "build:lib": "pnpm recursive run build",
     "gen": "node ./scripts/index.js gen",
-    "clean": "pnpm recursive run clean && rimraf node_modules"
+    "clean": "pnpm recursive run clean"
   },
-  "keywords": [],
-  "author": "",
+  "author": "LonelySnowman",
   "license": "ISC",
   "dependencies": {
     "@chromatic-com/storybook": "^1.6.1",
@@ -29,11 +28,9 @@
     "@storybook/test": "^8.2.4",
     "@storybook/vue3": "^8.2.4",
     "@storybook/vue3-vite": "^8.2.4",
-    "storybook": "^8.2.4",
-    "vue": "^3.5.10"
+    "storybook": "^8.2.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.3",
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
@@ -44,7 +41,6 @@
     "@testing-library/vue": "^8.1.0",
     "@types/jest": "^29.5.12",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
-    "@vue/shared": "^3.5.8",
     "babel": "^6.23.0",
     "chalk": "4",
     "ejs": "^3.1.10",
@@ -58,6 +54,7 @@
     "react-dom": "18.2.0",
     "rimraf": "^6.0.1",
     "sass": "^1.77.8",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vue": "^3.5.10"
   }
 }

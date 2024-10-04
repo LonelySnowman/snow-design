@@ -20,8 +20,5 @@ docs/dist
 # ide
 .idea
 
-# pnpm
-pnpm-lock.yaml
-
 # test
 coverage

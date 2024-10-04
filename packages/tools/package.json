@@ -1,16 +1,14 @@
 {
   "name": "@snow-design/tools",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "./lib/cli/index.js",
   "bin": {
     "snow-tools": "./bin/index.js"
   },
-  "author": "",
+  "keywords": ["snow-design"],
+  "author": "LonelySnowman",
   "license": "ISC",
-  "description": "",
+  "description": "SnowDesign 组件库打包工具",
   "dependencies": {
     "babel-loader": "^9.1.3",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",

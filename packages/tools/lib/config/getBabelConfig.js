@@ -1,4 +1,4 @@
-module.exports = ({ isESM }) => {
+module.exports = ({ isESM = false }) => {
     const mode = process.env.MODE;
     const modePresets = [];
     const modePlugins = [];

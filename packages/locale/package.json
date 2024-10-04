@@ -6,12 +6,12 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf node_modules"
+    "clean": "rimraf lib node_modules"
   },
-  "description": "",
+  "description": "SnowDesign 组件库国际化语言包",
   "main": "index.ts",
-  "keywords": [],
-  "author": "",
+  "keywords": ["snow-design"],
+  "author": "LonelySnowman",
   "license": "ISC",
   "devDependencies": {
     "tsup": "^8.2.3"
