@@ -5,21 +5,20 @@ import classNames from 'classnames';
 import { useLocale } from '../_locale';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
 import useMergedState from "../_utils/hooks/useMergedState";
+import { CssProps } from "@snow-design/components/_types";
 
 const prefixCls = cssClasses.PREFIX;
 
-export interface PaginationProps {
+export interface PaginationProps extends CssProps {
     currentPage?: number;
     defaultCurrentPage?: number;
     pageSize: number;
     total: number;
-    showTotal?: number;
+    showTotal?: boolean;
     onChange?: (page: number, pageSize: number) => void;
     disabled?: boolean;
     nextText?: React.ReactNode;
     prevText?: React.ReactNode;
-    className?: string; // LJQFLAG 改为全局支持 各个组件均支持
-    style?: React.CSSProperties;
 }
 
 const Button: React.FC<PaginationProps> = (props) => {
@@ -28,7 +27,7 @@ const Button: React.FC<PaginationProps> = (props) => {
         defaultCurrentPage = 1,
         pageSize,
         total,
-        showTotal,
+        showTotal = false,
         disabled = false,
         onChange,
         nextText,
@@ -46,7 +45,6 @@ const Button: React.FC<PaginationProps> = (props) => {
     const [curPageValue, setCurPageValue] = useMergedState<number>(defaultCurrentPage, currentPage);
 
     const foundation = usePaginationFoundation({
-        // LJQFLAG 抽离公共 Foundation
         getProps() {
             return props;
         },
@@ -90,8 +88,6 @@ const Button: React.FC<PaginationProps> = (props) => {
             onClick={e => !isDisabled && foundation.goPrev()}
             className={preClassName}
           >
-              {/* LJQFLAG 自定义 ICON */}
-              {/*{prevText || <IconChevronLeft size="large" />}*/}
               {prevText || contextLocale.previous}
           </li>
         );
@@ -112,8 +108,7 @@ const Button: React.FC<PaginationProps> = (props) => {
             onClick={e => !isDisabled && foundation.goNext()}
             className={nextClassName}
           >
-              {/* LJQFLAG 自定义 ICON */}
-              {/*{prevText || <IconChevronLeft size="large" />}*/}
+              {/* @todo: Icon 模块待设计 */}
               {nextText || contextLocale.next}
           </li>
         );

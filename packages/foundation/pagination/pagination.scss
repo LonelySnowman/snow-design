@@ -5,16 +5,15 @@ $module: #{$prefix}-pagination;
 .#{$module} {
   display: flex;
   list-style: none;
-  padding: $spacing-pagination_item-margin;
+  padding: $pagination-spacing_item-margin;
   align-items: center;
   margin-block-start: 0;
   margin-block-end: 0;
 
   &-disabled {
     cursor: not-allowed;
-
     .#{$module}-total {
-      color: $color-pagination_item-text-disabled;
+      color: $pagination-color_item-text-disabled;
     }
   }
 
@@ -23,31 +22,31 @@ $module: #{$prefix}-pagination;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: $size-pagination_item;
-    min-width: $size-pagination_item;
-    margin-inline-end: $spacing-pagination_item_margin;
+    height: $pagination-size_item;
+    min-width: $pagination-size_item;
+    margin-inline-end: $pagination-spacing_item_margin;
     border-radius: var(--snow-border-radius);
     cursor: pointer;
     box-sizing: border-box;
     user-select: none;
 
     &:hover {
-      background-color: $color-pagination_item-bg-hover;
+      background-color: $pagination-color_item-bg-hover;
     }
 
     &-active {
-      border: 1px solid $color-pagination_item-border-active;
-      color: $color-pagination_item-active;
+      border: 1px solid $pagination-color_item-border-active;
+      color: $pagination-color_item-active;
 
       &:hover {
-        border-color: $color-pagination_item-border-active-hover;
-        color: $color-pagination_item-active-hover;
+        border-color: $pagination-color_item-border-active-hover;
+        color: $pagination-color_item-active-hover;
         background-color: transparent;
       }
     }
 
     &-disabled {
-      color: $color-pagination_item-text-disabled;
+      color: $pagination-color_item-text-disabled;
       cursor: not-allowed;
       &:hover {
         background-color: transparent;
@@ -57,21 +56,20 @@ $module: #{$prefix}-pagination;
 
   &-total {
     @include font-size-regular;
-    margin-right: $spacing-pagination_item-margin;
+    margin-right: $pagination-spacing_item-margin;
   }
 
   &-prev,
   &-next {
-    padding: 4px;
     cursor: pointer;
     background-color: transparent;
-    color: $color-pagination_item-active;
+    color: $pagination-color_item-active;
     &:hover {
       background-color: transparent;
     }
     &.#{$module}-item-disabled {
       cursor: not-allowed;
-      color: $color-pagination_item-disabled;
+      color: $pagination-color_item-disabled;
     }
   }
 }

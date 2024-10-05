@@ -3,52 +3,56 @@
 $module: #{$prefix}-button;
 
 .#{$module} {
-  font-size: 14px;
+  @include font-size-regular;
   height: 32px;
-  padding: 4px 15px;
+  padding: $button-padding;
   border-radius: 6px;
   border: 0 transparent solid;
   outline: none;
   cursor: pointer;
   transition: all linear 0.1s;
+
   &-default {
-    background-color: $color-button_default-bg-default;
-    color: $color-button_default-text-default;
+    background-color: $button-color_default-bg-default;
+    color: $button-color_default-text-default;
     &:hover {
-      background-color: $color-button_default-bg-hover;
+      background-color: $button-color_default-bg-hover;
     }
     &:active {
-      background-color: $color-button_default-bg-active;
+      background-color: $button-color_default-bg-active;
     }
   }
+
   &-primary {
-    background-color: $color-button_primary-bg-default;
-    color: $color-button_primary-text-default;
+    background-color: $button-color_primary-bg-default;
+    color: $button-color_primary-text-default;
     &:hover {
-      background-color: $color-button_primary-bg-hover;
+      background-color: $button-color_primary-bg-hover;
     }
     &:active {
-      background-color: $color-button_primary-bg-active;
+      background-color: $button-color_primary-bg-active;
     }
   }
+
   &-warning {
-    background-color: $color-button_warning-bg-default;
-    color: $color-button_warning-text-default;
+    background-color: $button-color_warning-bg-default;
+    color: $button-color_warning-text-default;
     &:hover {
-      background-color: $color-button_warning-bg-hover;
+      background-color: $button-color_warning-bg-hover;
     }
     &:active {
-      background-color: $color-button_warning-bg-active;
+      background-color: $button-color_warning-bg-active;
     }
   }
+
   &-danger {
-    background-color: $color-button_danger-bg-default;
-    color: $color-button_danger-text-default;
+    background-color: $button-color_danger-bg-default;
+    color: $button-color_danger-text-default;
     &:hover {
-      background-color: $color-button_danger-bg-hover;
+      background-color: $button-color_danger-bg-hover;
     }
     &:active {
-      background-color: $color-button_danger-bg-active;
+      background-color: $button-color_danger-bg-active;
     }
   }
 }

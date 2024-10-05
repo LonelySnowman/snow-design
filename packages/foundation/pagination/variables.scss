@@ -1,14 +1,14 @@
-// Size
-$size-pagination_item: 32px;
+/* Size */
+$pagination-size_item: 32px;
 
-// Spacing
-$spacing-pagination_item-margin: 8px; // 迷你翻页器页码外边距
+/* Spacing */
+$pagination-spacing_item-margin: var(--snow-padding-xs);
 
-// Color
-$color-pagination_item-bg-hover: var(--snow-color-default-hover);
-$color-pagination_item-active: var(--snow-color-primary);
-$color-pagination_item-border-active: var(--snow-color-primary);
-$color-pagination_item-active-hover: var(--snow-color-primary-hover);
-$color-pagination_item-border-active-hover: var(--snow-color-primary-hover);
-$color-pagination_item-disabled: var(--snow-color-default-active);
-$color-pagination_item-text-disabled: var(--snow-color-default-active);
+/* Color */
+$pagination-color_item-bg-hover: var(--snow-color-default-hover);
+$pagination-color_item-active: var(--snow-color-primary);
+$pagination-color_item-border-active: var(--snow-color-primary);
+$pagination-color_item-active-hover: var(--snow-color-primary-hover);
+$pagination-color_item-border-active-hover: var(--snow-color-primary-hover);
+$pagination-color_item-disabled: var(--snow-color-default-active);
+$pagination-color_item-text-disabled: var(--snow-color-default-active);

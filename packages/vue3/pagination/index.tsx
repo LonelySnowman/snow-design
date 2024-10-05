@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import { defineComponent, onMounted, reactive } from 'vue';
-import type { CSSProperties } from "vue";
 import '@snow-design/foundation/pagination/pagination.scss';
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
-import { anyType, objectType, withInstall, VueNode } from '../_utils/type';
+import { anyType, VueNode, CssProps } from '../_utils/type';
+import { withInstall } from "@snow-design/vue3/_utils";
 import useLocale from "../_locale/useLocale";
 
 const prefixCls = cssClasses.PREFIX;
@@ -19,8 +19,7 @@ export const paginationProps = () => ({
   disabled: Boolean,
   nextText: anyType<VueNode>(),
   prevText: anyType<VueNode>(),
-  class: String,
-  style: objectType<CSSProperties>(),
+  ...CssProps
 });
 
 const Pagination = defineComponent({
@@ -39,11 +38,9 @@ const Pagination = defineComponent({
       onChange,
       nextText,
       prevText,
-      className,
+      class: className,
       style,
     } = props;
-
-    console.log(props.pageSize);
 
     const [contextLocale] = useLocale('Pagination');
 
@@ -55,7 +52,6 @@ const Pagination = defineComponent({
     })
 
     const foundation = usePaginationFoundation({
-      // LJQFLAG 抽离公共 Foundation
       getProps() {
         return props;
       },
@@ -100,8 +96,7 @@ const Pagination = defineComponent({
           onClick={e => !isDisabled && foundation.goPrev()}
           class={preClassName}
         >
-          {/* LJQFLAG 自定义 ICON */}
-          {/*{prevText || <IconChevronLeft size="large" />}*/}
+          {/* @todo: Icon 方案待设计 */}
           {prevText || contextLocale.previous}
         </li>
       );
@@ -122,8 +117,6 @@ const Pagination = defineComponent({
           onClick={e => !isDisabled && foundation.goNext()}
           class={nextClassName}
         >
-          {/* LJQFLAG 自定义 ICON */}
-          {/*{prevText || <IconChevronLeft size="large" />}*/}
           {nextText || contextLocale.next}
         </li>
       );

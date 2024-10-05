@@ -113,8 +113,6 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
     }
     updateDisabled({ currentPage: targetPageIndex, total, pageSize });
     updatePageList({ currentPage: targetPageIndex, total, pageSize });
-    // adapter.updateTotal(total); // LJQFLAG 为什么要更新 total
-    console.log('setCurrentPage', targetPageIndex)
     adapter.setCurrentPage(targetPageIndex);
   }
 

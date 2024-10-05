@@ -5,7 +5,9 @@
   "bin": {
     "snow-tools": "./bin/index.js"
   },
-  "keywords": ["snow-design"],
+  "keywords": [
+    "snow-design"
+  ],
   "author": "LonelySnowman",
   "license": "ISC",
   "description": "SnowDesign 组件库打包工具",
@@ -27,5 +29,8 @@
     "ts-loader": "^9.5.1",
     "webpack": "^5.89.0",
     "webpackbar": "^5.0.2"
+  },
+  "devDependencies": {
+    "@vue/babel-preset-jsx": "^1.4.0"
   }
 }

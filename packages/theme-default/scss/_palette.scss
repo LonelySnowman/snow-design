@@ -1,48 +1,107 @@
+/* 基础色板 https://ant.design/docs/spec/colors-cn 使用 antd 色板 */
 body {
-  --blue-1: #e6f4ff;
-  --blue-2: #bae0ff;
-  --blue-3: #91caff;
-  --blue-4: #69b1ff;
-  --blue-5: #4096ff;
-  --blue-6: #1677ff;
-  --blue-7: #0958d9;
-  --blue-8: #003eb3;
-  --blue-9: #002c8c;
-  --blue-10: #001d66;
+  /* Blue */
+  --snow-blue-1: #e6f4ff;
+  --snow-blue-2: #bae0ff;
+  --snow-blue-3: #91caff;
+  --snow-blue-4: #69b1ff;
+  --snow-blue-5: #4096ff;
+  --snow-blue-6: #1677ff;
+  --snow-blue-7: #0958d9;
+  --snow-blue-8: #003eb3;
+  --snow-blue-9: #002c8c;
+  --snow-blue-10: #001d66;
 
-  --red-1: #fff1f0;
-  --red-2: #ffccc7;
-  --red-3: #ffa39e;
-  --red-4: #ff7875;
-  --red-5: #ff4d4f;
-  --red-6: #f5222d;
-  --red-7: #cf1322;
-  --red-8: #a8071a;
-  --red-9: #820014;
-  --red-10: #5c0011;
+  /* Purple */
+  --snow-purple-1: #f9f0ff;
+  --snow-purple-2: #efdbff;
+  --snow-purple-3: #d3adf7;
+  --snow-purple-4: #b37feb;
+  --snow-purple-5: #9254de;
+  --snow-purple-6: #722ed1;
+  --snow-purple-7: #531dab;
+  --snow-purple-8: #391085;
+  --snow-purple-9: #22075e;
+  --snow-purple-10: #120338;
 
-  --orange-1: #fff7e6;
-  --orange-2: #ffe7ba;
-  --orange-3: #ffd591;
-  --orange-4: #ffc069;
-  --orange-5: #ffa940;
-  --orange-6: #fa8c16;
-  --orange-7: #d46b08;
-  --orange-8: #ad4e00;
-  --orange-9: #873800;
-  --orange-10: #612500;
+  /* Cyan */
+  --snow-cyan-1: #e6fffb;
+  --snow-cyan-2: #b5f5ec;
+  --snow-cyan-3: #87e8de;
+  --snow-cyan-4: #5cdbd3;
+  --snow-cyan-5: #36cfc9;
+  --snow-cyan-6: #13c2c2;
+  --snow-cyan-7: #08979c;
+  --snow-cyan-8: #006d75;
+  --snow-cyan-9: #00474f;
+  --snow-cyan-10: #002329;
 
-  --gray-1: #fafafa;
-  --gray-2: #f5f5f5;
-  --gray-3: #f0f0f0;
-  --gray-4: #d9d9d9;
-  --gray-5: #bfbfbf;
-  --gray-6: #8c8c8c;
-  --gray-7: #595959;
-  --gray-8: #434343;
-  --gray-9: #262626;
-  --gray-10: #1f1f1f;
+  /* Green */
+  --snow-green-1: #f6ffed;
+  --snow-green-2: #d9f7be;
+  --snow-green-3: #b7eb8f;
+  --snow-green-4: #95de64;
+  --snow-green-5: #73d13d;
+  --snow-green-6: #52c41a;
+  --snow-green-7: #389e0d;
+  --snow-green-8: #237804;
+  --snow-green-9: #135200;
+  --snow-green-10: #092b00;
 
-  --white: #ffffff;
-  --black: #000000;
+  /* Pink */
+  --snow-pink-1: #fff0f6;
+  --snow-pink-2: #ffd6e7;
+  --snow-pink-3: #ffadd2;
+  --snow-pink-4: #ff85c0;
+  --snow-pink-5: #f759ab;
+  --snow-pink-6: #eb2f96;
+  --snow-pink-7: #c41d7f;
+  --snow-pink-8: #9e1068;
+  --snow-pink-9: #780650;
+  --snow-pink-10: #520339;
+
+  /* Red */
+  --snow-red-1: #fff1f0;
+  --snow-red-2: #ffccc7;
+  --snow-red-3: #ffa39e;
+  --snow-red-4: #ff7875;
+  --snow-red-5: #ff4d4f;
+  --snow-red-6: #f5222d;
+  --snow-red-7: #cf1322;
+  --snow-red-8: #a8071a;
+  --snow-red-9: #820014;
+  --snow-red-10: #5c0011;
+
+  /* Orange */
+  --snow-orange-1: #fff7e6;
+  --snow-orange-2: #ffe7ba;
+  --snow-orange-3: #ffd591;
+  --snow-orange-4: #ffc069;
+  --snow-orange-5: #ffa940;
+  --snow-orange-6: #fa8c16;
+  --snow-orange-7: #d46b08;
+  --snow-orange-8: #ad4e00;
+  --snow-orange-9: #873800;
+  --snow-orange-10: #612500;
+
+  /* Gray */
+  --snow-gray-1: #ffffff;
+  --snow-gray-2: #fafafa;
+  --snow-gray-3: #f5f5f5;
+  --snow-gray-4: #f0f0f0;
+  --snow-gray-5: #d9d9d9;
+  --snow-gray-6: #bfbfbf;
+  --snow-gray-7: #8c8c8c;
+  --snow-gray-8: #595959;
+  --snow-gray-9: #434343;
+  --snow-gray-10: #262626;
+  --snow-gray-11: #1f1f1f;
+  --snow-gray-12: #141414;
+  --snow-gray-13: #000000;
+
+  /* White */
+  --snow-white: #ffffff;
+
+  /* Black */
+  --snow-black: #000000;
 }

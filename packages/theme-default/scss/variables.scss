@@ -1,19 +1,6 @@
 $prefix: 'snow';
 
-// LJQFLAG 全局 CSS TOKEN 问题
-/* spacing */
-$spacing-none: 0; // 间距 - 零
-$spacing-super-tight: 2px; // 间距 - 极紧凑尺寸内/外边距
-$spacing-extra-tight: 4px; // 间距 - 超紧凑尺寸内/外边距
-$spacing-tight: 8px; // 间距 - 紧凑尺寸内/外边距
-$spacing-base-tight: 12px; // 间距 - 默认（偏紧凑）尺寸内/外边距
-$spacing-base: 16px; // 间距 - 默认尺寸内/外边距
-$spacing-base-loose: 20px; // 间距 - 默认（偏宽松）尺寸内/外边距
-$spacing-loose: 24px; // 间距 - 宽松尺寸内/外边距
-$spacing-extra-loose: 32px; // 间距 - 超宽松尺寸内/外边距
-$spacing-super-loose: 40px; // 间距 - 极宽松尺寸内/外边距
-
-// font
+/* Front */
 $font-family-regular: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
 Helvetica, Arial, sans-serif; // semi 预置字体回退

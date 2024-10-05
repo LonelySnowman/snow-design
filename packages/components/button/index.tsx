@@ -2,25 +2,19 @@ import React, { ReactNode } from 'react';
 import '@snow-design/foundation/button/button.scss'
 import { cssClasses } from '@snow-design/foundation/button/constants';
 import classNames from "classnames";
+import { CssProps } from "@snow-design/components/_types";
 
 const prefixCls = cssClasses.PREFIX;
 
 export type ThemeType = 'default' | 'primary' | 'warning' | 'danger';
 
-export interface ButtonProps {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type'>, CssProps {
     children?: ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
     type?: ThemeType;
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
-    onMouseEnter?: React.MouseEventHandler<HTMLButtonElement>;
-    onMouseLeave?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
     const {
-        onClick,
         children,
         style,
         className,
@@ -37,7 +31,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
 
     return (
-        <button {...baseProps} style={style} className={classes} onClick={onClick}>
+        <button {...baseProps} style={style} className={classes}>
             <span>
                 {children}
             </span>
