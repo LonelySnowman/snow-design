@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '@snow-design/foundation/pagination/pagination.scss'
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import classNames from 'classnames';
@@ -72,6 +72,10 @@ const Button: React.FC<PaginationProps> = (props) => {
     useEffect(() => {
         foundation.init();
     }, []);
+
+    useLayoutEffect(() => {
+        foundation.updatePage(curPageValue);
+    }, [curPageValue]);
 
     const renderPrevBtn = () => {
         const isDisabled = btnDisabled.prevIsDisabled || disabled;

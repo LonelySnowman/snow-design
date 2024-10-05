@@ -124,7 +124,6 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
     if (targetPageIndex === currentPage) return;
 
     adapter.notifyChange(targetPageIndex, pageSize);
-
     const isControlComponent = adapter.getProps().currentPage !== undefined;
     if (!isControlComponent) updatePage(targetPageIndex);
   }
@@ -144,7 +143,8 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
       const { currentPage } = adapter.getStates();
       if (currentPage > 1) goPage(currentPage - 1);
     },
-    goPage
+    goPage,
+    updatePage
   }
 }
 

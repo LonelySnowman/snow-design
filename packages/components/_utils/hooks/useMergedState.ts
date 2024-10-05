@@ -36,7 +36,7 @@ export default function useMergedState<T>(
     if (!firstMount && hasValue(value)) setInnerValue(value);
   }, [value]);
 
-  const triggerChange = hasValue(value) ? ()=>{} : setInnerValue;
+  const triggerChange = hasValue(value) ? ()=> {} : setInnerValue;
 
   return [mergedValue, triggerChange];
 }

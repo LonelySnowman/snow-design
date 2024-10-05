@@ -1,5 +1,5 @@
 import { defineComponent, provide, PropType, watch, App, reactive } from 'vue';
-import { withInstall } from '../_utils/type';
+import { withInstall } from '../_utils';
 import { Locale } from '@snow-design/locale/index';
 
 export interface VueSnowLocale {
