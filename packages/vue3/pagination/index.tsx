@@ -4,7 +4,7 @@ import '@snow-design/foundation/pagination/pagination.scss';
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
 import { anyType, VueNode, CssProps } from '../_utils/type';
-import { withInstall } from "@snow-design/vue3/_utils";
+import { withInstall } from "../_utils";
 import useLocale from "../_locale/useLocale";
 
 const prefixCls = cssClasses.PREFIX;
