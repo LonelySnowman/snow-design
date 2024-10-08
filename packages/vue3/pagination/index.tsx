@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { defineComponent, onMounted, reactive } from 'vue';
+import { defineComponent, onMounted, reactive, watch } from 'vue';
 import '@snow-design/foundation/pagination/pagination.scss';
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
@@ -27,7 +27,7 @@ const Pagination = defineComponent({
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
   props: paginationProps(),
-  setup(props: any) {
+  setup(props) {
     const {
       currentPage,
       defaultCurrentPage = 1,

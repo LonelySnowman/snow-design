@@ -1,4 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
 import Pagination from '../index';
 import { defineComponent } from "vue";
 import ConfigProvider from "@snow-design/vue3/config-provider";
@@ -14,7 +13,7 @@ export default meta;
 export const Template = () => defineComponent({
   components: { Pagination, ConfigProvider },
   compatConfig: { MODE: 3 },
-  setup(props: any) {
+  setup() {
     const onChange = (a, b) => {
       console.log(a, b)
     }

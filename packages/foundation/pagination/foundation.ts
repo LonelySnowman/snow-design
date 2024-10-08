@@ -105,27 +105,22 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
 
   // 更新当前页
   const updatePage = (targetPageIndex = 1, total?: number, pageSize?: number) => {
-    if (total === null || typeof total === 'undefined') {
-      total = adapter.getStates().total;
-    }
-    if (pageSize === null || typeof pageSize === 'undefined') {
-      pageSize = adapter.getStates().pageSize;
-    }
+    if (total === null || typeof total === 'undefined') total = adapter.getStates().total;
+    if (pageSize === null || typeof pageSize === 'undefined') pageSize = adapter.getStates().pageSize;
     updateDisabled({ currentPage: targetPageIndex, total, pageSize });
     updatePageList({ currentPage: targetPageIndex, total, pageSize });
-    adapter.setCurrentPage(targetPageIndex);
+    const isControlComponent = adapter.getProps().currentPage !== undefined;
+    if(!isControlComponent) adapter.setCurrentPage(targetPageIndex);
   }
 
   // 跳转至对应 page
   const goPage = (targetPageIndex: number | '...') => {
-    if (targetPageIndex === '...') return;
-
-    const { pageSize, currentPage } = adapter.getStates();
-    if (targetPageIndex === currentPage) return;
-
-    adapter.notifyChange(targetPageIndex, pageSize);
     const isControlComponent = adapter.getProps().currentPage !== undefined;
-    if (!isControlComponent) updatePage(targetPageIndex);
+    const { pageSize, currentPage } = adapter.getStates();
+    if (targetPageIndex === '...') return;
+    if (targetPageIndex === currentPage && !isControlComponent) return;
+    updatePage(targetPageIndex);
+    adapter.notifyChange(targetPageIndex, pageSize);
   }
 
   return {
@@ -143,8 +138,7 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
       const { currentPage } = adapter.getStates();
       if (currentPage > 1) goPage(currentPage - 1);
     },
-    goPage,
-    updatePage
+    goPage
   }
 }
 

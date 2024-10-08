@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfigProvider renders correctly 1`] = `
+<ul
+  class="snow-pagination"
+>
+  <span
+    class="snow-pagination-total"
+  >
+    Total pages: 10
+  </span>
+  <li
+    aria-disabled="true"
+    aria-label="Previous"
+    class="snow-pagination-item snow-pagination-prev snow-pagination-item-disabled"
+    role="button"
+  >
+    Previous
+  </li>
+  <li
+    aria-current="page"
+    aria-label="Page 1"
+    class="snow-pagination-item snow-pagination-item-active"
+  >
+    1
+  </li>
+  <li
+    aria-current="false"
+    aria-label="Page 2"
+    class="snow-pagination-item"
+  >
+    2
+  </li>
+  <li
+    aria-current="false"
+    aria-label="Page 3"
+    class="snow-pagination-item"
+  >
+    3
+  </li>
+  <li
+    aria-current="false"
+    aria-label="Page 4"
+    class="snow-pagination-item"
+  >
+    4
+  </li>
+  <li
+    aria-current="false"
+    aria-label="More"
+    class="snow-pagination-item"
+  >
+    ...
+  </li>
+  <li
+    aria-current="false"
+    aria-label="Page 9"
+    class="snow-pagination-item"
+  >
+    9
+  </li>
+  <li
+    aria-current="false"
+    aria-label="Page 10"
+    class="snow-pagination-item"
+  >
+    10
+  </li>
+  <li
+    aria-disabled="false"
+    aria-label="Next"
+    class="snow-pagination-item snow-pagination-next"
+    role="button"
+  >
+    Next
+  </li>
+</ul>
+`;

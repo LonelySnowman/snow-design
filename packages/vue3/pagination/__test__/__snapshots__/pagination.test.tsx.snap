@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<ul
+  class="snow-pagination"
+>
+  <!---->
+  <li
+    aria-disabled="false"
+    aria-label="Previous"
+    class="snow-pagination-item snow-pagination-prev"
+    role="button"
+  >
+    Previous
+  </li>
+  
+  
+  <li
+    aria-disabled="false"
+    aria-label="Next"
+    class="snow-pagination-item snow-pagination-next"
+    role="button"
+  >
+    Next
+  </li>
+</ul>
+`;

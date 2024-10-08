@@ -8,11 +8,11 @@ import { cssClasses } from '@snow-design/foundation/button/constants';
 
 describe('Button', () => {
     const prefix = cssClasses.PREFIX;
-    mountTest(() => <Button>Test</Button>)
-    styleTest(Button)
+    mountTest(() => <Button>SnowDesign</Button>);
+    styleTest(Button);
 
     it('renders correctly', () => {
-        expect(render(<Button>按钮</Button>).container.firstChild).toMatchSnapshot();
+        expect(render(<Button>SnowDesign</Button>).container.firstChild).toMatchSnapshot();
     });
 
     it('have type class', () => {
