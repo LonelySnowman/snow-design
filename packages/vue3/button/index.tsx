@@ -1,7 +1,8 @@
 import '@snow-design/foundation/button/button.scss'
 import { cssClasses } from '@snow-design/foundation/button/constants';
 import classNames from "classnames";
-import { CssProps } from '../_utils/type';
+import { CssProps, eventType } from '../_utils/type';
+import { MouseEventHandler } from '../_utils/eventInterface';
 import { withInstall } from "../_utils";
 import { defineComponent, PropType } from "vue";
 
@@ -11,6 +12,7 @@ export type ThemeType = 'default' | 'primary' | 'warning' | 'danger';
 
 export const buttonProps = () => ({
     type: String as PropType<ThemeType>,
+    onClick: eventType<MouseEventHandler>(),
     ...CssProps
 });
 

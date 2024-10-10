@@ -12,6 +12,10 @@ export function functionType<T = () => {}>(defaultVal?: T) {
   return { type: Function as PropType<T>, default: defaultVal as T };
 }
 
+export function eventType<T>() {
+    return { type: Function as PropType<T> };
+}
+
 export function anyType<T = any>(defaultVal?: T, required?: boolean) {
   const type = { validator: () => true, default: defaultVal as T } as unknown;
   return required

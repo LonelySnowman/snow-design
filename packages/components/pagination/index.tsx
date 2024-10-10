@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '@snow-design/foundation/pagination/pagination.scss'
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import classNames from 'classnames';
@@ -10,10 +10,10 @@ import { CssProps } from "@snow-design/components/_types";
 const prefixCls = cssClasses.PREFIX;
 
 export interface PaginationProps extends CssProps {
-    currentPage?: number;
-    defaultCurrentPage?: number;
     pageSize: number;
     total: number;
+    currentPage?: number;
+    defaultCurrentPage?: number;
     showTotal?: boolean;
     onChange?: (page: number, pageSize: number) => void;
     disabled?: boolean;
@@ -36,14 +36,27 @@ const Button: React.FC<PaginationProps> = (props) => {
         style,
     } = props;
 
-    const [contextLocale] = useLocale('Pagination');
+    if (currentPage && !onChange) {
+        console.warn(
+            'Warning: you have provide currentPage prop for pagination but without onChange handler ,' +
+            ' this will cause no-change when you change page. '
+        );
+    }
+
     const [btnDisabled, setBtnDisabled] = useState<{prevIsDisabled: boolean, nextDisabled: boolean}>({
         prevIsDisabled: false,
         nextDisabled: false
     })
     const [pageList, setPageList] = useState([]);
-    const [curPageValue, setCurPageValue] = useMergedState<number>(defaultCurrentPage, currentPage);
+    const [curPageValue, setCurPageValue] = useMergedState<number>(defaultCurrentPage, {
+        value: currentPage,
+        onChange: (value) => {
+            foundation.goPage(value);
+        }
+    });
 
+    const [contextLocale] = useLocale('Pagination');
+    const isControlComponent = currentPage !== undefined;
     const foundation = usePaginationFoundation({
         getProps() {
             return props;
@@ -65,17 +78,15 @@ const Button: React.FC<PaginationProps> = (props) => {
             setBtnDisabled({ prevIsDisabled: prevIsDisabled, nextDisabled: nextIsDisabled });
         },
         notifyChange: (pageIndex: number, pageSize: number) => {
-            onChange(pageIndex, pageSize);
+            if (typeof onChange === "function") {
+                onChange(pageIndex, pageSize);
+            }
         }
     })
 
     useEffect(() => {
         foundation.init();
     }, []);
-
-    useLayoutEffect(() => {
-        foundation.goPage(curPageValue);
-    }, [curPageValue]);
 
     const renderPrevBtn = () => {
         const isDisabled = btnDisabled.prevIsDisabled || disabled;
@@ -89,7 +100,7 @@ const Button: React.FC<PaginationProps> = (props) => {
             role="button"
             aria-disabled={isDisabled}
             aria-label="Previous"
-            onClick={e => !isDisabled && foundation.goPrev()}
+            onClick={() => !isDisabled && foundation.goPrev()}
             className={preClassName}
           >
               {prevText || contextLocale.previous}
@@ -109,7 +120,7 @@ const Button: React.FC<PaginationProps> = (props) => {
             role="button"
             aria-disabled={isDisabled}
             aria-label="Next"
-            onClick={e => !isDisabled && foundation.goNext()}
+            onClick={() => !isDisabled && foundation.goNext()}
             className={nextClassName}
           >
               {/* @todo: Icon 模块待设计 */}
@@ -128,7 +139,7 @@ const Button: React.FC<PaginationProps> = (props) => {
             const pageEl = (
               <li
                 key={`${page}${i}`}
-                onClick={() => !disabled && foundation.goPage(page)}
+                onClick={() => !disabled && foundation.goPage(page, !isControlComponent)}
                 className={pageListClassName}
                 aria-label={page === '...' ? 'More' : `Page ${page}`}
                 aria-current={curPageValue === page ? "page" : false}
@@ -141,7 +152,6 @@ const Button: React.FC<PaginationProps> = (props) => {
     }
 
     const paginationCls = classNames(className, `${prefixCls}`, { [`${prefixCls}-disabled`]: disabled });
-    const showTotalCls = `${prefixCls}-total`;
 
     const totalNum = Math.ceil(total / pageSize);
     const totalToken = contextLocale.total.replace('${total}', totalNum.toString());
@@ -149,7 +159,7 @@ const Button: React.FC<PaginationProps> = (props) => {
     return (
       <ul className={paginationCls} style={style}>
           {showTotal ? (
-            <span className={showTotalCls}>{totalToken}</span>
+            <span className={`${prefixCls}-total`}>{totalToken}</span>
           ) : null}
           {renderPrevBtn()}
           {renderPageList()}

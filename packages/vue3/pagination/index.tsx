@@ -1,11 +1,12 @@
 import classNames from 'classnames';
-import { defineComponent, onMounted, reactive, watch } from 'vue';
+import { defineComponent, onMounted, reactive, watch, computed } from 'vue';
 import '@snow-design/foundation/pagination/pagination.scss';
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
-import { anyType, VueNode, CssProps } from '../_utils/type';
+import { anyType, VueNode, CssProps, functionType } from '../_utils/type';
 import { withInstall } from "../_utils";
 import useLocale from "../_locale/useLocale";
+import useMergedState from "../_utils/hooks/useMergedState";
 
 const prefixCls = cssClasses.PREFIX;
 
@@ -15,10 +16,10 @@ export const paginationProps = () => ({
   pageSize: Number,
   total: Number,
   showTotal: Boolean,
-  onChange: Function,
   disabled: Boolean,
   nextText: anyType<VueNode>(),
   prevText: anyType<VueNode>(),
+  'onUpdate:current': functionType<(current: number) => void>(),
   ...CssProps
 });
 
@@ -27,43 +28,49 @@ const Pagination = defineComponent({
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
   props: paginationProps(),
-  setup(props) {
+  emits: ['update:currentPage', 'change'],
+  setup(props, { emit }) {
     const {
       currentPage,
-      defaultCurrentPage = 1,
       pageSize,
+      defaultCurrentPage = 1,
       total,
       showTotal,
       disabled = false,
-      onChange,
       nextText,
       prevText,
       class: className,
       style,
     } = props;
 
-    const [contextLocale] = useLocale('Pagination');
+    const [curPageValue, setCurPageValue] = useMergedState<number>(defaultCurrentPage, {
+      value: computed(() => props.currentPage),
+      onChange: (value) => {
+        foundation.goPage(value);
+      }
+    });
 
     const paginationState = reactive({
       prevIsDisabled: false,
       nextIsDisabled: false,
       pageList: [],
-      curPageValue: defaultCurrentPage,
     })
 
+    const [contextLocale] = useLocale('Pagination');
+    const isControlComponent = currentPage !== undefined;
     const foundation = usePaginationFoundation({
       getProps() {
         return props;
       },
       getStates() {
         return {
-          currentPage: paginationState.curPageValue,
+          currentPage: curPageValue.value,
           total,
           pageSize
         }
       },
       setCurrentPage(pageIndex: number) {
-        paginationState.curPageValue = pageIndex;
+        setCurPageValue(pageIndex);
       },
       setPageList(pageList){
         paginationState.pageList = pageList;
@@ -73,7 +80,10 @@ const Pagination = defineComponent({
         paginationState.nextIsDisabled = nextIsDisabled;
       },
       notifyChange: (pageIndex: number, pageSize: number) => {
-        onChange(pageIndex, pageSize);
+        if(isControlComponent) {
+          emit('update:currentPage', pageIndex);
+        }
+        emit('change', pageIndex, pageSize);
       }
     })
 
@@ -93,7 +103,7 @@ const Pagination = defineComponent({
           role="button"
           aria-disabled={isDisabled}
           aria-label="Previous"
-          onClick={e => !isDisabled && foundation.goPrev()}
+          onClick={() => !isDisabled && foundation.goPrev()}
           class={preClassName}
         >
           {/* @todo: Icon 方案待设计 */}
@@ -114,7 +124,7 @@ const Pagination = defineComponent({
           role="button"
           aria-disabled={isDisabled}
           aria-label="Next"
-          onClick={e => !isDisabled && foundation.goNext()}
+          onClick={() => !isDisabled && foundation.goNext()}
           class={nextClassName}
         >
           {nextText || contextLocale.next}
@@ -125,17 +135,17 @@ const Pagination = defineComponent({
     const renderPageList = () => {
       return paginationState.pageList.map((page, i) => {
         const pageListClassName = classNames(`${prefixCls}-item`, {
-          [`${prefixCls}-item-active`]: paginationState.curPageValue === page,
+          [`${prefixCls}-item-active`]: curPageValue.value === page,
           [`${prefixCls}-item-all-disabled`]: disabled,
-          [`${prefixCls}-item-all-disabled-active`]: paginationState.curPageValue === page && disabled,
+          [`${prefixCls}-item-all-disabled-active`]: curPageValue.value === page && disabled,
         });
         const pageEl = (
           <li
             key={`${page}${i}`}
-            onClick={() => !disabled && foundation.goPage(page)}
+            onClick={() => !disabled && foundation.goPage(page, !isControlComponent)}
             class={pageListClassName}
             aria-label={page === '...' ? 'More' : `Page ${page}`}
-            aria-current={paginationState.curPageValue === page ? "page" : false}
+            aria-current={curPageValue.value === page ? "page" : false}
           >
             {page}
           </li>

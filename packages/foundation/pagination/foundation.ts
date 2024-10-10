@@ -17,6 +17,8 @@ export type PageRenderText = number | '...';
 export type PageList = PageRenderText[];
 
 const usePaginationFoundation = (adapter: PaginationAdapter) => {
+  const isControlComponent = adapter.getProps().currentPage !== undefined;
+
   // 获取总页数
   const getTotalPageNumber = (total: number, pageSize: number) => {
     const totalPageNum = Math.ceil(total / pageSize);
@@ -43,8 +45,6 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
   const updatePageList = (pageListInfo: { currentPage: number; total: number; pageSize: number }) => {
     const { currentPage, total, pageSize } = pageListInfo;
     let pageList: PageList = [];
-    let restLeftPageList: number[] = []; // pages before ...
-    let restRightPageList: number[] = []; // pages after ...
     /** Pager truncation logic (t is the total number of pages, c is the current page):
      - No need to truncate when t<=7 pages
      - When t>7
@@ -71,30 +71,17 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
       switch (true) {
         case currentPage < 4:
           pageList = [1, 2, 3, 4, '...', totalPageNum - 1, totalPageNum];
-          // length: (totalPageNum - 1) - 4
-          restRightPageList = Array.from({ length: Math.min(totalPageNum - 6, REST_PAGE_MAX_SIZE) }, (v, i) => i + 5);
-          restLeftPageList = [];
           break;
         case currentPage === 4:
           pageList = [1, 2, 3, 4, 5, '...', totalPageNum];
-          restRightPageList = Array.from({ length: Math.min(totalPageNum - 6, REST_PAGE_MAX_SIZE) }, (v, i) => i + 6);
-          restLeftPageList = [];
           break;
         case 4 < currentPage && currentPage < totalPageNum - 3:
           const middle = Array.from({ length: 3 }, (v, i) => currentPage + (i - 1));
           pageList = ([1] as PageList).concat('...', middle, '...', totalPageNum);
-          // length: total-(currentPage+1)-1
-          restRightPageList = Array.from(
-            { length: Math.min(totalPageNum - currentPage - 2, REST_PAGE_MAX_SIZE) },
-            (v, i) => currentPage + i + 2
-          );
-          restLeftPageList = Array.from({ length: Math.min(currentPage - 3, REST_PAGE_MAX_SIZE) }, (v, i) => i + 2);
           break;
         case currentPage - 3 <= currentPage && currentPage <= totalPageNum:
           const right = Array.from({ length: 5 }, (v, i) => totalPageNum - (4 - i));
           pageList = [1, '...' as const].concat(right);
-          restRightPageList = [];
-          restLeftPageList = Array.from({ length: Math.min(right[0] - 2, REST_PAGE_MAX_SIZE) }, (v, i) => i + 2);
           break;
         default:
           break;
@@ -109,18 +96,16 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
     if (pageSize === null || typeof pageSize === 'undefined') pageSize = adapter.getStates().pageSize;
     updateDisabled({ currentPage: targetPageIndex, total, pageSize });
     updatePageList({ currentPage: targetPageIndex, total, pageSize });
-    const isControlComponent = adapter.getProps().currentPage !== undefined;
-    if(!isControlComponent) adapter.setCurrentPage(targetPageIndex);
+    adapter.setCurrentPage(targetPageIndex);
   }
 
   // 跳转至对应 page
-  const goPage = (targetPageIndex: number | '...') => {
-    const isControlComponent = adapter.getProps().currentPage !== undefined;
-    const { pageSize, currentPage } = adapter.getStates();
+  const goPage = (targetPageIndex: number | '...', update = true) => {
+    const { currentPage, pageSize } = adapter.getStates();
     if (targetPageIndex === '...') return;
     if (targetPageIndex === currentPage && !isControlComponent) return;
-    updatePage(targetPageIndex);
     adapter.notifyChange(targetPageIndex, pageSize);
+    if (update) updatePage(targetPageIndex);
   }
 
   return {
@@ -132,11 +117,11 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
     goNext() {
       const { currentPage, total, pageSize } = adapter.getStates();
       const totalPageNum = getTotalPageNumber(total, pageSize);
-      if (currentPage <= totalPageNum - 1) goPage(currentPage as number + 1);
+      if (currentPage <= totalPageNum - 1) goPage(currentPage + 1, !isControlComponent);
     },
     goPrev() {
-      const { currentPage } = adapter.getStates();
-      if (currentPage > 1) goPage(currentPage - 1);
+      const { currentPage, pageSize } = adapter.getStates();
+      if (currentPage > 1) goPage(currentPage-1, !isControlComponent);
     },
     goPage
   }

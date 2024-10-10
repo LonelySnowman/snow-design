@@ -1,42 +1,48 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState, Dispatch, SetStateAction, useLayoutEffect } from "react";
+import usePrevious from "./usePrevious";
 
-/** We only think `undefined` is empty */
 function hasValue(value: any) {
   return value !== undefined;
 }
 
-/**
- * Similar to `useState` but will use props value if provided.
- * Note that internal use rc-util `useState` hook.
- */
 export default function useMergedState<T>(
-  defaultValue: T,
-  value?: T,
-): [T, (value: T) => void] {
-  const firstMount = useRef<boolean>(true);
+    defaultStateValue: T | (() => T),
+    option?: {
+      defaultValue?: T | (() => T);
+      value?: T;
+      onChange?: (value: T, prevValue: T) => void;
+    },
+): [T, Dispatch<SetStateAction<T>>] {
+  const { defaultValue, value, onChange } = option || {};
+  const firstRenderRef = useRef(true);
+  const prevPropsValue = usePrevious(value);
 
-  useEffect(() => {
-    return () => {
-      firstMount.current = false;
-    }
-  }, []);
-
-  // 内部初始化
   const [innerValue, setInnerValue] = useState<T>(() => {
     if (hasValue(value)) {
       return value;
+    } else if (hasValue(defaultValue)) {
+      return typeof defaultValue === 'function'
+          ? (defaultValue as any)()
+          : defaultValue;
     } else {
-      return defaultValue;
+      return typeof defaultStateValue === 'function'
+          ? (defaultStateValue as any)()
+          : defaultStateValue;
     }
   });
 
   const mergedValue = hasValue(value) ? value : innerValue;
 
   useLayoutEffect(() => {
-    if (!firstMount && hasValue(value)) setInnerValue(value);
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      return;
+    }
+    if (!hasValue(value) && prevPropsValue !== value) {
+      setInnerValue(value);
+    }
+    if (prevPropsValue !== value) onChange(value, prevPropsValue);
   }, [value]);
 
-  const triggerChange = hasValue(value) ? ()=> {} : setInnerValue;
-
-  return [mergedValue, triggerChange];
+  return [mergedValue, setInnerValue];
 }

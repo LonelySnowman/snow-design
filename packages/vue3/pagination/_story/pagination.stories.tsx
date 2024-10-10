@@ -1,7 +1,6 @@
 import Pagination from '../index';
-import { defineComponent } from "vue";
-import ConfigProvider from "@snow-design/vue3/config-provider";
-import zh_CN from "@snow-design/locale/zh_CN";
+import { defineComponent, ref } from "vue";
+import Button from "@snow-design/vue3/button";
 
 const meta = {
   title: 'Example/Pagination',
@@ -11,27 +10,38 @@ const meta = {
 export default meta;
 
 export const Template = () => defineComponent({
-  components: { Pagination, ConfigProvider },
+  components: { Pagination, Button },
   compatConfig: { MODE: 3 },
   setup() {
-    const onChange = (a, b) => {
-      console.log(a, b)
+    const currentPage = ref(1);
+    const subPageNum = () => {
+      if (currentPage.value > 1) currentPage.value--
     }
-    return () => <>
-      <ConfigProvider locale={zh_CN}>
-        <Pagination
-          showTotal
-          total={20}
-          pageSize={2}
-          onChange={onChange}
-        />
-      </ConfigProvider>
-      <Pagination
+    const addPageNum = () => {
+      if (currentPage.value < 10) currentPage.value++
+    }
+    return {
+      addPageNum,
+      subPageNum,
+      currentPage
+    }
+  },
+  template: `
+    <h3>受控组件</h3>
+    <Pagination
+        v-model:currentPage="currentPage"
         showTotal
-        total={20}
-        pageSize={2}
-        onChange={onChange}
-      />
-    </>
-  }
+        :total="20"
+        :pageSize="2"
+    />
+    <h4>自定义受控按钮</h4>
+    <Button style="margin-right: 4px;" @click="subPageNum">上一页</Button>
+    <Button @click="addPageNum">下一页</Button>
+    <h3>非受控组件</h3>
+    <Pagination
+        showTotal
+        :total="20"
+        :pageSize="2"
+    />
+  `
 });
