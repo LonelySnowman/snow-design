@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "SnowDesign 组件库",
   "scripts": {
-    "start:react": "storybook dev -p 6006 -c .storybook/react",
-    "start:vue3": "storybook dev -p 6006 -c .storybook/vue3",
+    "start:react": "storybook dev -p 6000 -c .storybook/react",
+    "start:vue3": "storybook dev -p 6001 -c .storybook/vue3",
     "start:docs": "pnpm run -C docs start",
     "test:unit": "jest --silent",
     "test:coverage": "jest --coverage",

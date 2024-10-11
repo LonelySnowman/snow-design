@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import LocaleContext from './context';
 import { Locale } from "@snow-design/locale/index";
 export { default as useLocale } from './useLocale';

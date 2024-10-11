@@ -13,7 +13,10 @@
     "build": "snow-tools run build",
     "clean": "rimraf lib dist node_modules"
   },
-  "keywords": ["snow-design", "react"],
+  "keywords": [
+    "snow-design",
+    "react"
+  ],
   "author": "LonelySnowman",
   "license": "ISC",
   "dependencies": {
@@ -23,7 +26,9 @@
   },
   "devDependencies": {
     "@snow-design/theme-default": "workspace:*",
-    "@snow-design/tools": "workspace:*"
+    "@snow-design/tools": "workspace:*",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0"
   },
   "peerDependencies": {
     "react": "18"
