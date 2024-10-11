@@ -1,20 +1,20 @@
-import { render } from '@testing-library/react';
+import mountTest from "#test/vue/mountTest";
 import '@testing-library/jest-dom'
-import React from 'react';
-import ConfigProvider from '../index'
-import mountTest from "#test/react/mountTest";
-import Pagination from "@snow-design/components/pagination";
+import ConfigProvider from '../index';
+import Pagination from "@snow-design/vue3/pagination";
+import { render } from "@testing-library/vue";
 import zh_CN from "@snow-design/locale/zh_CN";
 
 describe('ConfigProvider', () => {
-    mountTest(() => <ConfigProvider>Test</ConfigProvider>);
+    mountTest(<ConfigProvider />);
 
     it('renders correctly', () => {
-        expect(render(
+        const { container } = render(
             <ConfigProvider>
                 <Pagination showTotal total={20} pageSize={2}></Pagination>
             </ConfigProvider>
-        ).container.firstChild).toMatchSnapshot();
+        )
+        expect(container).toMatchSnapshot();
     });
 
     it('use the correct language', () => {

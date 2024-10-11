@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { defineComponent, onMounted, reactive, watch, computed } from 'vue';
+import { defineComponent, reactive, computed, onBeforeMount } from 'vue';
 import '@snow-design/foundation/pagination/pagination.scss';
 import { cssClasses } from '@snow-design/foundation/pagination/constants';
 import usePaginationFoundation from "@snow-design/foundation/pagination/foundation";
@@ -19,7 +19,6 @@ export const paginationProps = () => ({
   disabled: Boolean,
   nextText: anyType<VueNode>(),
   prevText: anyType<VueNode>(),
-  'onUpdate:current': functionType<(current: number) => void>(),
   ...CssProps
 });
 
@@ -87,7 +86,7 @@ const Pagination = defineComponent({
       }
     })
 
-    onMounted(() => {
+    onBeforeMount(() => {
       foundation.init();
     });
 
@@ -98,6 +97,7 @@ const Pagination = defineComponent({
         [`${prefixCls}-prev`]: true,
         [`${prefixCls}-item-disabled`]: isDisabled,
       });
+      // @todo: Icon 方案待设计
       return (
         <li
           role="button"
@@ -106,7 +106,6 @@ const Pagination = defineComponent({
           onClick={() => !isDisabled && foundation.goPrev()}
           class={preClassName}
         >
-          {/* @todo: Icon 方案待设计 */}
           {prevText || contextLocale.previous}
         </li>
       );

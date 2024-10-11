@@ -22,14 +22,12 @@ export const ProvideLanguage = () => defineComponent({
       <h3>使用 ConfigProvider 提供不同的语言包</h3>
       <ConfigProvider :locale="zh_CN">
         <Pagination
-            :currentPage="1"
             showTotal
             :total="20"
             :pageSize="2"
         />
       </ConfigProvider>
       <Pagination
-          :currentPage="1"
           showTotal
           :total="20"
           :pageSize="2"

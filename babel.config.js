@@ -9,7 +9,7 @@ module.exports = {
     overrides: [
         {
             test: ['./packages/vue3', './test/vue'],
-            plugins: [['@vue/babel-plugin-jsx', { mergeProps: false, enableObjectSlots: false }]]
+            plugins: ['@vue/babel-plugin-jsx']
         },
         {
             test: ['./packages/components', './test/react'],

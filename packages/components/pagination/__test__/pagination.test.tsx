@@ -17,7 +17,7 @@ describe('Pagination', () => {
 
     it('having correct pagination', () => {
         const { container } = render(<Pagination pageSize={2} total={20} />)
-        expect(container.firstChild.childNodes.length).toEqual(9);
+        expect(container.getElementsByTagName('li').length).toEqual(9);
         expect(container.firstChild).toHaveClass(prefix)
     })
 });

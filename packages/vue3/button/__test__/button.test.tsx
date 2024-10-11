@@ -6,11 +6,12 @@ import { render } from "@testing-library/vue";
 
 describe('Button', () => {
     const prefix = cssClasses.PREFIX;
-    mountTest(<Button/>);
-    styleTest(<Button/>);
+    mountTest(<Button>SnowDesign</Button>);
+    styleTest(Button);
 
     it('renders correctly', () => {
-        expect(render(<Button>SnowDesign</Button>).container.firstChild).toMatchSnapshot();
+        const { container } = render(<Button>SnowDesign</Button>);
+        expect(container.firstChild).toMatchSnapshot();
     });
 
     it('have type class', () => {

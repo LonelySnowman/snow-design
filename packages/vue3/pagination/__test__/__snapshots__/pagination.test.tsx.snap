@@ -6,14 +6,28 @@ exports[`Pagination renders correctly 1`] = `
 >
   <!---->
   <li
-    aria-disabled="false"
+    aria-disabled="true"
     aria-label="Previous"
-    class="snow-pagination-item snow-pagination-prev"
+    class="snow-pagination-item snow-pagination-prev snow-pagination-item-disabled"
     role="button"
   >
     Previous
   </li>
   
+  <li
+    aria-current="page"
+    aria-label="Page 1"
+    class="snow-pagination-item snow-pagination-item-active"
+  >
+    1
+  </li>
+  <li
+    aria-current="false"
+    aria-label="Page 2"
+    class="snow-pagination-item"
+  >
+    2
+  </li>
   
   <li
     aria-disabled="false"

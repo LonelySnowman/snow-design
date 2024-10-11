@@ -84,6 +84,9 @@ importers:
       '@vitejs/plugin-vue-jsx':
         specifier: ^4.0.0
         version: 4.0.1(vite@5.4.7(@types/node@22.6.1)(less@4.2.0)(lightningcss@1.22.1)(sass@1.79.3)(terser@5.33.0))(vue@3.5.10(typescript@5.6.2))
+      '@vue/babel-plugin-jsx':
+        specifier: ^1.2.5
+        version: 1.2.5(@babel/core@7.25.2)
       babel:
         specifier: ^6.23.0
         version: 6.23.0
@@ -13964,7 +13967,7 @@ snapshots:
       '@babel/helper-module-imports': 7.24.7
       '@babel/helper-plugin-utils': 7.24.8
       '@babel/parser': 7.25.6
-      '@vue/compiler-sfc': 3.5.8
+      '@vue/compiler-sfc': 3.5.10
     transitivePeerDependencies:
       - supports-color
 
