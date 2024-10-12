@@ -1,8 +1,8 @@
 ---
-name: "Bug Report"
-about: "Thank you for your suggestion"
+name: "🐞 Bug Report"
+about: "Reporting bugs in the project"
 title: "[<ComponentName/Project>] <A brief description of this bug>"
-labels: "🐞 BUG"
+labels: "bug"
 assignees: ""
 ---
 

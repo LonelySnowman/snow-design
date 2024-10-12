@@ -1,8 +1,8 @@
 ---
-name: "Feature Request"
-about: "Thank you for your suggestion"
+name: "🎉 Feature Request"
+about: "Any suggestions about the project"
 title: "[<ComponentName/Project>] <A brief description of this feature>"
-labels: "🎉 Feature"
+labels: "feature"
 assignees: ""
 ---
 
