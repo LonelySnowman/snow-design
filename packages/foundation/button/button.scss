@@ -1,56 +1,65 @@
-@import './variables.scss';
+@import './variables';
 
 $module: #{$prefix}-button;
 
 .#{$module} {
   @include font-size-regular;
+
   height: 32px;
   padding: $button-padding;
-  border-radius: 6px;
-  border: 0 transparent solid;
-  outline: none;
   cursor: pointer;
+  border: 0 transparent solid;
+  border-radius: 6px;
+  outline: none;
   transition: all linear 0.1s;
 
   &-default {
-    background-color: $button-color_default-bg-default;
     color: $button-color_default-text-default;
+    background-color: $button-color_default-bg-default;
+
     &:hover {
       background-color: $button-color_default-bg-hover;
     }
+
     &:active {
       background-color: $button-color_default-bg-active;
     }
   }
 
   &-primary {
-    background-color: $button-color_primary-bg-default;
     color: $button-color_primary-text-default;
+    background-color: $button-color_primary-bg-default;
+
     &:hover {
       background-color: $button-color_primary-bg-hover;
     }
+
     &:active {
       background-color: $button-color_primary-bg-active;
     }
   }
 
   &-warning {
-    background-color: $button-color_warning-bg-default;
     color: $button-color_warning-text-default;
+    background-color: $button-color_warning-bg-default;
+
     &:hover {
       background-color: $button-color_warning-bg-hover;
     }
+
     &:active {
       background-color: $button-color_warning-bg-active;
     }
   }
 
   &-danger {
-    background-color: $button-color_danger-bg-default;
     color: $button-color_danger-text-default;
+    background-color: $button-color_danger-bg-default;
+
     &:hover {
       background-color: $button-color_danger-bg-hover;
     }
+
     &:active {
       background-color: $button-color_danger-bg-active;
     }

@@ -1,23 +1,19 @@
-@import "./palette.scss";
+@import "./palette";
 
 body, body[theme-mode="light"], body .snow-always-light {
   /* Color */
   --snow-color-default: var(--snow-gray-4);
   --snow-color-default-hover: var(--snow-gray-3);
   --snow-color-default-active: var(--snow-gray-5);
-
   --snow-color-primary: var(--snow-blue-6);
   --snow-color-primary-hover: var(--snow-blue-5);
   --snow-color-primary-active: var(--snow-blue-7);
-
   --snow-color-warning: var(--snow-orange-6);
   --snow-color-warning-hover: var(--snow-orange-5);
   --snow-color-warning-active: var(--snow-orange-7);
-
   --snow-color-danger: var(--snow-red-6);
   --snow-color-danger-hover: var(--snow-red-5);
   --snow-color-danger-active: var(--snow-red-7);
-
   --snow-front-color: var(--snow-black);
 
   /* Padding */
