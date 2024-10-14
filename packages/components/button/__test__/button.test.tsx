@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 import React from 'react';
-import Button from '../index'
-import mountTest from "#test/react/mountTest";
-import styleTest from "#test/react/styleTest";
+import Button from '../index';
+import mountTest from '#test/react/mountTest';
+import styleTest from '#test/react/styleTest';
 import { cssClasses } from '@snow-design/foundation/button/constants';
 
 describe('Button', () => {
@@ -17,6 +17,6 @@ describe('Button', () => {
 
     it('have type class', () => {
         const { container } = render(<Button type="primary">Test</Button>);
-        expect(container.firstChild).toHaveClass(`${prefix}-primary`)
+        expect(container.firstChild).toHaveClass(`${prefix}-primary`);
     });
 });

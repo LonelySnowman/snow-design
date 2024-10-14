@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 const packagePath = process.cwd();
 const nodeModulesPath = path.resolve(packagePath, './node_modules');
 const rootDir = path.resolve(__dirname, '../../../');
@@ -8,5 +8,5 @@ module.exports = {
     packagePath,
     nodeModulesPath,
     rootDir,
-    tsConfig
-}
+    tsConfig,
+};

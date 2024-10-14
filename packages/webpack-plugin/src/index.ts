@@ -12,7 +12,7 @@ export interface SnowWebpackPluginOptions {
 }
 
 export interface SnowThemeOptions {
-    name?: string
+    name?: string;
 }
 
 export default class SnowWebpackPlugin {
@@ -26,12 +26,15 @@ export default class SnowWebpackPlugin {
         compiler.hooks.compilation.tap('SnowPlugin', (compilation: any) => {
             if (this.options.theme) {
                 // module.resource 处理文件的名称
-                NormalModule.getCompilationHooks(compilation).loader.tap('SnowThemeLoaderPlugin', (context: any, module: any) => {
-                    // 加入自定义 loader 处理文件
-                    this.customTheme(module);
-                    // 暂不支持自定义组件前缀
-                    // if (this.options.prefixCls) this.customPrefix(module, this.options.prefixCls);
-                });
+                NormalModule.getCompilationHooks(compilation).loader.tap(
+                    'SnowThemeLoaderPlugin',
+                    (context: any, module: any) => {
+                        // 加入自定义 loader 处理文件
+                        this.customTheme(module);
+                        // 暂不支持自定义组件前缀
+                        // if (this.options.prefixCls) this.customPrefix(module, this.options.prefixCls);
+                    },
+                );
             }
         });
     }
@@ -48,7 +51,7 @@ export default class SnowWebpackPlugin {
         if (/@snow-design\/components\/lib\/.+\.js$/.test(compatiblePath)) {
             module.loaders = module.loaders || [];
             module.loaders.push({
-                loader: path.join(__dirname, 'snow-source-suffix-loader')
+                loader: path.join(__dirname, 'snow-source-suffix-loader'),
             });
         }
 
@@ -59,7 +62,10 @@ export default class SnowWebpackPlugin {
             const styleLoader = require.resolve('style-loader');
 
             // 兼容 string 和 object 传入
-            const snowLoaderOptions = typeof this.options.theme === 'object' ? this.options.theme : { name: this.options.theme };
+            const snowLoaderOptions =
+                typeof this.options.theme === 'object'
+                    ? this.options.theme
+                    : { name: this.options.theme };
 
             // 没有加入自定义 loader 处理则进行处理
             if (!this.hasThemeLoader(module.loaders)) {
@@ -70,7 +76,7 @@ export default class SnowWebpackPlugin {
                         loader: cssLoader,
                         options: {
                             sourceMap: false,
-                        }
+                        },
                     },
                     { loader: scssLoader },
                     {
@@ -81,8 +87,8 @@ export default class SnowWebpackPlugin {
                             // 暂不支持变量传递和前缀变更
                             // prefixCls: this.options.prefixCls,
                             // variables: this.convertMapToString(this.options.variables || {}),
-                        }
-                    }
+                        },
+                    },
                 ];
             }
         }
@@ -111,4 +117,3 @@ export default class SnowWebpackPlugin {
     //     }, '');
     // }
 }
-

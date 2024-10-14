@@ -4,4 +4,4 @@ function toUnixPath(path) {
 
 module.exports = {
     toUnixPath,
-}
+};

@@ -4,11 +4,11 @@
 const gulp = require('gulp');
 const argv = require('minimist')(process.argv.slice(2), {
     alias: {
-        mode: 'm'
+        mode: 'm',
     },
     default: {
         mode: 'react',
-    }
+    },
 });
 require('../gulpfile');
 

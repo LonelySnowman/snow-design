@@ -1,32 +1,33 @@
 import Pagination from '../index';
-import { defineComponent, ref } from "vue";
-import Button from "@snow-design/vue3/button";
+import { defineComponent, ref } from 'vue';
+import Button from '@snow-design/vue3/button';
 
 const meta = {
-  title: 'Example/Pagination',
-  component: Pagination,
-}
+    title: 'Example/Pagination',
+    component: Pagination,
+};
 
 export default meta;
 
-export const Template = () => defineComponent({
-  components: { Pagination, Button },
-  compatConfig: { MODE: 3 },
-  setup() {
-    const currentPage = ref(1);
-    const subPageNum = () => {
-      if (currentPage.value > 1) currentPage.value--
-    }
-    const addPageNum = () => {
-      if (currentPage.value < 10) currentPage.value++
-    }
-    return {
-      addPageNum,
-      subPageNum,
-      currentPage
-    }
-  },
-  template: `
+export const Template = () =>
+    defineComponent({
+        components: { Pagination, Button },
+        compatConfig: { MODE: 3 },
+        setup() {
+            const currentPage = ref(1);
+            const subPageNum = () => {
+                if (currentPage.value > 1) currentPage.value--;
+            };
+            const addPageNum = () => {
+                if (currentPage.value < 10) currentPage.value++;
+            };
+            return {
+                addPageNum,
+                subPageNum,
+                currentPage,
+            };
+        },
+        template: `
     <h3>受控组件</h3>
     <Pagination
         v-model:currentPage="currentPage"
@@ -43,5 +44,5 @@ export const Template = () => defineComponent({
         :total="20"
         :pageSize="2"
     />
-  `
-});
+  `,
+    });

@@ -16,8 +16,8 @@ module.exports = ({ isESM = false }) => {
                     modules: isESM ? false : 'commonjs',
                 },
             ],
-            ...modePresets
+            ...modePresets,
         ],
-        plugins: [...modePlugins]
+        plugins: [...modePlugins],
     };
 };

@@ -3,7 +3,7 @@ import resolve from 'enhanced-resolve';
 
 export default function snowThemeLoader(source: string) {
     const query = loaderUtils.getOptions(this);
-    if (!query.name) return source
+    if (!query.name) return source;
 
     const theme = query.name || '@snow-design/theme-default';
 
@@ -15,14 +15,20 @@ export default function snowThemeLoader(source: string) {
     let fileStr = source;
 
     // 判断自定义主题中组件级变量是否存在
-    const componentVariables: string | boolean = resolve.sync(this.context, `${theme}/scss/local.scss`);
+    const componentVariables: string | boolean = resolve.sync(
+        this.context,
+        `${theme}/scss/local.scss`,
+    );
     let localImport = '';
 
     // 需要加入主题则将原主题覆盖
     // 将覆盖 scss 插入原 scss 之后
     if (componentVariables || query.include) {
-        fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '')
-        localImport += '@import "./variables.scss";\n'
+        fileStr = fileStr.replace(
+            /(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g,
+            '',
+        );
+        localImport += '@import "./variables.scss";\n';
     }
 
     // 主题中的 组件级变量
@@ -40,7 +46,6 @@ export default function snowThemeLoader(source: string) {
     //     localImport += `${query.variables}\n`;
     // }
 
-
     // 插入 prefixCls 引用
     // 功能暂不支持
     // const prefixCls = query.prefixCls || 'snow';
@@ -55,4 +60,3 @@ export default function snowThemeLoader(source: string) {
         return `${localImport}${scssVarStr}${fileStr}`;
     }
 }
-

@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from 'tsup';
 
 export default defineConfig(() => {
     return [
@@ -13,6 +13,6 @@ export default defineConfig(() => {
             target: 'es5',
             outDir: 'lib/cjs',
             clean: true,
-        }
-    ]
-})
+        },
+    ];
+});

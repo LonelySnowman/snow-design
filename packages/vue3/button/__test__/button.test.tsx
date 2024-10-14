@@ -1,8 +1,8 @@
-import mountTest from "#test/vue/mountTest";
-import styleTest from "#test/vue/styleTest";
+import mountTest from '#test/vue/mountTest';
+import styleTest from '#test/vue/styleTest';
 import Button from '../index';
 import { cssClasses } from '@snow-design/foundation/button/constants';
-import { render } from "@testing-library/vue";
+import { render } from '@testing-library/vue';
 
 describe('Button', () => {
     const prefix = cssClasses.PREFIX;

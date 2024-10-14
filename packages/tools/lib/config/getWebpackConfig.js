@@ -16,31 +16,31 @@ module.exports = function ({ root, minimize }) {
     const mode = process.env.MODE;
     let externals = {};
     switch (mode) {
-        case "react":
+        case 'react':
             externals = {
                 react: {
                     root: 'React',
                     commonjs2: 'react',
                     commonjs: 'react',
-                    amd: 'react'
+                    amd: 'react',
                 },
                 'react-dom': {
                     root: 'ReactDOM',
                     commonjs2: 'react-dom',
                     commonjs: 'react-dom',
-                    amd: 'react-dom'
-                }
-            }
+                    amd: 'react-dom',
+                },
+            };
             break;
-        case "vue":
+        case 'vue':
             externals = {
                 vue: {
                     root: 'Vue',
                     commonjs2: 'vue',
                     commonjs: 'vue',
-                    amd: 'vue'
-                }
-            }
+                    amd: 'vue',
+                },
+            };
             break;
     }
     return {
@@ -48,13 +48,13 @@ module.exports = function ({ root, minimize }) {
         bail: true,
         devtool: 'source-map',
         entry: {
-            index: [path.resolve(root, './index.ts')]
+            index: [path.resolve(root, './index.ts')],
         },
         output: {
             filename: minimize ? 'components.min.js' : 'components.js',
             path: path.resolve(root, './dist/umd'),
             library: 'SnowUI',
-            libraryTarget: 'umd'
+            libraryTarget: 'umd',
         },
         module: {
             rules: [
@@ -63,40 +63,41 @@ module.exports = function ({ root, minimize }) {
                     use: [
                         {
                             loader: babelLoaderPath,
-                            options: getBabelConfig({ isESM: true, mode })
+                            options: getBabelConfig({ isESM: true, mode }),
                         },
                         {
                             loader: tsLoaderPath,
                             options: {
                                 transpileOnly: true,
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
                 { test: /\.scss$/, use: nullLoaderPath },
-            ]
+            ],
         },
         optimization: {
             minimize: !!minimize,
-            minimizer: [new TerserPlugin()] // 代码压缩
+            minimizer: [new TerserPlugin()], // 代码压缩
         },
         performance: { maxEntrypointSize: 10485760, maxAssetSize: 5242880 },
         plugins: [
-            new DefinePlugin({ // 定义全局变量
-                'process.env': { NODE_ENV: '"production"', PUBLIC_URL: undefined }
+            new DefinePlugin({
+                // 定义全局变量
+                'process.env': { NODE_ENV: '"production"', PUBLIC_URL: undefined },
             }),
             new CaseSensitivePathsPlugin(), // 检查文件引用路径
             new WebpackBarPlugin(), // 显示构建进度条
-            new HashedModuleIdsPlugin() // 为模块指定唯一ID 利于缓存
+            new HashedModuleIdsPlugin(), // 为模块指定唯一ID 利于缓存
         ],
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
             alias: {
-                "@snow-design/foundation": path.resolve(rootDir, "./packages/foundation"),
-                "@snow-design/components": path.resolve(rootDir, "./packages/components"),
-                "@snow-design/locale": path.resolve(rootDir, "./packages/locale"),
+                '@snow-design/foundation': path.resolve(rootDir, './packages/foundation'),
+                '@snow-design/components': path.resolve(rootDir, './packages/components'),
+                '@snow-design/locale': path.resolve(rootDir, './packages/locale'),
             },
         },
-        externals: externals // 声明外部依赖
+        externals: externals, // 声明外部依赖
     };
 };

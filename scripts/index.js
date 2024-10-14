@@ -1,7 +1,7 @@
 const { create } = require('./command/create');
 const packageJson = require('../package.json');
 
-function runCommand (argv) {
+function runCommand(argv) {
     const args = argv.slice(2);
     const command = args[0];
     const cName = args[1];
