@@ -2,32 +2,18 @@
 
 set -e
 
-cd packages/components
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/components
 
-cd packages/vue3
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/vue3
 
-cd packages/foundation
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/foundation
 
-cd packages/locale
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/locale
 
-cd packages/theme-default
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/theme-default
 
-cd packages/vite-plugin
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/vite-plugin
 
-cd packages/webpack-plugin
-pnpm publish --access public
-cd -
+pnpm publish --filter @snow-design/webpack-plugin
 
 echo "✅ Publish completed"
