@@ -4,7 +4,8 @@
   "description": "SnowDesign 组件库与框架无关的逻辑层与基础层代码",
   "scripts": {
     "build": "snow-tools run compileFoundation",
-    "clean": "rimraf lib node_modules"
+    "clean": "rimraf lib node_modules",
+    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
   },
   "files": [
     "lib"

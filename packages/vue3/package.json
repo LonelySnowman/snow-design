@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/vue3",
-  "version": "1.0.0",
+  "version": "0.0.22",
   "description": "SnowDesign 组件库 vue3 版",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build": "snow-tools run build --mode vue",
-    "clean": "rimraf lib dist node_modules"
+    "clean": "rimraf lib dist node_modules",
+    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
   },
   "keywords": [
     "snow-design"

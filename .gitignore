@@ -22,3 +22,6 @@ docs/dist
 
 # test
 coverage
+
+# cache
+.stylelintcache

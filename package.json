@@ -16,7 +16,10 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "lint:lint-staged": "lint-staged",
-    "lint:stylelint": "stylelint ./**/*.{css,scss} --cache --fix"
+    "lint:stylelint": "stylelint ./**/*.{css,scss} --cache --fix",
+    "publish:patch": "cross-env NEXT_VERSION=patch pnpm recursive run publish",
+    "publish:minor": "cross-env NEXT_VERSION=minor pnpm recursive run publish",
+    "publish:major": "cross-env NEXT_VERSION=major pnpm recursive run publish"
   },
   "author": "LonelySnowman",
   "license": "ISC",
@@ -53,6 +56,7 @@
     "@vue/babel-plugin-jsx": "^1.2.5",
     "babel": "^6.23.0",
     "chalk": "4",
+    "cross-env": "^7.0.3",
     "ejs": "^3.1.10",
     "eslint": "^9.12.0",
     "eslint-plugin-prettier": "^5.2.1",

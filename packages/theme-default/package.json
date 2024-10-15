@@ -1,6 +1,9 @@
 {
   "name": "@snow-design/theme-default",
   "version": "0.0.22",
+  "scripts": {
+    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
+  },
   "description": "SnowDesign 组件库默认主题包",
   "keywords": ["snow-design"],
   "author": "LonelySnowman",

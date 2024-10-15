@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf lib node_modules"
+    "clean": "rimraf lib node_modules",
+    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
   },
   "description": "SnowDesign 组件库国际化语言包",
   "main": "index.ts",

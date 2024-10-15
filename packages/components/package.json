@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build": "snow-tools run build",
-    "clean": "rimraf lib dist node_modules"
+    "clean": "rimraf lib dist node_modules",
+    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
   },
   "keywords": [
     "snow-design",
