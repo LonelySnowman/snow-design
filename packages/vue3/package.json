@@ -27,8 +27,7 @@
     "classnames": "2.3.2"
   },
   "devDependencies": {
-    "@snow-design/theme-default": "workspace:*",
-    "@snow-design/tools": "workspace:*"
+    "@snow-design/theme-default": "workspace:*"
   },
   "peerDependencies": {
     "vue": "3"

@@ -16,4 +16,6 @@ pnpm publish --filter @snow-design/vite-plugin
 
 pnpm publish --filter @snow-design/webpack-plugin
 
+pnpm publish --filter @snow-design/tools
+
 echo "✅ Publish completed"

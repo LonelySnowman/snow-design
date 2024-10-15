@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@snow-design/theme-default": "workspace:*",
-    "@snow-design/tools": "workspace:*",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0"
   },

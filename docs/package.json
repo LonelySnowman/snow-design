@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/docs",
-  "version": "0.0.22",
+  "version": "1.0.0",
   "description": "SnowDesign 组件库静态站点",
   "scripts": {
     "start": "dumi dev",

@@ -39,6 +39,7 @@
     "storybook": "^8.2.4"
   },
   "devDependencies": {
+    "@snow-design/tools": "workspace:*",
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",

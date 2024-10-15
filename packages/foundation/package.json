@@ -18,7 +18,6 @@
   "author": "LonelySnowman",
   "license": "ISC",
   "devDependencies": {
-    "@snow-design/theme-default": "workspace:*",
-    "@snow-design/tools": "workspace:*"
+    "@snow-design/theme-default": "workspace:*"
   }
 }

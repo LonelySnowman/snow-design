@@ -66,6 +66,9 @@ importers:
       '@eslint/js':
         specifier: ^9.12.0
         version: 9.12.0
+      '@snow-design/tools':
+        specifier: workspace:*
+        version: link:packages/tools
       '@testing-library/dom':
         specifier: ^9.3.3
         version: 9.3.4
@@ -218,9 +221,6 @@ importers:
       '@snow-design/theme-default':
         specifier: workspace:*
         version: link:../theme-default
-      '@snow-design/tools':
-        specifier: workspace:*
-        version: link:../tools
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
@@ -233,9 +233,6 @@ importers:
       '@snow-design/theme-default':
         specifier: workspace:*
         version: link:../theme-default
-      '@snow-design/tools':
-        specifier: workspace:*
-        version: link:../tools
 
   packages/locale:
     devDependencies:
@@ -346,9 +343,6 @@ importers:
       '@snow-design/theme-default':
         specifier: workspace:*
         version: link:../theme-default
-      '@snow-design/tools':
-        specifier: workspace:*
-        version: link:../tools
 
   packages/webpack-plugin:
     dependencies:
