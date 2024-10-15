@@ -17,9 +17,9 @@
     "lint:fix": "eslint --fix",
     "lint:lint-staged": "lint-staged",
     "lint:stylelint": "stylelint ./**/*.{css,scss} --cache --fix",
-    "publish:patch": "cross-env NEXT_VERSION=patch pnpm recursive run publish",
-    "publish:minor": "cross-env NEXT_VERSION=minor pnpm recursive run publish",
-    "publish:major": "cross-env NEXT_VERSION=major pnpm recursive run publish"
+    "version:patch": "pnpm recursive run version:patch",
+    "version:minor": "pnpm recursive run version:minor",
+    "version:major": "pnpm recursive run version:major"
   },
   "author": "LonelySnowman",
   "license": "ISC",

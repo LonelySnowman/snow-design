@@ -1,17 +1,21 @@
 {
   "name": "@snow-design/locale",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "files": [
     "lib"
   ],
   "scripts": {
     "build": "tsup",
     "clean": "rimraf lib node_modules",
-    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
+    "version:patch": "npm version patch --no-git-tag-version",
+    "version:minor": "npm version minor --no-git-tag-version",
+    "version:major": "npm version major --no-git-tag-version"
   },
   "description": "SnowDesign 组件库国际化语言包",
   "main": "index.ts",
-  "keywords": ["snow-design"],
+  "keywords": [
+    "snow-design"
+  ],
   "author": "LonelySnowman",
   "license": "ISC",
   "devDependencies": {

@@ -12,7 +12,9 @@
   "scripts": {
     "build": "snow-tools run build",
     "clean": "rimraf lib dist node_modules",
-    "publish": "npm version $NEXT_VERSION --no-git-tag-version && npm publish"
+    "version:patch": "npm version patch --no-git-tag-version",
+    "version:minor": "npm version minor --no-git-tag-version",
+    "version:major": "npm version major --no-git-tag-version"
   },
   "keywords": [
     "snow-design",
