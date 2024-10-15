@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/vue3",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "SnowDesign 组件库 vue3 版",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",

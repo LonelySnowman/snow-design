@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/foundation",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "SnowDesign 组件库与框架无关的逻辑层与基础层代码",
   "scripts": {
     "build": "snow-tools run compileFoundation",
