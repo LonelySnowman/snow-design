@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/vite-plugin",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "SnowDesign 组件库主题包 Vite 插件",
   "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
