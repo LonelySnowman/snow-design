@@ -4,17 +4,13 @@ import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import { withInstall } from '../_utils';
 
-export interface ConfigProviderProps {
-    locale?: Locale;
-}
+export const configProviderProps = () => ({
+    locale: Object as PropType<Locale>,
+});
 
 const ConfigProvider = defineComponent({
     name: 'SConfigProvider',
-    props: {
-        locale: {
-            type: Object as PropType<Locale>,
-        },
-    },
+    props: configProviderProps(),
     setup(props, { slots }) {
         const { locale } = props;
         const children = slots.default?.();
