@@ -22,11 +22,14 @@ jobs:
             - name: Install pnpm
               run: npm i -g pnpm@9
 
+            - name: Add node linker hoisted
+              run: echo "node-linker=hoisted" >> .npmrc
+
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
             - name: Build lib
-              run: pnpm run build:lib
+              run: pnpm run build:ci
 
             - name: Publish package
               run: sh ./scripts/publish.sh

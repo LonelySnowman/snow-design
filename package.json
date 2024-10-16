@@ -11,7 +11,7 @@
     "test:coverage": "jest --coverage",
     "build:docs": "pnpm run -C docs build",
     "build:lib": "pnpm recursive run build",
-    "build:vue3": "pnpm run -C packages/vue3 build",
+    "build:ci": "pnpm recursive run build --filter='!packages/vue3' && pnpm run -C packages/vue3 build:ci",
     "gen": "node ./scripts/index.js gen",
     "clean": "pnpm recursive run clean",
     "lint": "eslint",

@@ -11,10 +11,11 @@ const inject = require('gulp-inject-string');
 const webpack = require('webpack');
 const fs = require('fs-extra');
 
-const { packagePath, nodeModulesPath, rootDir, tsConfig } = require('./common');
+const { packagePath, nodeModulesPath, rootDir } = require('./common');
 const { toUnixPath } = require('./utils');
 const getBabelConfig = require('./config/getBabelConfig');
 const getWebpackConfig = require('./config/getWebpackConfig');
+const getTSConfig = require('./config/getTSConfig');
 
 /**
  * @description 编译 lib 包 多出口的组件产物
@@ -25,28 +26,14 @@ gulp.task('cleanLib', function cleanLib() {
     return rimraf([libPath]);
 });
 
+const compileTSFiles = ['**/*.tsx', '**/*.ts', '!**/node_modules/**/*.*', '!**/_story/**/*.*', '!**/__test__/**/*.*'];
+
 gulp.task('compileTSXForESM', function compileTSXForESM() {
-    const tsStream = gulp
-        .src([
-            '**/*.tsx',
-            '**/*.ts',
-            '!**/node_modules/**/*.*',
-            '!**/_story/**/*.*',
-            '!**/__test__/**/*.*',
-        ])
-        .pipe(
-            gulpTS({
-                ...tsConfig.compilerOptions,
-                rootDir,
-            }),
-        );
+    const tsStream = gulp.src(compileTSFiles).pipe(gulpTS(getTSConfig()));
     const jsStream = tsStream.js
         .pipe(gulpBabel(getBabelConfig({ isESM: true })))
         .pipe(
-            replace(
-                /(import\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g,
-                "$1'@snow-design/foundation/lib/es/$2'",
-            ),
+            replace(/(import\s+)['"]@snow-design\/foundation\/([^'"]+)['"]/g, "$1'@snow-design/foundation/lib/es/$2'"),
         )
         .pipe(
             replace(
@@ -54,17 +41,9 @@ gulp.task('compileTSXForESM', function compileTSXForESM() {
                 "$1'@snow-design/foundation/lib/es/$2'",
             ),
         )
+        .pipe(replace(/(import\s+)['"]@snow-design\/locale\/([^'"]+)['"]/g, "$1'@snow-design/locale/lib/es/$2'"))
         .pipe(
-            replace(
-                /(import\s+)['"]@snow-design\/locale\/([^'"]+)['"]/g,
-                "$1'@snow-design/locale/lib/es/$2'",
-            ),
-        )
-        .pipe(
-            replace(
-                /(import\s+.+from\s+)['"]@snow-design\/locale\/([^'"]+)['"]/g,
-                "$1'@snow-design/locale/lib/es/$2'",
-            ),
+            replace(/(import\s+.+from\s+)['"]@snow-design\/locale\/([^'"]+)['"]/g, "$1'@snow-design/locale/lib/es/$2'"),
         )
         .pipe(replace(/(import\s+)['"]([^'"]+)(\.scss)['"]/g, "$1'$2.css'"))
         .pipe(gulp.dest('lib/es'));
@@ -75,20 +54,7 @@ gulp.task('compileTSXForESM', function compileTSXForESM() {
 });
 
 gulp.task('compileTSXForCJS', function compileTSXForCJS() {
-    const tsStream = gulp
-        .src([
-            '**/*.tsx',
-            '**/*.ts',
-            '!**/node_modules/**/*.*',
-            '!**/_story/**/*.*',
-            '!**/__test__/**/*.*',
-        ])
-        .pipe(
-            gulpTS({
-                ...tsConfig.compilerOptions,
-                rootDir,
-            }),
-        );
+    const tsStream = gulp.src(compileTSFiles).pipe(gulpTS(getTSConfig()));
     const jsStream = tsStream.js
         .pipe(gulpBabel(getBabelConfig({ isESM: false })))
         .pipe(
@@ -97,12 +63,7 @@ gulp.task('compileTSXForCJS', function compileTSXForCJS() {
                 '$1@snow-design/foundation/lib/cjs/$2$3',
             ),
         )
-        .pipe(
-            replace(
-                /(require\(['"])@snow-design\/locale\/([^'"]+)(['"]\))/g,
-                '$1@snow-design/locale/lib/cjs/$2$3',
-            ),
-        )
+        .pipe(replace(/(require\(['"])@snow-design\/locale\/([^'"]+)(['"]\))/g, '$1@snow-design/locale/lib/cjs/$2$3'))
         .pipe(replace(/(require\(['"])([^'"]+)(\.scss)(['"]\))/g, '$1$2.css$4'))
         .pipe(gulp.dest('lib/cjs'));
     const dtsStream = tsStream.dts
@@ -168,14 +129,8 @@ function compileStyle(isMin = false) {
     const foundationPath = path.resolve(nodeModulesPath, './@snow-design/foundation');
     const themePath = path.resolve(nodeModulesPath, './@snow-design/theme-default/scss/index.scss');
     const outPutDir = path.resolve(packagePath, './dist/css');
-    const outPutScss = path.resolve(
-        packagePath,
-        `./dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`,
-    );
-    const outPutCss = path.resolve(
-        packagePath,
-        `./dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`,
-    );
+    const outPutScss = path.resolve(packagePath, `./dist/css/${isMin ? 'snow.min.scss' : 'snow.scss'}`);
+    const outPutCss = path.resolve(packagePath, `./dist/css/${isMin ? 'snow.min.css' : 'snow.css'}`);
 
     if (fs.existsSync(themePath))
         // 插入主题样式
@@ -262,12 +217,7 @@ gulp.task('build', gulp.parallel('compile', 'dist'));
  */
 
 gulp.task('compileFoundationScss', function compileFoundationScss() {
-    const excludeScss = [
-        '!node_modules/**/*.*',
-        '!**/rtl.scss',
-        '!**/variables.scss',
-        '!**/animation.scss',
-    ];
+    const excludeScss = ['!node_modules/**/*.*', '!**/rtl.scss', '!**/variables.scss', '!**/animation.scss'];
     const indexThemePath = path.resolve(rootDir, './packages/theme-default/scss/index.scss');
     return gulp
         .src(['**/*.scss', ...excludeScss])
