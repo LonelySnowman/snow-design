@@ -39,9 +39,7 @@ export default function SnowDesignVitePlugin(options: SnowVitePluginOptions): Pl
                                 if (url.startsWith('~')) {
                                     return new URL(
                                         url.substring(1),
-                                        pathToFileURL(
-                                            scssFilePath.match(/^(\S*\/node_modules\/)/)[0],
-                                        ),
+                                        pathToFileURL(scssFilePath.match(/^(\S*\/node_modules\/)/)[0]),
                                     );
                                 }
                                 const filePath = path.resolve(path.dirname(scssFilePath), url);
@@ -68,19 +66,13 @@ function loader(source: Buffer, options: SnowVitePluginOptions, config: any) {
     const cssVarStr = `@import "~${theme}/scss/global.scss";\n`;
 
     // 判断自定义主题中组件级变量是否存在
-    const componentVariables: string | boolean = resolve.sync(
-        config.root,
-        `${theme}/scss/local.scss`,
-    );
+    const componentVariables: string | boolean = resolve.sync(config.root, `${theme}/scss/local.scss`);
     let localImport = '';
 
     // 需要加入主题则将原主题覆盖
     // 将覆盖 scss 插入原 scss 之后
     if (componentVariables || options.include) {
-        fileStr = fileStr.replace(
-            /(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g,
-            '',
-        );
+        fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '');
         localImport += '@import "./variables.scss";\n';
     }
 

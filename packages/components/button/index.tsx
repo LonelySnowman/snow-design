@@ -8,9 +8,7 @@ const prefixCls = cssClasses.PREFIX;
 
 export type ThemeType = 'default' | 'primary' | 'warning' | 'danger';
 
-export interface ButtonProps
-    extends Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type'>,
-        CssProps {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type'>, CssProps {
     children?: ReactNode;
     type?: ThemeType;
 }

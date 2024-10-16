@@ -42,11 +42,7 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
     };
 
     // 更新 page 渲染列
-    const updatePageList = (pageListInfo: {
-        currentPage: number;
-        total: number;
-        pageSize: number;
-    }) => {
+    const updatePageList = (pageListInfo: { currentPage: number; total: number; pageSize: number }) => {
         const { currentPage, total, pageSize } = pageListInfo;
         let pageList: PageList = [];
         /** Pager truncation logic (t is the total number of pages, c is the current page):
@@ -70,7 +66,7 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
         const totalPageNum = getTotalPageNumber(total, pageSize);
         const { PAGE_SHOW_MAX } = numbers;
         if (totalPageNum <= PAGE_SHOW_MAX) {
-            pageList = Array.from({ length: totalPageNum }, (v, i) => i + 1);
+            pageList = Array.from({ length: totalPageNum }, (_v, i) => i + 1);
         } else {
             switch (true) {
                 case currentPage < 4:
@@ -80,11 +76,11 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
                     pageList = [1, 2, 3, 4, 5, '...', totalPageNum];
                     break;
                 case 4 < currentPage && currentPage < totalPageNum - 3:
-                    const middle = Array.from({ length: 3 }, (v, i) => currentPage + (i - 1));
+                    const middle = Array.from({ length: 3 }, (_v, i) => currentPage + (i - 1));
                     pageList = ([1] as PageList).concat('...', middle, '...', totalPageNum);
                     break;
                 case currentPage - 3 <= currentPage && currentPage <= totalPageNum:
-                    const right = Array.from({ length: 5 }, (v, i) => totalPageNum - (4 - i));
+                    const right = Array.from({ length: 5 }, (_v, i) => totalPageNum - (4 - i));
                     pageList = [1, '...' as const].concat(right);
                     break;
                 default:
@@ -97,8 +93,7 @@ const usePaginationFoundation = (adapter: PaginationAdapter) => {
     // 更新当前页
     const updatePage = (targetPageIndex = 1, total?: number, pageSize?: number) => {
         if (total === null || typeof total === 'undefined') total = adapter.getStates().total;
-        if (pageSize === null || typeof pageSize === 'undefined')
-            pageSize = adapter.getStates().pageSize;
+        if (pageSize === null || typeof pageSize === 'undefined') pageSize = adapter.getStates().pageSize;
         updateDisabled({ currentPage: targetPageIndex, total, pageSize });
         updatePageList({ currentPage: targetPageIndex, total, pageSize });
         adapter.setCurrentPage(targetPageIndex);

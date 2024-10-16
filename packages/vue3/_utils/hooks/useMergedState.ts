@@ -21,9 +21,7 @@ export default function useMergedState<T>(
         } else if (hasValue(defaultValue)) {
             return typeof defaultValue === 'function' ? (defaultValue as any)() : defaultValue;
         } else {
-            return typeof defaultStateValue === 'function'
-                ? (defaultStateValue as any)()
-                : defaultStateValue;
+            return typeof defaultStateValue === 'function' ? (defaultStateValue as any)() : defaultStateValue;
         }
     };
     const innerValue = ref<T>(getInnerValue()) as Ref<T>;

@@ -8,19 +8,7 @@ module.exports = {
         'type-enum': [
             2,
             'always',
-            [
-                'feat',
-                'fix',
-                'style',
-                'docs',
-                'test',
-                'refactor',
-                'chore',
-                'revert',
-                'workflow',
-                'types',
-                'release',
-            ],
+            ['feat', 'fix', 'style', 'docs', 'test', 'refactor', 'chore', 'revert', 'workflow', 'types', 'release'],
         ],
     },
 };

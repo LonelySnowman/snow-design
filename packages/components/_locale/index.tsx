@@ -11,9 +11,7 @@ export interface LocaleProviderProps {
 const LocaleProvider: React.FC<LocaleProviderProps> = (props) => {
     const { locale = {} as Locale, children } = props;
     const getMemoizedContextValue = React.useMemo<Locale>(() => ({ ...locale }), [locale]);
-    return (
-        <LocaleContext.Provider value={getMemoizedContextValue}>{children}</LocaleContext.Provider>
-    );
+    return <LocaleContext.Provider value={getMemoizedContextValue}>{children}</LocaleContext.Provider>;
 };
 
 export default LocaleProvider;

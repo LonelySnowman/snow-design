@@ -4,8 +4,7 @@ module.exports = ({ isESM = false }) => {
     const modePlugins = [];
     switch (mode) {
         case 'vue':
-            modePresets.push('@vue/babel-preset-jsx');
-            modePlugins.push('@vue/babel-plugin-jsx');
+            modePlugins.push(['@vue/babel-plugin-jsx', { mergeProps: false, enableObjectSlots: false }]);
             break;
     }
     return {

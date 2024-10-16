@@ -11,6 +11,7 @@
     "test:coverage": "jest --coverage",
     "build:docs": "pnpm run -C docs build",
     "build:lib": "pnpm recursive run build",
+    "build:vue3": "pnpm run -C packages/vue3 build",
     "gen": "node ./scripts/index.js gen",
     "clean": "pnpm recursive run clean",
     "lint": "eslint",
@@ -39,13 +40,13 @@
     "storybook": "^8.2.4"
   },
   "devDependencies": {
-    "@snow-design/tools": "workspace:*",
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@eslint/js": "^9.12.0",
+    "@snow-design/tools": "workspace:*",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.3.1",
@@ -71,6 +72,7 @@
     "lint-staged": "^15.2.10",
     "lodash": "^4.17.21",
     "ora": "^4.1.1",
+    "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
@@ -80,8 +82,8 @@
     "stylelint-config-recommended-scss": "^14.1.0",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-scss": "^6.7.0",
-    "typescript": "^5.5",
+    "typescript": "~5.6.3",
     "typescript-eslint": "^8.8.1",
-    "vue": "^3.5.10"
+    "vue": "^3.5.12"
   }
 }

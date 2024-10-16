@@ -19,7 +19,7 @@
     "gulp-inject-string": "^1.1.2",
     "gulp-replace": "^1.1.4",
     "gulp-sass": "^5.1.0",
-    "gulp-typescript": "6.0.0-alpha.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "merge2": "^1.4.1",
     "minimist": "^1.2.8",
     "null-loader": "^4.0.1",
@@ -29,8 +29,5 @@
     "ts-loader": "^9.5.1",
     "webpack": "^5.89.0",
     "webpackbar": "^5.0.2"
-  },
-  "devDependencies": {
-    "@vue/babel-preset-jsx": "^1.4.0"
   }
 }

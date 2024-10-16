@@ -15,19 +15,13 @@ export default function snowThemeLoader(source: string) {
     let fileStr = source;
 
     // 判断自定义主题中组件级变量是否存在
-    const componentVariables: string | boolean = resolve.sync(
-        this.context,
-        `${theme}/scss/local.scss`,
-    );
+    const componentVariables: string | boolean = resolve.sync(this.context, `${theme}/scss/local.scss`);
     let localImport = '';
 
     // 需要加入主题则将原主题覆盖
     // 将覆盖 scss 插入原 scss 之后
     if (componentVariables || query.include) {
-        fileStr = fileStr.replace(
-            /(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g,
-            '',
-        );
+        fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '');
         localImport += '@import "./variables.scss";\n';
     }
 

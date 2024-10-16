@@ -28,8 +28,5 @@
   },
   "devDependencies": {
     "@snow-design/theme-default": "workspace:*"
-  },
-  "peerDependencies": {
-    "vue": "3"
   }
 }

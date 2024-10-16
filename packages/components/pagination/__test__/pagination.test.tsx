@@ -12,9 +12,7 @@ describe('Pagination', () => {
     styleTest(Pagination);
 
     it('renders correctly', () => {
-        expect(
-            render(<Pagination pageSize={10} total={20} />).container.firstChild,
-        ).toMatchSnapshot();
+        expect(render(<Pagination pageSize={10} total={20} />).container.firstChild).toMatchSnapshot();
     });
 
     it('having correct pagination', () => {

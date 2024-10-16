@@ -1,9 +1,5 @@
 module.exports = {
-    extends: [
-        'stylelint-config-standard',
-        'stylelint-config-recommended-scss',
-        'stylelint-config-recess-order',
-    ],
+    extends: ['stylelint-config-standard', 'stylelint-config-recommended-scss', 'stylelint-config-recess-order'],
     overrides: [
         {
             files: ['**/*.(scss|css)'],

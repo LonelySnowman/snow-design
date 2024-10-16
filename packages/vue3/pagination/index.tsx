@@ -136,8 +136,7 @@ const Pagination = defineComponent({
                 const pageListClassName = classNames(`${prefixCls}-item`, {
                     [`${prefixCls}-item-active`]: curPageValue.value === page,
                     [`${prefixCls}-item-all-disabled`]: disabled,
-                    [`${prefixCls}-item-all-disabled-active`]:
-                        curPageValue.value === page && disabled,
+                    [`${prefixCls}-item-all-disabled-active`]: curPageValue.value === page && disabled,
                 });
                 const pageEl = (
                     <li

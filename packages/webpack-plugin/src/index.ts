@@ -63,9 +63,7 @@ export default class SnowWebpackPlugin {
 
             // 兼容 string 和 object 传入
             const snowLoaderOptions =
-                typeof this.options.theme === 'object'
-                    ? this.options.theme
-                    : { name: this.options.theme };
+                typeof this.options.theme === 'object' ? this.options.theme : { name: this.options.theme };
 
             // 没有加入自定义 loader 处理则进行处理
             if (!this.hasThemeLoader(module.loaders)) {
