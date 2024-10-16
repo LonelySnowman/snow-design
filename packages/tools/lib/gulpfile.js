@@ -78,14 +78,7 @@ gulp.task('compileScss', function compileScss() {
 
     return gulp
         .src(['**/*.scss', '!**/node_modules/**/*.*', '!**/_story/**/*.scss', '!**/dist/**/*.scss'])
-        .pipe(
-            inject.prepend(
-                toUnixPath(`
-        @import "${indexThemePath}";\n
-        @import "${globalThemePath}";\n
-        `),
-            ),
-        )
+        .pipe(inject.prepend(toUnixPath(`@import "${indexThemePath}";\n@import "${globalThemePath}";\n`)))
         .pipe(
             gulpSass({
                 charset: false,

@@ -1,5 +1,6 @@
 import type { App } from 'vue';
 import * as components from './components';
+import './_base/base.scss';
 
 export const install = function (app: App) {
     Object.keys(components).forEach((key) => {

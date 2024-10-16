@@ -7,7 +7,9 @@
   "typings": "lib/es/index.d.ts",
   "files": [
     "dist/*",
-    "lib/*"
+    "lib/*",
+    "typings/global.d.ts",
+    "README.md"
   ],
   "scripts": {
     "build:lib": "snow-tools run build --mode vue",

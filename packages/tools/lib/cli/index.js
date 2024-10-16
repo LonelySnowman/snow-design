@@ -14,7 +14,7 @@ const allowTask = ['compile', 'dist', 'build', 'cleanLib', 'cleanDist', 'compile
 function runTask(toRun) {
     const taskInstance = gulp.task(toRun);
     process.env.MODE = argv.mode;
-    process.env.DECLARATION = Boolean(argv.declaration);
+    if (argv.declaration) process.env.DECLARATION = true;
     if (taskInstance === undefined || !allowTask.includes(toRun)) {
         console.error(`Unknown task "${toRun}"!`);
         return;
