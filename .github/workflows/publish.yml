@@ -29,7 +29,7 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             - name: Build lib
-              run: pnpm run build:ci
+              run: pnpm run build:production
 
             - name: Publish package
               run: sh ./scripts/publish.sh

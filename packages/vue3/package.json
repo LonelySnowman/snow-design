@@ -10,7 +10,8 @@
     "lib/*"
   ],
   "scripts": {
-    "build": "snow-tools run build --mode vue",
+    "build:lib": "snow-tools run build --mode vue",
+    "build:production": "snow-tools run build --mode vue --declaration",
     "clean": "rimraf lib dist node_modules",
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
