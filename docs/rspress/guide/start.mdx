@@ -1,12 +1,4 @@
----
-nav:
-  title: 快速开始
-  order: 0
-group:
-  title: 开始
-  order: 0
-order: 0
----
+import { Button } from "@snow-design/components"
 
 # 快速开始
 
@@ -32,13 +24,17 @@ pnpm add @semi-design/components
 
 - 组件分包构建，支持按需导入，自动 TreeShaking。
 
-```js
+```jsx
 import { Button } from "@snow-design/components"
 
 export default () => {
     return (<Button>你好</Button>)
 }
 ```
+
+:::tip 按钮
+<Button type="primary">你好</Button>
+:::
 
 ### UMD 引入
 

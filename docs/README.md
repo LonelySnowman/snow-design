@@ -1,20 +1,3 @@
-# 
+# snow-design docs
 
-A static site base on [dumi](https://d.umijs.org).
-
-## Development
-
-```bash
-# install dependencies
-$ pnpm install
-
-# start dev server
-$ pnpm start
-
-# build docs
-$ pnpm run build
-```
-
-## LICENSE
-
-MIT
+-   SnowDesign 官方文档，基于 rspress 搭建
