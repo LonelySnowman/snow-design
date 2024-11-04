@@ -1,23 +1,19 @@
 import { defineConfig } from 'rspress/config';
-import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx';
 import { pluginPreview } from '@rspress/plugin-preview';
-// import { pluginVue } from '@rsbuild/plugin-vue';
+import path from 'path';
 
 export default defineConfig({
     root: 'rspress',
-    title: 'Rspress',
+    title: 'SnowDesign',
     description: 'Rspack-based Static Site Generator',
     outDir: 'dist',
-    plugins: [pluginPreview()],
-    builderPlugins: [
-        // @todo fix vue load error
-        // pluginVue({
-        //     vueLoaderOptions: {
-        //         hotReload: false,
-        //     },
-        // }),
-        pluginVueJsx(),
+    globalStyles: path.join(__dirname, 'styles/index.css'),
+    plugins: [
+        pluginPreview({
+            defaultRenderMode: 'pure',
+        }),
     ],
+    builderPlugins: [],
     builderConfig: {
         source: {
             alias: {
@@ -26,22 +22,19 @@ export default defineConfig({
             },
         },
     },
-    // @todo: need icon
-    // icon: '/rspress-icon.png',
-    // logo: {
-    //     light: '/rspress-light-logo.png',
-    //     dark: '/rspress-dark-logo.png',
-    // },
+    icon: '/snowflake.png',
+    logo: '/snowflake.png',
+    logoText: 'SnowDesign',
     themeConfig: {
         socialLinks: [{ icon: 'github', mode: 'link', content: 'https://github.com/web-infra-dev/rspress' }],
         nav: [
             {
-                text: '组件',
-                link: '/components',
-            },
-            {
                 text: '快速开始',
                 link: '/guide/start',
+            },
+            {
+                text: '组件',
+                link: '/components',
             },
         ],
         sidebar: {

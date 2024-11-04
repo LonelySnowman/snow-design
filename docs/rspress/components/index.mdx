@@ -1,0 +1,47 @@
+# 介绍
+
+- SnowDesign 目前是一个教学性质的项目，助力您快速搭建`Web`组件库。
+- ~~从零到一的搭建文章~~（努力更新中...）
+- 参考学习以下项目：
+  - [semi-design](https://github.com/DouyinFE/semi-design)
+  - [ant-design](https://github.com/ant-design/ant-design)
+  - [ant-design-vue](https://github.com/vueComponent/ant-design-vue)
+
+## 📦能力
+
+- 一套逻辑代码支持`Vue`与`React`框架。
+- 支持 ES6 导出，无缝 TreeShaking。
+- 包含`Webpack`与`Vite`插件支持自定义组件样式主题，可进行全局`CSS`变量覆盖及组件级`SCSS`变量覆盖。
+- 完善的单元测试与~~端到端测试~~。
+- 支持国际化与~~无障碍访问~~。
+- ~~内置黑暗主题~~（努力更新中...）
+
+## 🚀CSS架构
+
+:::tip 编译时插件
+`CSS`变量及`SCSS`变量在编译时动态插入，实现主题更改。
+编译后会将`SCSS`文件保留，`Vite`与`Webpack`插件将原本读取的`CSS`文件转化为读取`SCSS`文件并使用`sass`或`WebpackLoader`进行编译，实现主题包加载。
+:::
+
+项目将主题包和组件样式包分离。
+
+🍭 主题包包含以下文件：
+
+- global.scss：全局`CSS`变量定义
+- index.scss：全局`SCSS`入口文件
+- variables.scss：用于全局`SCSS`变量定义
+- _palette.scss：用于基础色版定义，使用`ant-design`设计规范的色板。
+
+🍭 组件包包含以下文件：
+
+- xxx.scss：组件样式编写
+- variables.scss：组件级`SCSS`变量定义
+
+## 🔧API
+
+- 如无特殊说明，UI 组件均支持自定义 `style` 与 `class` 两个参数。
+
+| 属性              | 说明                                            | 类型                 | 默认值       |
+|-----------------|-----------------------------------------------| -------------------- |-----------|
+| className/class | 类名                                            | string               | -         |
+| style           | 样式名                                           | CSSProperties        | -         |

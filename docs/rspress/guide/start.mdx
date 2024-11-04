@@ -2,50 +2,50 @@ import { Button } from "@snow-design/components"
 
 # 快速开始
 
-> 目前组件支持较少，主要为架构上的实现，更多代码火速更新中...
+> SnowDesign 目前是一个教学性质的项目，不建议您在生产环境中使用。
+>
+> 组件支持较少，主要为架构上的实现，更多代码火速更新中... 💪
 
 ## 安装 SnowDesign
 
 ```bash
-# 使用 npm
+# 安装 react 版
 npm install @semi-design/components
 
-# 使用 yarn
-yarn add @semi-design/components
-
-# 使用 pnpm
-pnpm add @semi-design/components
+# 安装 vue3 版
+npm install @semi-design/vue3
 ```
 
 ## 使用组件
 
+### 🚀 React 版
 
-### ES6 模块引入
+#### ES6 模块引入
 
 - 组件分包构建，支持按需导入，自动 TreeShaking。
 
-```jsx
-import { Button } from "@snow-design/components"
-
-export default () => {
-    return (<Button>你好</Button>)
-}
-```
-
-:::tip 按钮
+:::tip Button
 <Button type="primary">你好</Button>
 :::
 
-### UMD 引入
+```tsx
+import { Button } from "@snow-design/components"
+
+export default () => {
+    return <Button type="primary">你好</Button>
+}
+```
+
+#### UMD 引入
 
 - 可以通过 `script` 标签直接引入文件，并使用全局变量 SnowUI。
-- @x.x.x，为版本号，可根据需要进行调整。
+- @x.x.x/@latest，为版本号，可根据需要进行调整。
 
 | 资源名称                         | 资源路径                                                     |
 | -------------------------------- | ------------------------------------------------------------ |
-| @snow-design/components (min)    | https://unpkg.com/@snow-design/components@0.0.22/dist/umd/components.js |
-| @snow-design/components (normal) | https://unpkg.com/@snow-design/components@0.0.22/dist/umd/components.min.js |
-| snow.css                         | https://unpkg.com/@snow-design/components@0.0.22/dist/css/snow.css |
+| @snow-design/components (min)    | https://unpkg.com/@snow-design/components@latest/dist/umd/components.js |
+| @snow-design/components (normal) | https://unpkg.com/@snow-design/components@latest/dist/umd/components.min.js |
+| snow.css                         | https://unpkg.com/@snow-design/components@latest/dist/css/snow.css |
 
 ```html
 <html>
@@ -67,4 +67,59 @@ export default () => {
         );
     </script>
 </html>
+```
+
+### 🔥 Vue3 版
+
+- 使用 `<s-组件名>` 或者 `<S组件名>` 引用组件。
+
+:::tip SButton
+<Button type="primary">点击</Button>
+:::
+
+```vue
+<template>
+  <SButton type="primary">点击</SButton>
+</template>
+```
+
+#### 全量引入
+
+- 直接加载 `@snow-design/vue3` 的默认导出注册所有全局组件。
+- 不建议您这样做，可能会导致打包产物过大。
+
+```ts
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+import SnowDesign from '@snow-design/vue3'
+
+createApp(App).use(SnowDesign).mount('#app')
+```
+
+#### 按需引入
+
+- 注册您需要使用的全局组件。
+
+```ts
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+import { Button, Pagination } from '@snow-design/vue3'
+
+createApp(App).use(Button).use(Pagination).mount('#app')
+```
+
+#### ES6 模块引入
+
+- 按需引入您所需要的组件，需要在 `script` 中引用该组件并使用。
+
+```vue
+<template>
+  <Button type="primary">点击</Button>
+</template>
+
+<script setup lang="ts">
+import { Button } from "@snow-design/vue3";
+</script>
 ```
