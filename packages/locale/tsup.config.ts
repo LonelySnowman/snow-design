@@ -6,12 +6,15 @@ export default defineConfig(() => {
             entry: ['index.ts', 'en_US.ts', 'zh_CN.ts'],
             target: 'esnext',
             outDir: 'lib/es',
+            splitting: true,
             clean: true,
+            dts: true,
         },
         {
-            entry: ['index.ts', 'en_US.ts', 'zh_CN.ts'],
+            entry: ['en_US.ts', 'zh_CN.ts'],
             target: 'es5',
             outDir: 'lib/cjs',
+            splitting: true,
             clean: true,
         },
     ];

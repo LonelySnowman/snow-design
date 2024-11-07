@@ -30,7 +30,7 @@ export default function SnowDesignVitePlugin(options: SnowVitePluginOptions): Pl
         load(id: string): any {
             const filePath = normalizePath(id);
             if (options.include) options.include = normalizePath(options.include);
-            if (/@snow-design\/(components|foundation)\/lib\/.+\.css$/.test(filePath)) {
+            if (/@snow-design\/(components|foundation|vue3)\/lib\/.+\.css$/.test(filePath)) {
                 const scssFilePath = filePath.replace(/\.css$/, '.scss');
                 return compileString(loader(fs.readFileSync(scssFilePath), options, config), {
                     importers: [

@@ -4,7 +4,7 @@
   "description": "SnowDesign 组件库主题包 Webpack 插件",
   "main": "lib/index.js",
   "scripts": {
-    "build:lib": "tsc",
+    "build:lib": "tsup-node",
     "build": "pnpm run build:lib",
     "clean": "rimraf lib node_modules",
     "version:patch": "npm version patch --no-git-tag-version",

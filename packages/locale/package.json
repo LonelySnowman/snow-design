@@ -2,23 +2,23 @@
   "name": "@snow-design/locale",
   "version": "0.0.29",
   "files": [
-    "lib"
+    "lib",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup-node",
     "clean": "rimraf lib node_modules",
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:major": "npm version major --no-git-tag-version"
   },
   "description": "SnowDesign 组件库国际化语言包",
-  "main": "index.ts",
+  "main": "lib/cjs/index.js",
+  "module": "lib/es/index.js",
+  "types": "lib/es/index.d.ts",
   "keywords": [
     "snow-design"
   ],
   "author": "LonelySnowman",
-  "license": "ISC",
-  "devDependencies": {
-    "tsup": "^8.2.3"
-  }
+  "license": "ISC"
 }
