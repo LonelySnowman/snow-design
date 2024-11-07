@@ -29,7 +29,7 @@ export default defineConfig({
         socialLinks: [{ icon: 'github', mode: 'link', content: 'https://github.com/web-infra-dev/rspress' }],
         nav: [
             {
-                text: '快速开始',
+                text: '开始',
                 link: '/guide/start',
             },
             {
@@ -61,6 +61,15 @@ export default defineConfig({
                         {
                             text: 'F/A架构',
                             link: '/guide/foundation-adapter',
+                        },
+                    ],
+                },
+                {
+                    text: '其它',
+                    items: [
+                        {
+                            text: '贡献指南',
+                            link: '/guide/contribution',
                         },
                     ],
                 },
