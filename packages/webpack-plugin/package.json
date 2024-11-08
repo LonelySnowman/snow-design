@@ -2,7 +2,9 @@
   "name": "@snow-design/webpack-plugin",
   "version": "0.0.29",
   "description": "SnowDesign 组件库主题包 Webpack 插件",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/es/index.js",
+  "types": "lib/cjs/index.js",
   "scripts": {
     "build:lib": "tsup-node",
     "build": "pnpm run build:lib",
@@ -12,7 +14,8 @@
     "version:major": "npm version major --no-git-tag-version"
   },
   "files": [
-    "lib/*"
+    "lib/*",
+    "README.md"
   ],
   "keywords": [
     "snow-design"

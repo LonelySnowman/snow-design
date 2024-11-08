@@ -15,7 +15,7 @@
   "description": "SnowDesign 组件库国际化语言包",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
-  "types": "lib/es/index.d.ts",
+  "types": "lib/cjs/index.d.ts",
   "keywords": [
     "snow-design"
   ],

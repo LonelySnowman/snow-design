@@ -1,21 +1,27 @@
 import { defineConfig } from 'tsup';
 
+const basConfig = {
+    entry: ['src/index.ts', 'src/snow-source-suffix-loader.ts', 'src/snow-theme-loader.ts'],
+    clean: true,
+    outExtension() {
+        return {
+            js: '.js',
+            dts: '.ts',
+        };
+    },
+};
+
 export default defineConfig([
     {
-        entry: ['src/index.ts', 'src/snow-source-suffix-loader.ts', 'src/snow-theme-loader.ts'],
-        splitting: true,
-        cjsInterop: true,
-        target: 'esnext',
+        ...basConfig,
+        format: 'esm',
         outDir: 'lib/es',
-        clean: true,
-        dts: true,
+        splitting: false,
     },
     {
-        entry: ['src/index.ts', 'src/snow-source-suffix-loader.ts', 'src/snow-theme-loader.ts'],
-        target: 'es5',
+        ...basConfig,
+        format: 'cjs',
         outDir: 'lib/cjs',
-        splitting: true,
-        cjsInterop: true,
-        clean: true,
+        dts: true,
     },
 ]);
