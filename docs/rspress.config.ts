@@ -26,7 +26,7 @@ export default defineConfig({
     logo: '/snowflake.png',
     logoText: 'SnowDesign',
     themeConfig: {
-        socialLinks: [{ icon: 'github', mode: 'link', content: 'https://github.com/web-infra-dev/rspress' }],
+        socialLinks: [{ icon: 'github', mode: 'link', content: 'https://github.com/LonelySnowman/snow-design' }],
         nav: [
             {
                 text: '开始',

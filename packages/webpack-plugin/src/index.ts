@@ -3,16 +3,10 @@ import { Compiler, NormalModule } from 'webpack';
 import { transformPath } from './utils';
 
 export interface SnowWebpackPluginOptions {
-    theme?: string | SnowThemeOptions;
+    theme?: string;
     include?: string;
-
-    // 配置支持待更新
-    // prefixCls?: string;
-    // variables?: {[key: string]: string | number};
-}
-
-export interface SnowThemeOptions {
-    name?: string;
+    prefixCls?: string;
+    variables?: { [key: string]: string | number };
 }
 
 export default class SnowWebpackPlugin {
@@ -31,8 +25,6 @@ export default class SnowWebpackPlugin {
                     (context: any, module: any) => {
                         // 加入自定义 loader 处理文件
                         this.customTheme(module);
-                        // 暂不支持自定义组件前缀
-                        // if (this.options.prefixCls) this.customPrefix(module, this.options.prefixCls);
                     },
                 );
             }
@@ -56,14 +48,13 @@ export default class SnowWebpackPlugin {
         }
 
         // 使用 自定义loader 进行主题引入 并使用 sass-loader css-loader style-loader 重新引入
-        if (/@snow-design\/(foundation|components)\/lib\/.+\.scss$/.test(compatiblePath)) {
+        if (
+            /@snow-design\/(foundation|components)\/lib\/.+\.scss$/.test(compatiblePath) &&
+            !compatiblePath.includes('_base/base.css')
+        ) {
             const scssLoader = require.resolve('sass-loader');
             const cssLoader = require.resolve('css-loader');
             const styleLoader = require.resolve('style-loader');
-
-            // 兼容 string 和 object 传入
-            const snowLoaderOptions =
-                typeof this.options.theme === 'object' ? this.options.theme : { name: this.options.theme };
 
             // 没有加入自定义 loader 处理则进行处理
             if (!this.hasThemeLoader(module.loaders)) {
@@ -79,39 +70,10 @@ export default class SnowWebpackPlugin {
                     { loader: scssLoader },
                     {
                         loader: path.join(__dirname, 'snow-theme-loader'),
-                        options: {
-                            ...snowLoaderOptions,
-                            include: this.options.include,
-                            // 暂不支持变量传递和前缀变更
-                            // prefixCls: this.options.prefixCls,
-                            // variables: this.convertMapToString(this.options.variables || {}),
-                        },
+                        options: this.options,
                     },
                 ];
             }
         }
     }
-
-    // 暂不支持
-    // customPrefix(module: any, prefix: string) {
-    //     // 路径 \\ 转换为 /
-    //     const compatiblePath = transformPath(module.resource);
-    //     if (/@douyinfe\/semi-[^/]+\/.+env\.js$/.test(compatiblePath)) {
-    //         module.loaders = module.loaders || [];
-    //         module.loaders.push({
-    //             loader: path.join(__dirname, 'semi-prefix-loader'),
-    //             options: {
-    //                 replacers: {
-    //                     BASE_CLASS_PREFIX: prefix
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
-
-    // convertMapToString(map: {[key: string]: string | number}): string {
-    //     return Object.keys(map).reduce(function (prev, curr) {
-    //         return prev + `${curr}: ${map[curr]};\n`;
-    //     }, '');
-    // }
 }

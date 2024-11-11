@@ -2,55 +2,44 @@ import loaderUtils from 'loader-utils';
 import resolve from 'enhanced-resolve';
 
 export default function snowThemeLoader(source: string) {
-    const query = loaderUtils.getOptions(this);
-    if (!query.name) return source;
+    const options = loaderUtils.getOptions(this);
 
-    const theme = query.name || '@snow-design/theme-default';
+    let fileStr = source; // 文件原本的内容
+    fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '');
 
-    // 全局 scss 变量
-    const scssVarStr = `@import "~${theme}/scss/index.scss";\n`;
-    // 全局 css 变量
-    const cssVarStr = `@import "~${theme}/scss/global.scss";\n`;
+    const defaultTheme = '@snow-design/theme-default';
+    const customTheme = options.theme;
 
-    let fileStr = source;
+    let SCSSVarStr = ''; // 更新优先级后的 SCSS 变量
+    SCSSVarStr += '@import "./variables.scss";\n';
 
-    // 判断自定义主题中组件级变量是否存在
-    const componentVariables: string | boolean = resolve.sync(this.context, `${theme}/scss/local.scss`);
-    let localImport = '';
-
-    // 需要加入主题则将原主题覆盖
-    // 将覆盖 scss 插入原 scss 之后
-    if (componentVariables || query.include) {
-        fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '');
-        localImport += '@import "./variables.scss";\n';
-    }
-
-    // 主题中的 组件级变量
-    if (componentVariables) {
-        localImport += `@import "~${theme}/scss/local.scss";\n`;
+    // 自定义主题包
+    if (customTheme) {
+        const componentVariables: string | boolean = resolve.sync(this.context, `${customTheme}/scss/index.scss`);
+        if (componentVariables) {
+            SCSSVarStr += `@import "~${customTheme}/scss/index.scss";\n`;
+        } else {
+            SCSSVarStr += `@import "~${defaultTheme}/scss/index.scss";\n`;
+            console.error(`[SnowDesign ERROR]: ${customTheme}/scss/index.scss not exist!`);
+        }
     }
 
     // 本地组件级变量配置
-    if (query.include) {
-        localImport += `@import "${query.include}";\n`;
+    if (options.include) {
+        SCSSVarStr += `@import "${options.include}";\n`;
     }
 
-    // 暂不支持单个进行渲染
-    // if (query.variables) {
-    //     localImport += `${query.variables}\n`;
-    // }
-
-    // 插入 prefixCls 引用
-    // 功能暂不支持
-    // const prefixCls = query.prefixCls || 'snow';
-    // const prefixClsStr = `$prefix: '${prefixCls}';\n`;
-
-    // 如果是 base.scss 需要额外注入 global.scss (css 变量存储) 和全局 scss 变量
-    // 其余注入全局 scss 变量及组件级 scss 变量
-    const isBaseStyle = source.includes('snow-base');
-    if (isBaseStyle) {
-        return `${cssVarStr}${scssVarStr}${fileStr}`;
-    } else {
-        return `${localImport}${scssVarStr}${fileStr}`;
+    // 配置式 SCSS 变量
+    if (options.variables) {
+        for (const [key, val] of Object.entries(options.variables)) {
+            SCSSVarStr += `$${key}: ${val};\n`;
+        }
     }
+
+    // 自定义 CSS 类名前缀
+    if (options.prefixCls) {
+        SCSSVarStr += `$prefix: '${options.prefixCls}';`;
+    }
+
+    return `${SCSSVarStr}${fileStr}`;
 }

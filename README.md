@@ -3,6 +3,7 @@
 ## 📕文档
 
 -   官方文档：[查看文档](https://snow-design.snowhouse.space/)
+-   贡献指南：[查看指南](https://snow-design.snowhouse.space/guide/contribution.html)
 
 ## 📖介绍
 
@@ -52,17 +53,3 @@ const Demo = () => {
 import { Button } from '@snow-design/vue3';
 </script>
 ```
-
-## 💻项目结构
-
-采用 pnpm workspace 实现 monorepo 进行多仓库管理。
-
--   docs: 静态文档站，采用 rspress 搭建。
--   packages/components: React 组件库核心代码。
--   packages/components: Vue3 组件库核心代码。
--   packages/foundation: 与框架无关的组件逻辑层和通用层代码。
--   packages/locale: 组件库国际化语言包。
--   packages/theme-default: 组件库默认主题包。
--   packages/tools: 脚本工具集合，用于组件库的编译构建。
--   packages/vite-plugin: 自定义主题 Vite 插件。
--   packages/webpack-plugin: 自定义主题 Webpack 插件。
