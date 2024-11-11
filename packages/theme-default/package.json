@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/theme-default",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "scripts": {
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",

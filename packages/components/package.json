@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/components",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "SnowDesign 组件库 React 版",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
