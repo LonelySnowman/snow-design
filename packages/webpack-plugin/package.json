@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/webpack-plugin",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "SnowDesign 组件库主题包 Webpack 插件",
   "main": "./lib/cjs/index.js",
   "module": "./lib/es/index.js",
