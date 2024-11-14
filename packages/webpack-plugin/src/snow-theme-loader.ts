@@ -5,7 +5,7 @@ export default function snowThemeLoader(source: string) {
     const options = loaderUtils.getOptions(this);
 
     let fileStr = source; // 文件原本的内容
-    fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '');
+    fileStr = fileStr.replace(/(@import ['"]\.\/variables.*?['"];?)/g, '');
 
     const defaultTheme = '@snow-design/theme-default';
     const customTheme = options.theme;
@@ -22,6 +22,8 @@ export default function snowThemeLoader(source: string) {
             SCSSVarStr += `@import "~${defaultTheme}/scss/index.scss";\n`;
             console.error(`[SnowDesign ERROR]: ${customTheme}/scss/index.scss not exist!`);
         }
+    } else {
+        SCSSVarStr += `@import "~${defaultTheme}/scss/index.scss";\n`;
     }
 
     // 本地组件级变量配置

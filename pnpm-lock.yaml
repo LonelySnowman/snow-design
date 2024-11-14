@@ -300,6 +300,9 @@ importers:
 
   packages/vite-plugin:
     dependencies:
+      '@snow-design/theme-default':
+        specifier: workspace:*
+        version: link:../theme-default
       enhanced-resolve:
         specifier: ^5.15.0
         version: 5.17.1
@@ -332,6 +335,9 @@ importers:
 
   packages/webpack-plugin:
     dependencies:
+      '@snow-design/theme-default':
+        specifier: workspace:*
+        version: link:../theme-default
       '@types/node':
         specifier: ^20.10.4
         version: 20.16.11

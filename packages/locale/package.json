@@ -13,9 +13,19 @@
     "version:major": "npm version major --no-git-tag-version"
   },
   "description": "SnowDesign 组件库国际化语言包",
-  "main": "lib/cjs/index.js",
-  "module": "lib/es/index.js",
-  "types": "lib/cjs/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/es/index.js",
+  "types": "./lib/cjs/index.d.ts",
+  "exports": {
+    "zh_CN": {
+      "import": "./lib/es/zh_CN.js",
+      "require": "./lib/cjs/zh_CN.js"
+    },
+    "en_US": {
+      "import": "./lib/es/en_US.js",
+      "require": "./lib/cjs/en_US.js"
+    }
+  },
   "keywords": [
     "snow-design"
   ],

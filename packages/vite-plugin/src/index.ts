@@ -60,7 +60,7 @@ export default function SnowDesignVitePlugin(options: SnowVitePluginOptions): Pl
 
 function loader(source: Buffer, options: SnowVitePluginOptions, config: ResolvedConfig) {
     let fileStr = source.toString(); // 文件原本的内容
-    fileStr = fileStr.replace(/(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g, '');
+    fileStr = fileStr.replace(/(@import ['"]\.\/variables.*?['"];?)/g, '');
 
     const defaultTheme = '@snow-design/theme-default';
     const customTheme = options.theme;
@@ -77,6 +77,8 @@ function loader(source: Buffer, options: SnowVitePluginOptions, config: Resolved
             SCSSVarStr += `@import "~${defaultTheme}/scss/index.scss";\n`;
             console.error(`[SnowDesign ERROR]: ${customTheme}/scss/index.scss not exist!`);
         }
+    } else {
+        SCSSVarStr += `@import "~${defaultTheme}/scss/index.scss";\n`;
     }
 
     // 本地组件级变量配置
@@ -93,7 +95,7 @@ function loader(source: Buffer, options: SnowVitePluginOptions, config: Resolved
 
     // 自定义 CSS 类名前缀
     if (options.prefixCls) {
-        SCSSVarStr += `$prefix: '${options.prefixCls}';`;
+        SCSSVarStr += `$prefix: '${options.prefixCls}';\n`;
     }
 
     return `${SCSSVarStr}${fileStr}`;

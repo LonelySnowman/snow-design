@@ -2,9 +2,15 @@
   "name": "@snow-design/webpack-plugin",
   "version": "0.0.30",
   "description": "SnowDesign 组件库主题包 Webpack 插件",
-  "main": "lib/cjs/index.js",
-  "module": "lib/es/index.js",
-  "types": "lib/cjs/index.js",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/es/index.js",
+  "types": "./lib/cjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/es/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
   "scripts": {
     "build:lib": "tsup-node",
     "build": "pnpm run build:lib",
@@ -23,6 +29,7 @@
   "author": "LonelySnowman",
   "license": "ISC",
   "dependencies": {
+    "@snow-design/theme-default": "workspace:*",
     "@types/node": "^20.10.4",
     "enhanced-resolve": "^5.15.0",
     "loader-utils": "^2.0.4",
