@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import ConfigProvider from '../index';
 import Pagination from '@snow-design/vue3/pagination';
-import zh_CN from '@snow-design/locale/zh_CN';
+import { zh_CN } from '@snow-design/locale';
 
 const meta = {
     title: 'Example/ConfigProvider',

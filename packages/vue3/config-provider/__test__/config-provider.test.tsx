@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import ConfigProvider from '../index';
 import Pagination from '@snow-design/vue3/pagination';
 import { render } from '@testing-library/vue';
-import zh_CN from '@snow-design/locale/zh_CN';
+import { zh_CN } from '@snow-design/locale';
 
 describe('ConfigProvider', () => {
     mountTest(<ConfigProvider />);

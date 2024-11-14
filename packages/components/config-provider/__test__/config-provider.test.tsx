@@ -4,7 +4,7 @@ import React from 'react';
 import ConfigProvider from '../index';
 import mountTest from '#test/react/mountTest';
 import Pagination from '@snow-design/components/pagination';
-import zh_CN from '@snow-design/locale/zh_CN';
+import { zh_CN } from '@snow-design/locale';
 
 describe('ConfigProvider', () => {
     mountTest(() => <ConfigProvider>Test</ConfigProvider>);

@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import Pagination from '@snow-design/components/pagination';
 import ConfigProvider from '@snow-design/components/config-provider';
-import zh_CN from '@snow-design/locale/zh_CN';
+
+import { zh_CN } from '@snow-design/locale';
 
 const meta: Meta<typeof ConfigProvider> = {
     title: 'ConfigProvider',

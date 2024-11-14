@@ -1,6 +1,6 @@
 import React from 'react';
 import LocaleContext from './context';
-import { Locale } from '@snow-design/locale/index';
+import { Locale } from '@snow-design/locale';
 export { default as useLocale } from './useLocale';
 
 export interface LocaleProviderProps {

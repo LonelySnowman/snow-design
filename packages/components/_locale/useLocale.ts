@@ -1,7 +1,7 @@
 import React from 'react';
 import LocaleContext from './context';
-import type { Locale, LocaleComponentName } from '@snow-design/locale/index';
-import defaultLocaleData from '@snow-design/locale/en_US';
+import type { Locale, LocaleComponentName } from '@snow-design/locale';
+import { en_US as defaultLocaleData } from '@snow-design/locale';
 
 const useLocale = <C extends LocaleComponentName = LocaleComponentName>(
     componentName: C,

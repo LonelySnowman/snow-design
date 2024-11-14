@@ -1,5 +1,5 @@
 import LocaleProvider from '../_locale';
-import { Locale } from '@snow-design/locale/index';
+import { Locale } from '@snow-design/locale';
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import { withInstall } from '../_utils';

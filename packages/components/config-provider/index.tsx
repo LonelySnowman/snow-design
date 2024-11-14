@@ -1,6 +1,6 @@
 import React from 'react';
 import LocaleProvider from '../_locale';
-import { Locale } from '@snow-design/locale/index';
+import { Locale } from '@snow-design/locale';
 
 export interface ConfigProviderProps {
     locale?: Locale;

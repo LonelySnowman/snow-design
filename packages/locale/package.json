@@ -17,13 +17,9 @@
   "module": "./lib/es/index.js",
   "types": "./lib/cjs/index.d.ts",
   "exports": {
-    "zh_CN": {
-      "import": "./lib/es/zh_CN.js",
-      "require": "./lib/cjs/zh_CN.js"
-    },
-    "en_US": {
-      "import": "./lib/es/en_US.js",
-      "require": "./lib/cjs/en_US.js"
+    ".": {
+      "import": "./lib/es/index.js",
+      "require": "./lib/cjs/index.js"
     }
   },
   "keywords": [
