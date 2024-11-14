@@ -11,6 +11,7 @@ module.exports = {
         '@snow-design/components(.*)$': '<rootDir>/packages/components/$1',
         '@snow-design/foundation(.*)$': '<rootDir>/packages/foundation/$1',
         '@snow-design/vue3(.*)$': '<rootDir>/packages/vue3/$1',
+        '@snow-design/locale(.*)$': '<rootDir>/packages/locale/$1',
         '#test(.*)$': '<rootDir>/test/$1',
     },
     testEnvironmentOptions: {
