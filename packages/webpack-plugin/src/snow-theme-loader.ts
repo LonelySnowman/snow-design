@@ -3,12 +3,25 @@ import resolve from 'enhanced-resolve';
 
 export default function snowThemeLoader(source: string) {
     const options = loaderUtils.getOptions(this);
+    const defaultTheme = '@snow-design/theme-default';
+    const customTheme = options.theme;
+
+    if (this.resourcePath.includes('_base/base.scss')) {
+        if (customTheme) {
+            const cssVariables: string | boolean = resolve.sync(this.context, `${customTheme}/scss/global.scss`);
+            if (cssVariables) {
+                return `@import "~${customTheme}/scss/global.scss";\n`;
+            } else {
+                console.error(`[SnowDesign ERROR]: ${customTheme}/scss/global.scss not exist!`);
+                return `@import "~${defaultTheme}/scss/global.scss";\n`;
+            }
+        } else {
+            return `@import "~${defaultTheme}/scss/global.scss";\n`;
+        }
+    }
 
     let fileStr = source; // 文件原本的内容
     fileStr = fileStr.replace(/(@import ['"]\.\/variables.*?['"];?)/g, '');
-
-    const defaultTheme = '@snow-design/theme-default';
-    const customTheme = options.theme;
 
     let SCSSVarStr = ''; // 更新优先级后的 SCSS 变量
     SCSSVarStr += '@import "./variables.scss";\n';

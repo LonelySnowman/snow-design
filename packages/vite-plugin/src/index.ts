@@ -30,9 +30,9 @@ export default function SnowDesignVitePlugin(options: SnowVitePluginOptions): Pl
             if (options.include) options.include = normalizePath(options.include);
             const isCSSFile = /@snow-design\/(components|foundation|vue3)\/lib\/.+\.css$/.test(filePath);
             // 开始解析 CSS 文件，指向 SCSS 并使用新变量覆盖旧主题包变量使用 sass 重新编译
-            if (isCSSFile && !filePath.includes('_base/base.css')) {
+            if (isCSSFile) {
                 const scssFilePath = filePath.replace(/\.css$/, '.scss');
-                return compileString(loader(fs.readFileSync(scssFilePath), options, config), {
+                return compileString(loader(scssFilePath, options, config), {
                     importers: [
                         {
                             findFileUrl(url) {
@@ -58,12 +58,27 @@ export default function SnowDesignVitePlugin(options: SnowVitePluginOptions): Pl
     };
 }
 
-function loader(source: Buffer, options: SnowVitePluginOptions, config: ResolvedConfig) {
-    let fileStr = source.toString(); // 文件原本的内容
-    fileStr = fileStr.replace(/(@import ['"]\.\/variables.*?['"];?)/g, '');
+function loader(filePath: string, options: SnowVitePluginOptions, config: ResolvedConfig) {
+    let fileStr = fs.readFileSync(filePath).toString(); // 文件原本的内容
 
     const defaultTheme = '@snow-design/theme-default';
     const customTheme = options.theme;
+
+    if (filePath.includes('_base/base.scss')) {
+        if (customTheme) {
+            const cssVariables: string | boolean = resolve.sync(config.root, `${customTheme}/scss/global.scss`);
+            if (cssVariables) {
+                return `@import "~${customTheme}/scss/global.scss";\n`;
+            } else {
+                console.error(`[SnowDesign ERROR]: ${customTheme}/scss/global.scss not exist!`);
+                return `@import "~${defaultTheme}/scss/global.scss";\n`;
+            }
+        } else {
+            return `@import "~${defaultTheme}/scss/global.scss";\n`;
+        }
+    }
+
+    fileStr = fileStr.replace(/(@import ['"]\.\/variables.*?['"];?)/g, '');
 
     let SCSSVarStr = ''; // 更新优先级后的 SCSS 变量
     SCSSVarStr += '@import "./variables.scss";\n';
