@@ -12,14 +12,12 @@
   "files": [
     "docs/*"
   ],
-  "devDependencies": {
-    "@rspress/plugin-preview": "^1.35.3",
-    "rspress": "^1.33.1",
-    "vue-loader-plugin": "^1.3.0"
-  },
   "dependencies": {
+    "@rspress/plugin-preview": "^1.43.10",
+    "@rspress/plugin-shiki": "^1.43.9",
     "@snow-design/components": "workspace:*",
     "@snow-design/locale": "workspace:*",
-    "@snow-design/vue3": "workspace:*"
+    "@snow-design/vue3": "workspace:*",
+    "rspress": "^1.43.10"
   }
 }

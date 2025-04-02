@@ -1,5 +1,6 @@
 import { defineConfig } from 'rspress/config';
 import { pluginPreview } from '@rspress/plugin-preview';
+import { pluginShiki } from '@rspress/plugin-shiki';
 import path from 'path';
 
 export default defineConfig({
@@ -11,6 +12,9 @@ export default defineConfig({
     plugins: [
         pluginPreview({
             defaultRenderMode: 'pure',
+        }),
+        pluginShiki({
+            langs: ['vue'],
         }),
     ],
     builderPlugins: [],
