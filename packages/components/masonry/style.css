@@ -1,0 +1,16 @@
+.snow-masonry {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.snow-masonry > * {
+    position: relative;
+    box-sizing: border-box;
+    transition: order 0.3s ease;
+}
+
+.snow-masonry img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
