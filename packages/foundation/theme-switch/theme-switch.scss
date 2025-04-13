@@ -1,0 +1,540 @@
+/* stylelint-disable no-descending-specificity */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    width: 180em;
+    height: 70em;
+    margin-top: -35em;
+    margin-left: -90em;
+    vertical-align: bottom;
+    transform: translate3d(0, 0, 0);
+
+    .moon {
+        position: absolute;
+        background-color: #96a0b4;
+        border-radius: 50%;
+        box-shadow: inset 0 0 1em 1em rgb(0 0 0 / 30%);
+        opacity: 0;
+        transition: 0.5s;
+
+        &:nth-child(1) {
+            top: 7.5em;
+            left: 25em;
+            width: 12.5em;
+            height: 12.5em;
+        }
+
+        &:nth-child(2) {
+            top: 20em;
+            left: 7.5em;
+            width: 20em;
+            height: 20em;
+        }
+
+        &:nth-child(3) {
+            top: 32.5em;
+            left: 32.5em;
+            width: 12.5em;
+            height: 12.5em;
+        }
+    }
+
+    .daytime-backgrond {
+        position: absolute;
+        border-radius: 50%;
+        transition: 1s;
+        transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
+
+        &:nth-child(2) {
+            top: -20em;
+            left: -20em;
+            z-index: -2;
+            width: 110em;
+            height: 110em;
+            background-color: rgb(255 255 255 / 20%);
+        }
+
+        &:nth-child(3) {
+            top: -32.5em;
+            left: -17.5em;
+            z-index: -3;
+            width: 135em;
+            height: 135em;
+            background-color: rgb(255 255 255 / 10%);
+        }
+
+        &:nth-child(4) {
+            top: -45em;
+            left: -15em;
+            z-index: -4;
+            width: 160em;
+            height: 160em;
+            background-color: rgb(255 255 255 / 5%);
+        }
+    }
+
+    .cloud,
+    .cloud-light {
+        transition: 1s;
+        transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
+        transform: translateY(10em);
+    }
+
+    .cloud-son {
+        position: absolute;
+        z-index: -1;
+        background-color: #fff;
+        border-radius: 50%;
+        transition:
+                transform 6s,
+                right 1s,
+                bottom 1s;
+
+        &:nth-child(6n + 1) {
+            right: -20em;
+            bottom: 10em;
+            width: 50em;
+            height: 50em;
+        }
+
+        &:nth-child(6n + 2) {
+            right: -10em;
+            bottom: -25em;
+            width: 60em;
+            height: 60em;
+        }
+
+        &:nth-child(6n + 3) {
+            right: 20em;
+            bottom: -40em;
+            width: 60em;
+            height: 60em;
+        }
+
+        &:nth-child(6n + 4) {
+            right: 50em;
+            bottom: -35em;
+            width: 60em;
+            height: 60em;
+        }
+
+        &:nth-child(6n + 5) {
+            right: 75em;
+            bottom: -60em;
+            width: 75em;
+            height: 75em;
+        }
+
+        &:nth-child(6n + 6) {
+            right: 110em;
+            bottom: -50em;
+            width: 60em;
+            height: 60em;
+        }
+    }
+
+    .cloud {
+        z-index: -2;
+    }
+
+    .cloud-light {
+        position: absolute;
+        right: 0;
+        bottom: 25em;
+        z-index: -3;
+        opacity: 0.5;
+    }
+
+    .stars {
+        z-index: -2;
+        transition: 1s;
+        transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
+        transform: translateY(-125em);
+    }
+
+    .big {
+        --size: 7em;
+    }
+
+    .medium {
+        --size: 5em;
+    }
+
+    .small {
+        --size: 3em;
+    }
+
+    .star {
+        position: absolute;
+        width: calc(2 * var(--size));
+        height: calc(2 * var(--size));
+
+        &:nth-child(1) {
+            top: 11em;
+            left: 39em;
+        }
+
+        &:nth-child(2) {
+            top: 39em;
+            left: 91em;
+        }
+
+        &:nth-child(3) {
+            top: 26em;
+            left: 19em;
+        }
+
+        &:nth-child(4) {
+            top: 37em;
+            left: 66em;
+        }
+
+        &:nth-child(5) {
+            top: 21em;
+            left: 75em;
+        }
+
+        &:nth-child(6) {
+            top: 51em;
+            left: 38em;
+        }
+    }
+
+    .star-son {
+        float: left;
+        width: var(--size);
+        height: var(--size);
+        background-image: radial-gradient(circle var(--size) at var(--pos), transparent calc(95% - 1px), #fff 95%);
+
+        &:nth-child(1) {
+            --pos: left 0;
+        }
+
+        &:nth-child(2) {
+            --pos: right 0;
+        }
+
+        &:nth-child(3) {
+            --pos: 0 bottom;
+        }
+
+        &:nth-child(4) {
+            --pos: right bottom;
+        }
+    }
+
+    .components {
+        position: fixed;
+        width: 180em;
+        height: 70em;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: #4685c0;
+        border-radius: 100em;
+        box-shadow: inset 0 0 5em 3em rgb(0 0 0 / 50%);
+        transition: 0.7s;
+        transition-timing-function: cubic-bezier(0, 0.5, 1, 1);
+
+        &:active {
+            transition: all 0.3s ease 0s;
+            transform: scale(0.9);
+        }
+
+        .main-button {
+            width: 55em;
+            height: 55em;
+            margin: 7.5em 0 0 7.5em;
+            background-color: #ffc323;
+            border-radius: 50%;
+            box-shadow:
+                    3em 3em 5em rgb(0 0 0 / 50%),
+                    inset -3em -5em 3em -3em rgb(0 0 0 / 50%),
+                    inset 4em 5em 2em -2em #ffe650;
+            transition: 1s;
+            transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
+
+            &:hover {
+                transform: translateX(10em);
+
+                ~ .daytime-backgrond:nth-child(2) {
+                    transform: translateX(10em);
+                }
+
+                ~ .daytime-backgrond:nth-child(3) {
+                    transform: translateX(7em);
+                }
+
+                ~ .daytime-backgrond:nth-child(4) {
+                    transform: translateX(4em);
+                }
+
+                ~ .cloud .cloud-son {
+                    &:nth-child(1) {
+                        right: -24em;
+                        bottom: 10em;
+                    }
+
+                    &:nth-child(2) {
+                        right: -12em;
+                        bottom: -27em;
+                    }
+
+                    &:nth-child(3) {
+                        right: 17em;
+                        bottom: -43em;
+                    }
+
+                    &:nth-child(4) {
+                        right: 46em;
+                        bottom: -39em;
+                    }
+
+                    &:nth-child(5) {
+                        right: 70em;
+                        bottom: -65em;
+                    }
+
+                    &:nth-child(6) {
+                        right: 109em;
+                        bottom: -54em;
+                    }
+                }
+
+                ~ .cloud-light .cloud-son {
+                    &:nth-child(1) {
+                        right: -23em;
+                        bottom: 10em;
+                    }
+
+                    &:nth-child(2) {
+                        right: -11em;
+                        bottom: -26em;
+                    }
+
+                    &:nth-child(3) {
+                        right: 18em;
+                        bottom: -42em;
+                    }
+
+                    &:nth-child(4) {
+                        right: 47em;
+                        bottom: -38em;
+                    }
+
+                    &:nth-child(5) {
+                        right: 74em;
+                        bottom: -64em;
+                    }
+
+                    &:nth-child(6) {
+                        right: 110em;
+                        bottom: -55em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.container-light {
+    .cloud-son {
+        transition: 1s;
+        transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
+        transform: scale(1);
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+
+        &:nth-child(6n + 1) {
+            animation-name: nao-cloud;
+            animation-duration: 4.5s;
+        }
+
+        &:nth-child(6n + 2) {
+            animation-name: nao-cloud;
+            animation-duration: 5.1s;
+        }
+
+        &:nth-child(6n + 3) {
+            animation-name: nao-cloud;
+            animation-duration: 5.9s;
+        }
+
+        &:nth-child(6n + 4) {
+            animation-name: nao-cloud;
+            animation-duration: 6.3s;
+        }
+
+        &:nth-child(6n + 5) {
+            animation-name: nao-cloud;
+            animation-duration: 4.7s;
+        }
+
+        &:nth-child(6n + 6) {
+            animation-name: nao-cloud;
+            animation-duration: 5s;
+        }
+    }
+}
+
+.container-dark {
+    .star {
+        transition: 1s;
+        transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
+        transform: scale(1);
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+
+        &:nth-child(1) {
+            animation-name: nao-star;
+            animation-duration: 3.5s;
+        }
+
+        &:nth-child(2) {
+            animation-name: nao-star;
+            animation-duration: 4.1s;
+        }
+
+        &:nth-child(3) {
+            animation-name: nao-star;
+            animation-duration: 4.9s;
+        }
+
+        &:nth-child(4) {
+            animation-name: nao-star;
+            animation-duration: 5.3s;
+        }
+
+        &:nth-child(5) {
+            animation-name: nao-star;
+            animation-duration: 3s;
+        }
+
+        &:nth-child(6) {
+            animation-name: nao-star;
+            animation-duration: 2.2s;
+        }
+    }
+
+    .daytime-backgrond {
+        &:nth-child(2) {
+            transform: translateX(110em);
+        }
+
+        &:nth-child(3) {
+            transform: translateX(80em);
+        }
+
+        &:nth-child(4) {
+            transform: translateX(50em);
+        }
+    }
+
+    .main-button {
+        background-color: #c3c8d2;
+        box-shadow:
+            3em 3em 5em rgb(0 0 0 / 50%),
+            inset -3em -5em 3em -3em rgb(0 0 0 / 50%),
+            inset 4em 5em 2em -2em #ffffd2;
+        transform: translateX(110em);
+
+        &:hover {
+            transform: translateX(100em);
+
+            ~ .daytime-backgrond:nth-child(2) {
+                transform: translateX(100em);
+            }
+
+            ~ .daytime-backgrond:nth-child(3) {
+                transform: translateX(73em);
+            }
+
+            ~ .daytime-backgrond:nth-child(4) {
+                transform: translateX(46em);
+            }
+
+            ~ .stars .star {
+                &:nth-child(1) {
+                    top: 10em;
+                    left: 36em;
+                }
+
+                &:nth-child(2) {
+                    top: 40em;
+                    left: 87em;
+                }
+
+                &:nth-child(3) {
+                    top: 26em;
+                    left: 16em;
+                }
+
+                &:nth-child(4) {
+                    top: 38em;
+                    left: 63em;
+                }
+
+                &:nth-child(5) {
+                    top: 20.5em;
+                    left: 72em;
+                }
+
+                &:nth-child(6) {
+                    top: 51.5em;
+                    left: 35em;
+                }
+            }
+        }
+    }
+
+    .moon {
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            filter: none;
+            opacity: 1;
+        }
+    }
+
+    .cloud,
+    .cloud-light {
+        transform: translateY(80em);
+    }
+
+    .stars {
+        filter: none;
+        opacity: 1;
+        transform: translateY(-62.5em);
+    }
+
+    .components {
+        background-color: #191e32;
+    }
+}
+
+@keyframes nao-star {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes nao-cloud {
+    0% {
+        transform: translate(2em, -2em);
+    }
+
+    50% {
+        transform: translate(-2em, 2em);
+    }
+
+    100% {
+        transform: translate(2em, -2em);
+    }
+}
