@@ -2,6 +2,7 @@ import React from 'react';
 import '@snow-design/foundation/theme-switch/theme-switch.scss';
 import useMergedState from '../_utils/hooks/useMergedState';
 import { CssProps } from '../_types';
+import classNames from 'classnames';
 
 type ThemeType = 'dark' | 'light';
 
@@ -15,8 +16,11 @@ export interface PaginationProps extends CssProps {
 export const ThemeSwitch: React.FC = (props: PaginationProps) => {
     const { defaultThemeType = 'light', themeType } = props;
     const handleThemeChange = () => {
-        const willChangeMode = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; // 判断是否白天黑夜;
-        document.body.setAttribute('data-theme', willChangeMode);
+        if (curThemeType === 'light') {
+            setCurThemeType('dark');
+        } else {
+            setCurThemeType('light');
+        }
     };
     const [curThemeType, setCurThemeType] = useMergedState<ThemeType>(defaultThemeType, {
         value: themeType,
@@ -24,9 +28,9 @@ export const ThemeSwitch: React.FC = (props: PaginationProps) => {
             handleThemeChange();
         },
     });
-    console.log(curThemeType, setCurThemeType);
+    const themeClass = curThemeType === 'light' ? 'container-light' : 'container-dark';
     return (
-        <div className="container" onClick={handleThemeChange} style={{ fontSize: '0.5px' }}>
+        <div className={classNames('container', themeClass)} onClick={handleThemeChange} style={{ fontSize: '0.5px' }}>
             <div className="components">
                 <div className="main-button">
                     <div className="moon"></div>
