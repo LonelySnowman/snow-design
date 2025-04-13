@@ -1,5 +1,4 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import * as ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import './style.css';
 
@@ -42,6 +41,9 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
     const [maxColumnHeight, setMaxColumnHeight] = useState<number>();
     const isSSR = !maxColumnHeight && defaultHeight && defaultColumns !== undefined && defaultSpacing !== undefined;
     const [numberOfLineBreaks, setNumberOfLineBreaks] = useState(isSSR ? defaultColumns! - 1 : 0);
+    const [listOrders, setListOrders] = useState<string[]>([]);
+
+    const childrenList = React.Children.toArray(children);
 
     const handleResize = useCallback(
         (masonryChildren: React.ReactNode) => {
@@ -53,23 +55,23 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
             const masonryFirstChild = masonry.firstChild as HTMLElement;
             const parentWidth = masonry.clientWidth;
             const firstChildWidth = masonryFirstChild.clientWidth;
-
             if (parentWidth === 0 || firstChildWidth === 0) {
                 return;
             }
-
             const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild);
             const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
             const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
+            // 计算总共能渲染几列
             const currentNumberOfColumns = Math.round(
                 parentWidth / (firstChildWidth + firstChildMarginLeft + firstChildMarginRight),
             );
 
             const columnHeights = new Array(currentNumberOfColumns).fill(0);
-            let skip = false;
             let nextOrder = 1;
+            const skip = false;
 
+            const orders = [];
             masonry.childNodes.forEach((child) => {
                 if (
                     child.nodeType !== Node.ELEMENT_NODE ||
@@ -87,41 +89,25 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
                     ? Math.ceil(parseToNumber(childComputedStyle.height)) + childMarginTop + childMarginBottom
                     : 0;
 
-                if (childHeight === 0) {
-                    skip = true;
-                    return;
-                }
-
-                for (let i = 0; i < childElement.childNodes.length; i += 1) {
-                    const nestedChild = childElement.childNodes[i] as HTMLElement;
-                    if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
-                        skip = true;
-                        break;
+                if (sequential) {
+                    columnHeights[nextOrder - 1] += childHeight;
+                    childElement.style.order = String(nextOrder);
+                    orders.push(String(nextOrder));
+                    nextOrder += 1;
+                    if (nextOrder > currentNumberOfColumns) {
+                        nextOrder = 1;
                     }
-                }
-
-                if (!skip) {
-                    if (sequential) {
-                        columnHeights[nextOrder - 1] += childHeight;
-                        childElement.style.order = String(nextOrder);
-                        nextOrder += 1;
-                        if (nextOrder > currentNumberOfColumns) {
-                            nextOrder = 1;
-                        }
-                    } else {
-                        const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-                        columnHeights[currentMinColumnIndex] += childHeight;
-                        childElement.style.order = String(currentMinColumnIndex + 1);
-                    }
+                } else {
+                    const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+                    columnHeights[currentMinColumnIndex] += childHeight;
+                    childElement.style.order = String(currentMinColumnIndex + 1);
+                    orders.push(String(currentMinColumnIndex + 1));
                 }
             });
 
-            if (!skip) {
-                ReactDOM.flushSync(() => {
-                    setMaxColumnHeight(Math.max(...columnHeights));
-                    setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
-                });
-            }
+            setListOrders(orders);
+            setMaxColumnHeight(Math.max(...columnHeights));
+            setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
         },
         [sequential],
     );
@@ -175,12 +161,40 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
     };
 
     return (
-        <div ref={masonryRef} className={classNames('snow-masonry', className)} style={masonryStyle} {...other}>
-            {React.Children.map(children, (child) => (
-                <div style={childStyle}>{child}</div>
-            ))}
-            {lineBreaks}
-        </div>
+        <>
+            <div
+                key="masonry"
+                ref={masonryRef}
+                className={classNames('snow-masonry', className)}
+                style={{
+                    ...masonryStyle,
+                    position: 'absolute',
+                    left: '-9999px',
+                    top: '-9999px',
+                }}
+                {...other}
+            >
+                {childrenList.map((child, index) => (
+                    <div key={index} style={childStyle}>
+                        {child}
+                    </div>
+                ))}
+            </div>
+            <div key="render" className={classNames('snow-masonry', className)} style={masonryStyle} {...other}>
+                {listOrders.map((order, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            ...childStyle,
+                            order,
+                        }}
+                    >
+                        {childrenList[index]}
+                    </div>
+                ))}
+                {lineBreaks}
+            </div>
+        </>
     );
 });
 

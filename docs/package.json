@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "@rspress/plugin-preview": "^1.43.10",
-    "@rspress/plugin-shiki": "^1.43.9",
+    "@rspress/plugin-shiki": "^1.43.10",
     "@snow-design/components": "workspace:*",
     "@snow-design/locale": "workspace:*",
     "@snow-design/vue3": "workspace:*",

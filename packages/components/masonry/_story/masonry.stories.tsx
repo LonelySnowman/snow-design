@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import React, { useState } from 'react';
 import Masonry from '../index';
 
 const meta: Meta<typeof Masonry> = {
@@ -21,7 +21,7 @@ export default meta;
 
 export const Base: StoryObj = {
     render() {
-        const heights = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]; // 假设你有一个高度数组，用于模拟不同的高度
+        const [heights, setHeights] = useState([40, 20, 50, 35]); // 假设你有一个高度数组，用于模拟不同的高度
         return (
             <>
                 <Masonry columns={4} spacing={2}>
@@ -31,6 +31,13 @@ export const Base: StoryObj = {
                         </div>
                     ))}
                 </Masonry>
+                <div
+                    onClick={() => {
+                        setHeights([...heights, 40, 20, 50, 35]);
+                    }}
+                >
+                    Load More
+                </div>
             </>
         );
     },
