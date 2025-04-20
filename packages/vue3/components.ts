@@ -6,3 +6,6 @@ export { default as ConfigProvider } from './config-provider';
 
 export type { paginationProps } from './pagination';
 export { default as Pagination } from './pagination';
+
+export type { virtualListProps } from './virtual-list';
+export { default as VirtualList } from './virtual-list';

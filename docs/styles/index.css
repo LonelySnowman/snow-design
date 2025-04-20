@@ -2,3 +2,11 @@
     display: flex;
     gap: 4px;
 }
+
+.rspress-preview-device iframe {
+    width: 100% !important;
+}
+
+.rspress-preview-code {
+    max-height: none !important;
+}

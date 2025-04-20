@@ -1,0 +1,143 @@
+# 虚拟列表
+
+用于展示大量数据的列表。
+
+## 定高虚拟列表
+
+指定 `itemSize` 为固定值设置定高虚拟列表。
+
+```tsx
+import { VirtualList } from '@snow-design/components';
+
+const Row = ({ index, style }: ItemProps) => {
+    return (
+        <div
+            style={{
+                ...style,
+                display: 'flex',
+                alignItems: 'center',
+                padding: '0 20px',
+                backgroundColor: index % 2 ? '#f5f5f5' : 'white',
+                boxSizing: 'border-box',
+                borderBottom: '1px solid #e8e8e8',
+            }}
+        >
+            {`Row ${index}`}
+        </div>
+    );
+};
+
+export default () => {
+    return (
+        <div style={{ border: '1px solid #e8e8e8', borderRadius: '4px' }}>
+            <VirtualList height={300} width={400} itemSize={50} itemCount={1000}>
+                {Row}
+            </VirtualList>
+        </div>
+    );
+};
+```
+
+## 不定高虚拟列表
+
+指定 `itemSize` 为函数设置不定高列表，需要自行计算元素的高度。
+
+```tsx
+import { VirtualList } from '@snow-design/components';
+
+const Row = ({ index, style }: ItemProps) => {
+    return (
+        <div
+            style={{
+                ...style,
+                display: 'flex',
+                alignItems: 'center',
+                padding: '0 20px',
+                backgroundColor: index % 2 ? '#f5f5f5' : 'white',
+                boxSizing: 'border-box',
+                borderBottom: '1px solid #e8e8e8',
+            }}
+        >
+            {`Row ${index}`}
+        </div>
+    );
+};
+
+export default () => {
+    const getItemSize = (index: number) => (index % 3 === 0 ? 80 : 50);
+    return (
+        <div style={{ border: '1px solid #e8e8e8', borderRadius: '4px' }}>
+            <VirtualList height={300} width={400} itemSize={getItemSize} itemCount={1000}>
+                {Row}
+            </VirtualList>
+        </div>
+    );
+};
+```
+
+## 滚动至指定位置
+
+使用组件暴露的 `scrollTo` 方法滚动至指定位置。
+
+```tsx
+import React from 'react';
+import { VirtualList, Button } from '@snow-design/components';
+
+const Row = ({ index, style }: ItemProps) => {
+    return (
+        <div
+            style={{
+                ...style,
+                display: 'flex',
+                alignItems: 'center',
+                padding: '0 20px',
+                backgroundColor: index % 2 ? '#f5f5f5' : 'white',
+                boxSizing: 'border-box',
+                borderBottom: '1px solid #e8e8e8',
+            }}
+        >
+            {`Row ${index}`}
+        </div>
+    );
+};
+
+export default () => {
+    const ref = React.useRef(null);
+    return (
+        <>
+            <Button
+                type="primary"
+                onClick={() => {
+                    ref.current?.scrollTo(25000);
+                }}
+            >
+                Scroll To 25000
+            </Button>
+            <div style={{ border: '1px solid #e8e8e8', borderRadius: '4px', marginTop: '4px' }}>
+                <VirtualList ref={ref} height={300} width={400} itemSize={50} itemCount={1000}>
+                    {Row}
+                </VirtualList>
+            </div>
+        </>
+    );
+};
+```
+
+## API 参数
+
+### VirtualList
+
+| 属性          | 说明                                                           | 类型                                  | 默认值 |
+| ------------- | -------------------------------------------------------------- | ------------------------------------- | ------ |
+| height        | 必填，设置容器的高度                                           | number                                | -      |
+| width         | 必填，设置容器的宽度                                           | number                                | -      |
+| itemSize      | 必填，设置每个项目的高度，可以是固定值或根据索引动态计算的函数 | number \| ((index: number) => number) | -      |
+| itemCount     | 必填，设置列表中的项目总数                                     | number                                | -      |
+| overscanCount | 可选，设置预渲染的项目数量，用于优化滚动性能                   | number                                | 2      |
+| children      | 必填，用于渲染每个项目的组件                                   | React.FC                              | -      |
+
+### Ref
+
+| 方法     | 说明                   | 类型                        |
+| -------- | ---------------------- | --------------------------- |
+| scrollTo | 将滚动条移动至指定位置 | (scrollTop: number) => void |

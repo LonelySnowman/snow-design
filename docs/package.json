@@ -1,23 +1,26 @@
 {
-  "name": "@snow-design/docs",
-  "version": "1.0.0",
-  "description": "SnowDesign 组件库静态站点",
-  "scripts": {
-    "dev": "rspress dev",
-    "build": "rspress build",
-    "preview": "rspress preview",
-    "clean": "rimraf dist node_modules"
-  },
-  "authors": "LonelySnowman",
-  "files": [
-    "docs/*"
-  ],
-  "dependencies": {
-    "@rspress/plugin-preview": "^1.43.10",
-    "@rspress/plugin-shiki": "^1.43.10",
-    "@snow-design/components": "workspace:*",
-    "@snow-design/locale": "workspace:*",
-    "@snow-design/vue3": "workspace:*",
-    "rspress": "^1.43.10"
-  }
+    "name": "@snow-design/docs",
+    "version": "1.0.0",
+    "description": "SnowDesign 组件库静态站点",
+    "scripts": {
+        "dev": "rspress dev",
+        "build": "rspress build",
+        "preview": "rspress preview",
+        "clean": "rimraf dist node_modules"
+    },
+    "authors": "LonelySnowman",
+    "files": [
+        "docs/*"
+    ],
+    "dependencies": {
+        "@rspress/plugin-preview": "2.0.0-alpha.11",
+        "@rspress/plugin-shiki": "2.0.0-alpha.11",
+        "@snow-design/components": "workspace:*",
+        "@snow-design/locale": "workspace:*",
+        "@snow-design/vue3": "workspace:*",
+        "rspress": "2.0.0-alpha.11"
+    },
+    "devDependencies": {
+        "@rsbuild/plugin-vue": "^1.0.7"
+    }
 }

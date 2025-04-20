@@ -1,0 +1,29 @@
+# Button 按钮
+
+用于用户点击操作交互。
+
+## 按钮类型
+
+Button 支持使用 `type` 改变按钮基础风格。
+
+```vue
+<template>
+    <Button>你好</Button>
+    <Button type="primary">你好</Button>
+    <Button type="warning">你好</Button>
+    <Button type="danger">你好</Button>
+</template>
+
+<script setup lang="ts">
+import { Button } from '@snow-design/vue3';
+</script>
+```
+
+## API 参数
+
+### Button
+
+| 属性    | 说明                                                    | 类型                 | 默认值    |
+| ------- | ------------------------------------------------------- | -------------------- | --------- |
+| type    | 类型，可选值：`default`、`primary`、`warning`、`danger` | string               | "default" |
+| onClick | 单击事件                                                | function(MouseEvent) | -         |

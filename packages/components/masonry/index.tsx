@@ -162,6 +162,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
 
     return (
         <>
+            {/* 可视区域外预渲染获取 */}
             <div
                 key="masonry"
                 ref={masonryRef}

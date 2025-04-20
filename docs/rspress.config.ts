@@ -1,6 +1,7 @@
 import { defineConfig } from 'rspress/config';
 import { pluginPreview } from '@rspress/plugin-preview';
 import { pluginShiki } from '@rspress/plugin-shiki';
+import { pluginVue } from '@rsbuild/plugin-vue';
 import path from 'path';
 
 export default defineConfig({
@@ -11,7 +12,29 @@ export default defineConfig({
     globalStyles: path.join(__dirname, 'styles/index.css'),
     plugins: [
         pluginPreview({
-            defaultRenderMode: 'pure',
+            previewMode: 'iframe',
+            previewLanguages: ['jsx', 'tsx', 'vue'],
+            iframeOptions: {
+                customEntry: ({ entryCssPath, demoPath }) => {
+                    if (demoPath.endsWith('.vue')) {
+                        return `
+          import { createApp } from 'vue';
+          import App from ${JSON.stringify(demoPath)};
+          import ${JSON.stringify(entryCssPath)};
+          createApp(App).mount('#root');
+          `;
+                    }
+                    return `
+          import { render } from 'react-dom';
+          import ${JSON.stringify(entryCssPath)};
+          import Demo from ${JSON.stringify(demoPath)};
+          render(<Demo />, document.getElementById('root'));
+          `;
+                },
+                builderConfig: {
+                    plugins: [pluginVue()],
+                },
+            },
         }),
         pluginShiki({
             langs: ['vue'],
@@ -38,14 +61,27 @@ export default defineConfig({
             },
             {
                 text: '组件',
-                link: '/components',
+                items: [
+                    {
+                        text: 'React',
+                        link: '/components/react/button',
+                    },
+                    {
+                        text: 'Vue3',
+                        link: '/components/vue3/button',
+                    },
+                ],
             },
         ],
         sidebar: {
-            '/guide/': [
+            '/guide': [
                 {
                     text: '开始',
                     items: [
+                        {
+                            text: '介绍',
+                            link: '/guide/detail',
+                        },
                         {
                             text: '快速开始',
                             link: '/guide/start',
@@ -78,26 +114,50 @@ export default defineConfig({
                     ],
                 },
             ],
-            '/components': [
+            '/components/react': [
                 {
-                    text: '开始',
+                    text: '通用组件',
                     items: [
                         {
-                            text: '介绍',
-                            link: '/components',
+                            text: '按钮',
+                            link: '/components/react/button',
+                        },
+                        {
+                            text: '分页器',
+                            link: '/components/react/pagination',
                         },
                     ],
                 },
                 {
-                    text: '组件',
+                    text: '功能组件',
+                    items: [
+                        {
+                            text: '虚拟列表',
+                            link: '/components/react/virtual-list',
+                        },
+                    ],
+                },
+            ],
+            '/components/vue3': [
+                {
+                    text: '通用组件',
                     items: [
                         {
                             text: '按钮',
-                            link: '/components/button',
+                            link: '/components/vue3/button',
                         },
                         {
                             text: '分页器',
-                            link: '/components/pagination',
+                            link: '/components/vue3/pagination',
+                        },
+                    ],
+                },
+                {
+                    text: '功能组件',
+                    items: [
+                        {
+                            text: '虚拟列表',
+                            link: '/components/vue3/virtual-list',
                         },
                     ],
                 },

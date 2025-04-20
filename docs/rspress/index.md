@@ -9,10 +9,10 @@ hero:
     actions:
         - theme: brand
           text: 快速开始
-          link: /guide/start
+          link: /guide/detail
         - theme: alt
           text: 组件文档
-          link: /components
+          link: /components/react/button
 features:
     - title: Tip
       icon: 📖

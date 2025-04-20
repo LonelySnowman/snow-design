@@ -1,0 +1,87 @@
+# Pagination 分页器
+
+进行基础分页操作。
+
+## 基础使用
+
+Pagination 支持使用 `total`、`pagSize` 设置总页数与每页的大小。
+
+```tsx
+import { Pagination } from '@snow-design/components';
+
+export default () => {
+    return (
+        <div className="snow-flex">
+            <Pagination
+                showTotal
+                total={20}
+                pageSize={2}
+                onChange={(page, pageSize) => {
+                    alert(`Page Change: ${page}, Page Size: ${pageSize}`);
+                }}
+            />
+        </div>
+    );
+};
+```
+
+## 受控模式
+
+在受控模式下你可以通过外部值改变分页器的状态，传入`current`开启受控模式。
+
+```tsx
+import React, { useState } from 'react';
+import { Pagination, Button } from '@snow-design/components';
+
+const Control = () => {
+    const [currentPage, setCurrentPage] = useState(5);
+    return (
+        <>
+            <h3>受控模式</h3>
+            <Pagination
+                showTotal
+                currentPage={currentPage}
+                total={20}
+                pageSize={2}
+                onChange={(targetPage) => {
+                    setCurrentPage(targetPage);
+                }}
+            />
+            <h4>自定义受控按钮</h4>
+            <Button
+                style={{ marginRight: '4px' }}
+                onClick={() => {
+                    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+                }}
+            >
+                上一页
+            </Button>
+            <Button
+                onClick={() => {
+                    if (currentPage < 10) setCurrentPage((prev) => prev + 1);
+                }}
+            >
+                下一页
+            </Button>
+        </>
+    );
+};
+
+export default Control;
+```
+
+## API 参数
+
+### Pagination
+
+| 属性                 | 说明                 | 类型                                     | 默认值 |
+| -------------------- | -------------------- | ---------------------------------------- | ------ |
+| showTotal            | 是否展示总页数       | boolean                                  | false  |
+| onChange             | 页码变更时产生的回调 | (page: number, pageSize: number) => void | -      |
+| total                | 总页数               | number                                   | -      |
+| pageSize             | 每一页的大小         | number                                   | -      |
+| currentPage(v-model) | 受控模式当前页       | number                                   | -      |
+| defaultCurrentPage   | 默认的当前页         | number                                   | 1      |
+| disabled             | 是否禁用按钮         | boolean                                  | false  |
+| nextText             | 下一页展示的 DOM     | Node/string                              | -      |
+| prevText             | 上一页展示的 DOM     | Node/string                              | -      |
