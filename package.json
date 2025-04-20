@@ -10,7 +10,7 @@
         "test:unit": "jest --silent",
         "test:coverage": "jest --coverage",
         "build:docs": "pnpm run -C docs build",
-        "build:lib": "pnpm recursive run build && pnpm run -C packages/vue3 build:lib",
+        "build:lib": "pnpm run -C packages/vue3 build:lib && pnpm recursive run build",
         "build:production": "pnpm recursive run build && pnpm run -C packages/vue3 build:production",
         "gen": "node ./scripts/index.js gen",
         "clean": "pnpm recursive run clean",
