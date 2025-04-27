@@ -37,9 +37,9 @@
             background-color: #ffc323;
             border-radius: 50%;
             box-shadow:
-                    3em 3em 5em rgb(0 0 0 / 50%),
-                    inset -3em -5em 3em -3em rgb(0 0 0 / 50%),
-                    inset 4em 5em 2em -2em #ffe650;
+                3em 3em 5em rgb(0 0 0 / 50%),
+                inset -3em -5em 3em -3em rgb(0 0 0 / 50%),
+                inset 4em 5em 2em -2em #ffe650;
             transition: 1s;
             transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1);
 
@@ -202,9 +202,9 @@
         background-color: #fff;
         border-radius: 50%;
         transition:
-                transform 6s,
-                right 1s,
-                bottom 1s;
+            transform 6s,
+            right 1s,
+            bottom 1s;
 
         &:nth-child(6n + 1) {
             right: -20em;
@@ -389,9 +389,9 @@
     .main-button {
         background-color: #c3c8d2;
         box-shadow:
-                3em 3em 5em rgb(0 0 0 / 50%),
-                inset -3em -5em 3em -3em rgb(0 0 0 / 50%),
-                inset 4em 5em 2em -2em #ffffd2;
+            3em 3em 5em rgb(0 0 0 / 50%),
+            inset -3em -5em 3em -3em rgb(0 0 0 / 50%),
+            inset 4em 5em 2em -2em #ffffd2;
         transform: translateX(110em);
 
         &:hover {

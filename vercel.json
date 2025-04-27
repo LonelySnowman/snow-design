@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/~demo/:path([^.]+)",
+            "destination": "/~demo/:path.html"
+        }
+    ]
+}
