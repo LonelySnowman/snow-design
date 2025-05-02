@@ -1,6 +1,6 @@
 {
   "name": "@snow-design/locale",
-  "version": "0.0.32",
+  "version": "0.1.0",
   "files": [
     "lib",
     "README.md"
