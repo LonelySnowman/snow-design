@@ -2,7 +2,7 @@ import ImgLazyLoad from '../index';
 import { defineComponent } from 'vue';
 
 const meta = {
-    title: 'Example/ImgLazyLoad',
+    title: 'ImgLazyLoad',
     component: ImgLazyLoad,
 };
 

@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue';
 import Button from '@snow-design/vue3/button';
 
 const meta = {
-    title: 'Example/Pagination',
+    title: 'Pagination',
     component: Pagination,
 };
 

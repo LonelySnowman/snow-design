@@ -2,7 +2,7 @@ import Button from '../index';
 import { defineComponent } from 'vue';
 
 const meta = {
-    title: 'Example/Button',
+    title: 'Button',
     component: Button,
 };
 

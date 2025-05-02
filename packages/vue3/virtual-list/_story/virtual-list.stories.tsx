@@ -4,7 +4,7 @@ import { ItemProps } from '@snow-design/foundation/virtual-list/constants';
 import Button from '@snow-design/vue3/button';
 
 const meta = {
-    title: 'Example/VirtualList',
+    title: 'VirtualList',
     component: VirtualList,
     parameters: {
         layout: 'centered',
