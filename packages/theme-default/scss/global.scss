@@ -1,47 +1,50 @@
-@import "./palette";
+@import './palette';
 
-body, body[theme-mode="light"], body .snow-always-light {
-  /* Color */
-  --snow-color-default: var(--snow-gray-4);
-  --snow-color-default-hover: var(--snow-gray-3);
-  --snow-color-default-active: var(--snow-gray-5);
-  --snow-color-primary: var(--snow-blue-6);
-  --snow-color-primary-hover: var(--snow-blue-5);
-  --snow-color-primary-active: var(--snow-blue-7);
-  --snow-color-warning: var(--snow-orange-6);
-  --snow-color-warning-hover: var(--snow-orange-5);
-  --snow-color-warning-active: var(--snow-orange-7);
-  --snow-color-danger: var(--snow-red-6);
-  --snow-color-danger-hover: var(--snow-red-5);
-  --snow-color-danger-active: var(--snow-red-7);
-  --snow-front-color: var(--snow-black);
+body,
+body[theme-mode='light'],
+body .snow-always-light {
+    /* Color */
+    --snow-color-default: var(--snow-gray-4);
+    --snow-color-default-hover: var(--snow-gray-3);
+    --snow-color-default-active: var(--snow-gray-5);
+    --snow-color-primary: var(--snow-blue-6);
+    --snow-color-primary-hover: var(--snow-blue-5);
+    --snow-color-primary-active: var(--snow-blue-7);
+    --snow-color-warning: var(--snow-orange-6);
+    --snow-color-warning-hover: var(--snow-orange-5);
+    --snow-color-warning-active: var(--snow-orange-7);
+    --snow-color-danger: var(--snow-red-6);
+    --snow-color-danger-hover: var(--snow-red-5);
+    --snow-color-danger-active: var(--snow-red-7);
+    --snow-front-color: var(--snow-black);
 
-  /* Padding */
-  --snow-padding-xxs: 4px;
-  --snow-padding-xs: 8px;
-  --snow-padding-sm: 12px;
-  --snow-padding: 16px;
-  --snow-padding-md: 20px;
-  --snow-padding-lg: 24px;
-  --snow-padding-xl: 32px;
+    /* Padding */
+    --snow-padding-xxs: 4px;
+    --snow-padding-xs: 8px;
+    --snow-padding-sm: 12px;
+    --snow-padding: 16px;
+    --snow-padding-md: 20px;
+    --snow-padding-lg: 24px;
+    --snow-padding-xl: 32px;
 
-  /* Margin */
-  --snow-margin-xxs: 4px;
-  --snow-margin-xs: 8px;
-  --snow-margin-sm: 12px;
-  --snow-margin: 16px;
-  --snow-margin-md: 20px;
-  --snow-margin-lg: 24px;
-  --snow-margin-xl: 32px;
-  --snow-margin-xxl: 48px;
+    /* Margin */
+    --snow-margin-xxs: 4px;
+    --snow-margin-xs: 8px;
+    --snow-margin-sm: 12px;
+    --snow-margin: 16px;
+    --snow-margin-md: 20px;
+    --snow-margin-lg: 24px;
+    --snow-margin-xl: 32px;
+    --snow-margin-xxl: 48px;
 
-  /* Border Radius */
-  --snow-border-radius-xs: 2px;
-  --snow-border-radius: 4px;
-  --snow-border-radius-lg: 8px;
+    /* Border Radius */
+    --snow-border-radius-xs: 2px;
+    --snow-border-radius: 4px;
+    --snow-border-radius-lg: 8px;
 }
 
 // @todo: 暗夜模式待补充
-body[theme-mode="dark"], body .snow-always-dark {
-  --snow-front-color: var(--snow-white);
+body[theme-mode='dark'],
+body .snow-always-dark {
+    --snow-front-color: var(--snow-white);
 }
