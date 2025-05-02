@@ -1,36 +1,49 @@
 import React from 'react';
-import '@snow-design/foundation/theme-switch/theme-switch.scss';
-import useMergedState from '../_utils/hooks/useMergedState';
-import { CssProps } from '../_types';
 import classNames from 'classnames';
+import { CssProps } from '../_types';
+import useMergedState from '../_utils/hooks/useMergedState';
+import { cssClasses, ThemeType } from '@snow-design/foundation/theme-switch/constants';
+import '@snow-design/foundation/theme-switch/theme-switch.scss';
+import useThemeSwitchFoundation from '@snow-design/foundation/theme-switch/foundation';
 
-type ThemeType = 'dark' | 'light';
+const prefixCls = cssClasses.PREFIX;
 
 export interface PaginationProps extends CssProps {
     defaultThemeType?: ThemeType;
     onChange?: () => void;
     themeType?: ThemeType;
+    size?: number;
 }
 
 // TODO: Update to Foundation / Adapter Model
 export const ThemeSwitch: React.FC = (props: PaginationProps) => {
-    const { defaultThemeType = 'light', themeType } = props;
-    const handleThemeChange = () => {
-        if (curThemeType === 'light') {
-            setCurThemeType('dark');
-        } else {
-            setCurThemeType('light');
-        }
-    };
-    const [curThemeType, setCurThemeType] = useMergedState<ThemeType>(defaultThemeType, {
-        value: themeType,
-        onChange: () => {
-            handleThemeChange();
+    const { defaultThemeType = 'light', themeType, size = 1 } = props;
+
+    const foundation = useThemeSwitchFoundation({
+        setThemeType: (val: ThemeType) => {
+            setCurThemeType(val);
+        },
+        getState: () => {
+            return {
+                themeType: curThemeType,
+            };
         },
     });
-    const themeClass = curThemeType === 'light' ? 'container-light' : 'container-dark';
+
+    const [curThemeType, setCurThemeType] = useMergedState<ThemeType>(defaultThemeType, {
+        value: themeType,
+    });
+
+    const themeClass = curThemeType === 'light' ? `${prefixCls}-light` : `${prefixCls}-dark`;
+
     return (
-        <div className={classNames('container', themeClass)} onClick={handleThemeChange} style={{ fontSize: '0.5px' }}>
+        <div
+            className={classNames(prefixCls, themeClass)}
+            onClick={() => {
+                foundation.handleThemeChange();
+            }}
+            style={{ fontSize: `${size}px` }}
+        >
             <div className="components">
                 <div className="main-button">
                     <div className="moon"></div>

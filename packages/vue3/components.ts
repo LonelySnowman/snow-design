@@ -12,3 +12,6 @@ export { default as VirtualList } from './virtual-list';
 
 export type { imgLazyLoadProps } from './img-lazy-load';
 export { default as ImgLazyLoad } from './img-lazy-load';
+
+export type { themeSwitchProps } from './theme-switch';
+export { default as ThemeSwitch } from './theme-switch';

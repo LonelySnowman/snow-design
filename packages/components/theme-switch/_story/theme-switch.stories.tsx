@@ -7,10 +7,6 @@ type Story = StoryObj<typeof ThemeSwitch>;
 const meta: Meta<typeof ThemeSwitch> = {
     title: 'ThemeSwitch',
     component: ThemeSwitch,
-    parameters: {
-        layout: 'centered',
-    },
-    tags: ['autodocs'],
 };
 
 export default meta;
