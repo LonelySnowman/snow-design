@@ -17,8 +17,6 @@ $module: #{$prefix}-pagination;
   }
 
   &-item {
-    @include font-size-regular;
-
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -56,8 +54,6 @@ $module: #{$prefix}-pagination;
   }
 
   &-total {
-    @include font-size-regular;
-
     margin-right: $pagination-spacing_item-margin;
   }
 
