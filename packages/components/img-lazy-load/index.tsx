@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import useImgLazyLoadFoundation from '@snow-design/foundation/img-lazy-load/foundation';
 
 interface ImgLazyLoadProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     /** 图片资源地址 */
@@ -17,8 +18,8 @@ interface ImgLazyLoadProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     rootMargin?: string;
 }
 
-// TODO: use hook to render IntersectionObserver
-// TODO: add segment rendering
+// TODO: 使用 hooks 去传入 IntersectionObserver
+// TODO: 添加分段渲染
 const ImgLazyLoad: React.FC<ImgLazyLoadProps> = (props: ImgLazyLoadProps) => {
     const {
         src,
@@ -34,42 +35,34 @@ const ImgLazyLoad: React.FC<ImgLazyLoadProps> = (props: ImgLazyLoadProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const imgRef = useRef<HTMLImageElement>(null);
 
-    useEffect(() => {
-        if (!imgRef.current) return;
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            {
-                threshold,
-                rootMargin,
-            },
-        );
-        observer.observe(imgRef.current);
-        return () => {
-            if (imgRef.current) {
-                observer.unobserve(imgRef.current);
-            }
-        };
-    }, [threshold]);
+    const foundation = useImgLazyLoadFoundation({
+        setIsVisible,
+        setIsLoaded,
+        setHasError,
+        getProps: () => {
+            return props;
+        },
+        getElement: () => {
+            return imgRef.current;
+        },
+        getState: () => {
+            return {
+                isVisible,
+                hasError,
+                isLoaded,
+            };
+        },
+    });
 
     useEffect(() => {
-        if (!isVisible) return;
-        const loadImage = async () => {
-            const img = new Image();
-            img.src = src;
-            img.onload = () => {
-                setIsLoaded(true);
-                imgRef.current.appendChild(img);
-            };
-            img.onerror = () => {
-                setHasError(true);
-            };
+        const unobserve = foundation.init();
+        return () => {
+            unobserve?.();
         };
-        loadImage();
+    }, [threshold, rootMargin]);
+
+    useEffect(() => {
+        foundation.loadImage();
     }, [isVisible, src]);
 
     const showImage = isVisible && isLoaded && !hasError;

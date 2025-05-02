@@ -9,3 +9,6 @@ export { default as Pagination } from './pagination';
 
 export type { virtualListProps } from './virtual-list';
 export { default as VirtualList } from './virtual-list';
+
+export type { imgLazyLoadProps } from './img-lazy-load';
+export { default as ImgLazyLoad } from './img-lazy-load';

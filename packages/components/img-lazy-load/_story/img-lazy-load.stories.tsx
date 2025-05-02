@@ -11,17 +11,32 @@ export default meta;
 
 export const ImgLazyLoadBase: StoryObj = {
     render() {
+        const LoadingPlaceholder = (
+            <div
+                style={{
+                    width: '200px',
+                    height: '300px',
+                    background: '#eee',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#999',
+                }}
+            >
+                Loading...
+            </div>
+        );
         return (
             <div style={{ height: '150vh', padding: '20px' }}>
-                <p>Scroll down to see lazy loading images</p>
+                <p>向下滚动查看懒加载图片</p>
                 <div style={{ marginTop: '1000px' }}>
                     <ImgLazyLoad
                         src="https://fastly.picsum.photos/id/83/200/300.jpg?hmac=avqtE9ZSAkPbFtYCXzxg4TeAA-fMWqX6jUQeWI_HjLc"
-                        placeholder={<div style={{ width: 200, height: 300, background: '#eee' }}>Loading...</div>}
+                        placeholder={LoadingPlaceholder}
                     />
                     <ImgLazyLoad
                         src="https://fastly.picsum.photos/id/320/200/301.jpg?hmac=bqN7yJjlYBYWppeCGdfOrSdD1n8qlt-PaWbcnhRkyG8"
-                        placeholder={<div style={{ width: 200, height: 300, background: '#eee' }}>Loading...</div>}
+                        placeholder={LoadingPlaceholder}
                     />
                 </div>
             </div>
