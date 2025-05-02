@@ -1,0 +1,64 @@
+# Masonry
+
+瀑布流布局组件，适用于图片、卡片等内容的不规则排列展示。
+
+## 基础用法
+
+```tsx
+import { Masonry, Button } from '@snow-design/components';
+import React, { useState } from 'react';
+
+export default () => {
+    const [heights, setHeights] = useState([400, 200, 100, 350]);
+
+    return (
+        <>
+            <Masonry columns={4} spacing={2}>
+                {heights.map((height, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            height: 'max-content',
+                            backgroundColor: 'white',
+                            borderRadius: '8px',
+                            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                            padding: '12px',
+                        }}
+                    >
+                        <img
+                            src={`https://picsum.photos/200/${height}?random=${index}`}
+                            style={{
+                                height: height,
+                                width: '100%',
+                                objectFit: 'cover',
+                                borderRadius: '6px',
+                                marginBottom: '8px',
+                            }}
+                        />
+                        <div style={{ fontSize: '14px', fontWeight: 'bold' }}>标题 {index + 1}</div>
+                    </div>
+                ))}
+            </Masonry>
+            <Button
+                type="primary"
+                style={{ marginTop: '12px' }}
+                onClick={() => setHeights([...heights, 200, 150, 100, 250])}
+            >
+                加载更多
+            </Button>
+        </>
+    );
+};
+```
+
+## API
+
+| 参数           | 说明                       | 类型             | 默认值 |
+| -------------- | -------------------------- | ---------------- | ------ |
+| children       | 子元素内容                 | React.ReactNode  | -      |
+| columns        | 列数                       | number           | 4      |
+| spacing        | 间距，支持数字(px)或字符串 | number \| string | 1      |
+| sequential     | 是否按顺序填充             | boolean          | false  |
+| defaultColumns | 默认列数                   | number           | -      |
+| defaultHeight  | 默认高度                   | number           | -      |
+| defaultSpacing | 默认间距                   | number           | -      |

@@ -10,17 +10,18 @@ const prefixCls = cssClasses.PREFIX;
 
 export interface PaginationProps extends CssProps {
     defaultThemeType?: ThemeType;
-    onChange?: () => void;
+    onChange?: (theme: ThemeType) => void;
     themeType?: ThemeType;
     size?: number;
 }
 
 // TODO: Update to Foundation / Adapter Model
 export const ThemeSwitch: React.FC = (props: PaginationProps) => {
-    const { defaultThemeType = 'light', themeType, size = 1 } = props;
+    const { defaultThemeType = 'light', themeType, onChange, size = 1, className: customClass, style } = props;
 
     const foundation = useThemeSwitchFoundation({
         setThemeType: (val: ThemeType) => {
+            onChange?.(val);
             setCurThemeType(val);
         },
         getState: () => {
@@ -38,11 +39,11 @@ export const ThemeSwitch: React.FC = (props: PaginationProps) => {
 
     return (
         <div
-            className={classNames(prefixCls, themeClass)}
+            className={classNames(prefixCls, themeClass, customClass)}
             onClick={() => {
                 foundation.handleThemeChange();
             }}
-            style={{ fontSize: `${size}px` }}
+            style={{ fontSize: `${size}px`, ...style }}
         >
             <div className="components">
                 <div className="main-button">

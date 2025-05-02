@@ -1,0 +1,29 @@
+# ThemeSwitch 主题切换器
+
+用于切换应用的主题模式。
+
+## 基础使用
+
+ThemeSwitch 支持通过 `v-model` 绑定当前主题模式。
+
+```vue
+<template>
+    <ThemeSwitch v-model:themeType="currentTheme" />
+</template>
+
+<script setup lang="ts">
+import { ThemeSwitch } from '@snow-design/vue3';
+import { ref } from 'vue';
+
+const currentTheme = ref('light');
+</script>
+```
+
+## API 参数
+
+### ThemeSwitch
+
+| 属性               | 说明               | 类型   | 默认值  |
+| ------------------ | ------------------ | ------ | ------- |
+| themeType(v-model) | 当前主题模式       | string | 'light' |
+| size               | 组件 fontSize 大小 | number | 1       |

@@ -1,4 +1,4 @@
-import { Button } from "@snow-design/components"
+import { Button } from '@snow-design/components';
 
 # 快速开始
 
@@ -22,30 +22,31 @@ npm install @semi-design/vue3
 
 #### ES6 模块引入
 
-- 组件分包构建，支持按需导入，自动 TreeShaking。
+-   组件分包构建，支持按需导入，自动 TreeShaking。
 
 :::tip Button
+
 <Button type="primary">你好</Button>
 :::
 
 ```tsx
-import { Button } from "@snow-design/components"
+import { Button } from '@snow-design/components';
 
 export default () => {
-    return <Button type="primary">你好</Button>
-}
+    return <Button type="primary">你好</Button>;
+};
 ```
 
 #### UMD 引入
 
-- 可以通过 `script` 标签直接引入文件，并使用全局变量 SnowUI。
-- @x.x.x/@latest，为版本号，可根据需要进行调整。
+-   可以通过 `script` 标签直接引入文件，并使用全局变量 SnowUI。
+-   @x.x.x/@latest，为版本号，可根据需要进行调整。
 
-| 资源名称                         | 资源路径                                                     |
-| -------------------------------- | ------------------------------------------------------------ |
-| @snow-design/components (min)    | https://unpkg.com/@snow-design/components@latest/dist/umd/components.js |
+| 资源名称                         | 资源路径                                                                    |
+| -------------------------------- | --------------------------------------------------------------------------- |
+| @snow-design/components (min)    | https://unpkg.com/@snow-design/components@latest/dist/umd/components.js     |
 | @snow-design/components (normal) | https://unpkg.com/@snow-design/components@latest/dist/umd/components.min.js |
-| snow.css                         | https://unpkg.com/@snow-design/components@latest/dist/css/snow.css |
+| snow.css                         | https://unpkg.com/@snow-design/components@latest/dist/css/snow.css          |
 
 ```html
 <html>
@@ -53,73 +54,71 @@ export default () => {
         <!-- 确保引入了 ReactDOM 及需要的依赖 -->
         <!-- 引入全局变量 SnowUI -->
         <script src="https://unpkg.com/@snow-design/components@0.0.22/dist/umd/components.js"></script>
-		<!-- 引入全局样式 -->
-        <link rel="stylesheet" href="https://unpkg.com/@snow-design/components@0.0.22/dist/css/snow.css">
+        <!-- 引入全局样式 -->
+        <link rel="stylesheet" href="https://unpkg.com/@snow-design/components@0.0.22/dist/css/snow.css" />
     </head>
     <body>
         <div id="root"></div>
     </body>
     <script type="text/babel">
         const { Button } = SnowUI;
-        ReactDOM.render(
-            <Button type="warning">你好</Button>,
-            document.getElementById('root')
-        );
+        ReactDOM.render(<Button type="warning">你好</Button>, document.getElementById('root'));
     </script>
 </html>
 ```
 
 ### 🔥 Vue3 版
 
-- 使用 `<s-组件名>` 或者 `<S组件名>` 引用组件。
+-   使用 `<s-组件名>` 或者 `<S组件名>` 引用组件。
 
 :::tip SButton
+
 <Button type="primary">点击</Button>
 :::
 
 ```vue
 <template>
-  <SButton type="primary">点击</SButton>
+    <SButton type="primary">点击</SButton>
 </template>
 ```
 
 #### 全量引入
 
-- 直接加载 `@snow-design/vue3` 的默认导出注册所有全局组件。
-- 不建议您这样做，可能会导致打包产物过大。
+-   直接加载 `@snow-design/vue3` 的默认导出注册所有全局组件。
+-   不建议您这样做，可能会导致打包产物过大。
 
 ```ts
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-import SnowDesign from '@snow-design/vue3'
+import { createApp } from 'vue';
+import './style.css';
+import App from './App.vue';
+import SnowDesign from '@snow-design/vue3';
 
-createApp(App).use(SnowDesign).mount('#app')
+createApp(App).use(SnowDesign).mount('#app');
 ```
 
 #### 按需引入
 
-- 注册您需要使用的全局组件。
+-   注册您需要使用的全局组件。
 
 ```ts
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-import { Button, Pagination } from '@snow-design/vue3'
+import { createApp } from 'vue';
+import './style.css';
+import App from './App.vue';
+import { Button, Pagination } from '@snow-design/vue3';
 
-createApp(App).use(Button).use(Pagination).mount('#app')
+createApp(App).use(Button).use(Pagination).mount('#app');
 ```
 
 #### ES6 模块引入
 
-- 按需引入您所需要的组件，需要在 `script` 中引用该组件并使用。
+-   按需引入您所需要的组件，需要在 `script` 中引用该组件并使用。
 
 ```vue
 <template>
-  <Button type="primary">点击</Button>
+    <Button type="primary">点击</Button>
 </template>
 
 <script setup lang="ts">
-import { Button } from "@snow-design/vue3";
+import { Button } from '@snow-design/vue3';
 </script>
 ```

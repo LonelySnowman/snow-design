@@ -135,6 +135,23 @@ export default defineConfig({
                             text: '虚拟列表',
                             link: '/components/react/virtual-list',
                         },
+                        {
+                            text: '图片懒加载',
+                            link: '/components/react/img-lazy-load',
+                        },
+                        {
+                            text: '瀑布流',
+                            link: '/components/react/masonry',
+                        },
+                    ],
+                },
+                {
+                    text: '样式组件',
+                    items: [
+                        {
+                            text: '主题切换',
+                            link: '/components/react/theme-switch',
+                        },
                     ],
                 },
             ],
@@ -158,6 +175,19 @@ export default defineConfig({
                         {
                             text: '虚拟列表',
                             link: '/components/vue3/virtual-list',
+                        },
+                        {
+                            text: '图片懒加载',
+                            link: '/components/vue3/img-lazy-load',
+                        },
+                    ],
+                },
+                {
+                    text: '样式组件',
+                    items: [
+                        {
+                            text: '主题切换',
+                            link: '/components/vue3/theme-switch',
                         },
                     ],
                 },

@@ -1,0 +1,54 @@
+# ImgLazyLoad 图片懒加载
+
+用于延迟加载图片，提升页面性能。
+
+## 基础使用
+
+ImgLazyLoad 支持传入图片地址和占位内容。
+
+```tsx
+import { ImgLazyLoad } from '@snow-design/components';
+
+const ImagePlaceholder = () => (
+    <div
+        style={{
+            width: '200px',
+            height: '300px',
+            background: '#eee',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#999',
+        }}
+    >
+        Loading...
+    </div>
+);
+
+export default () => (
+    <div style={{ height: '150vh', padding: '20px' }}>
+        <p>向下滚动查看懒加载图片</p>
+        <div style={{ marginTop: '1000px' }}>
+            <ImgLazyLoad
+                src="https://fastly.picsum.photos/id/83/200/300.jpg?hmac=avqtE9ZSAkPbFtYCXzxg4TeAA-fMWqX6jUQeWI_HjLc"
+                placeholder={<ImagePlaceholder />}
+            />
+            <ImgLazyLoad
+                src="https://fastly.picsum.photos/id/320/200/301.jpg?hmac=bqN7yJjlYBYWppeCGdfOrSdD1n8qlt-PaWbcnhRkyG8"
+                placeholder={<ImagePlaceholder />}
+            />
+        </div>
+    </div>
+);
+```
+
+## API 参数
+
+### ImgLazyLoad
+
+| 属性             | 说明                     | 类型      | 默认值 |
+| ---------------- | ------------------------ | --------- | ------ |
+| src              | 图片地址                 | string    | -      |
+| placeholder      | 占位内容                 | ReactNode | -      |
+| errorPlaceholder | 图片加载后展示的占位内容 | ReactNode | -      |
+| threshold        | 触发加载阈值             | number    | 0      |

@@ -1,6 +1,5 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
-import './style.css';
 
 export const parseToNumber = (val: string) => {
     return Number(val.replace('px', ''));
@@ -23,7 +22,7 @@ export interface MasonryProps extends React.HTMLAttributes<HTMLDivElement> {
     defaultSpacing?: number;
 }
 
-const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
+const Masonry = (props: MasonryProps) => {
     const {
         children,
         className,
@@ -197,8 +196,6 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>((props) => {
             </div>
         </>
     );
-});
-
-Masonry.displayName = 'Masonry';
+};
 
 export default Masonry;

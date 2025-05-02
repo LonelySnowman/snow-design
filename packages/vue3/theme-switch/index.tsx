@@ -5,7 +5,7 @@ import '@snow-design/foundation/theme-switch/theme-switch.scss';
 import useThemeSwitchFoundation from '@snow-design/foundation/theme-switch/foundation';
 import { withInstall } from '../_utils';
 import { CssProps } from '../_utils/type';
-import useMergedState from '@snow-design/vue3/_utils/hooks/useMergedState';
+import useMergedState from '../_utils/hooks/useMergedState';
 
 const prefixCls = cssClasses.PREFIX;
 

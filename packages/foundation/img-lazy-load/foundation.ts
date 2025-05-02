@@ -22,7 +22,6 @@ const useImgLazyLoadFoundation = (adapter: ImgLazyLoadAdapter) => {
         if (!imgElement) return;
         const observer = new IntersectionObserver(
             ([entry]) => {
-                console.log(entry.isIntersecting);
                 if (entry.isIntersecting) {
                     setIsVisible(true);
                     observer.unobserve(entry.target);

@@ -37,7 +37,7 @@ export default function useMergedState<T>(
         if (!hasValue(value) && prevPropsValue !== value) {
             setInnerValue(value);
         }
-        if (prevPropsValue !== value) onChange(value, prevPropsValue);
+        if (prevPropsValue !== value) onChange?.(value, prevPropsValue);
     }, [value]);
 
     return [mergedValue, setInnerValue];
