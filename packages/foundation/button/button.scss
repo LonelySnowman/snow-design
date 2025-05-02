@@ -3,8 +3,6 @@
 $module: #{$prefix}-button;
 
 .#{$module} {
-  @include font-size-regular;
-
   height: 32px;
   padding: $button-padding;
   cursor: pointer;
