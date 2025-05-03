@@ -7,6 +7,7 @@ import { anyType, VueNode, CssProps } from '../_utils/type';
 import { withInstall } from '../_utils';
 import useLocale from '../_locale/useLocale';
 import useMergedState from '../_utils/hooks/useMergedState';
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
 
 const prefixCls = cssClasses.PREFIX;
 
@@ -97,7 +98,6 @@ const Pagination = defineComponent({
                 [`${prefixCls}-prev`]: true,
                 [`${prefixCls}-item-disabled`]: isDisabled,
             });
-            // @todo: Icon 方案待设计
             return (
                 <li
                     role="button"
@@ -106,7 +106,7 @@ const Pagination = defineComponent({
                     onClick={() => !isDisabled && foundation.goPrev()}
                     class={preClassName}
                 >
-                    {prevText || contextLocale.previous}
+                    {prevText || <ChevronLeft />}
                 </li>
             );
         };
@@ -126,7 +126,7 @@ const Pagination = defineComponent({
                     onClick={() => !isDisabled && foundation.goNext()}
                     class={nextClassName}
                 >
-                    {nextText || contextLocale.next}
+                    {nextText || <ChevronRight />}
                 </li>
             );
         };

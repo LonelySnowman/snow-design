@@ -6,6 +6,7 @@ import { useLocale } from '../_locale';
 import usePaginationFoundation from '@snow-design/foundation/pagination/foundation';
 import useMergedState from '../_utils/hooks/useMergedState';
 import { CssProps } from '@snow-design/components/_types';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const prefixCls = cssClasses.PREFIX;
 
@@ -106,7 +107,7 @@ const Button: React.FC<PaginationProps> = (props) => {
                 onClick={() => !isDisabled && foundation.goPrev()}
                 className={preClassName}
             >
-                {prevText || contextLocale.previous}
+                {prevText || <ChevronLeft />}
             </li>
         );
     };
@@ -126,8 +127,7 @@ const Button: React.FC<PaginationProps> = (props) => {
                 onClick={() => !isDisabled && foundation.goNext()}
                 className={nextClassName}
             >
-                {/* @todo: Icon 模块待设计 */}
-                {nextText || contextLocale.next}
+                {nextText || <ChevronRight />}
             </li>
         );
     };
